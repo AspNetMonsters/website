@@ -70,3 +70,4 @@ theme: landscape
 deploy:
   type: git
   repo: git@github.com:AspNetMonsters/website.git
+  branch: blog_output
