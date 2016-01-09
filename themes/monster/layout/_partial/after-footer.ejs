@@ -1,0 +1,29 @@
+<% if (config.disqus_shortname){ %>
+<script>
+  var disqus_shortname = '<%= config.disqus_shortname %>';
+  <% if (page.permalink){ %>
+  var disqus_url = '<%= page.permalink %>';
+  <% } %>
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/<% if (page.comments) { %>embed.js<% } else { %>count.js<% } %>';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<% } %>
+
+
+    <!-- js -->
+       <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+        <script src="js/html5.js"></script>
+        <script src="js/jquery.nicescroll.min.js"></script>
+        <script src="js/modernizr.js"></script>
+        <script src="js/tabs.js"></script>
+        <script src="js/jquery.prettyPhoto.js"></script>
+        <script src="js/jquery.bxslider.min.js"></script>
+        <script src="js/custom.js"></script>
+       <script src="js/bootstrap.min.js"></script>
+    <!-- End js -->
+ 
