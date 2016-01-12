@@ -15,7 +15,7 @@ I'm going to tell you right now: there are a lot of things wrong with this rule.
 
 Let's break it down.
 
-##First Things First
+## First Things First
 
 I want to add some clarity to my thought process here. The most confused aspect of the aforementioned rule is that the terms used are not well-defined. I will do that here, defining what "work" actually means, and how it is a fundamentally different concept than your job or your career.
 
@@ -29,7 +29,7 @@ Which leads me to the definition of **career**. Unlike the tasks you perform or 
 
 Others still will explain their career as the vehicle they used to chase a passion, rather than something they were passionate about. As a concrete example example of that, I've demonstrated capabilities in software development and have been on this career path for 20 years now, writing code and leading teams. However, as much as I like writing code, my _passion_ is actually learning, mentoring, sharing my work and teaching others. My career has allowed me to access my passion, and today I get to speak at conferences across North America and volunteer at the computer labs at local middle and high schools.
 
-##What You Should Really Embrace
+## What You Should Really Embrace
 
 Okay, so if you're not going to embrace some kind of intertwined reality, what should you be chasing? 
 
@@ -65,7 +65,7 @@ I don't want to constantly attend to the negative, I want to focus on the things
 
 If I've got positive answers for several of these, I know I'm in a good spot. On the other hand, failing to meet my criteria here on a couple of points could be a sign that there needs to be a change of season. These questions may not be exactly what you need, but the exercise is what I believe we all need to embrace; the answers are dynamic and are going to change over time, so you need to find questions that help you identify your measure of happiness. 
 
-##An Employer's Role in Your Work, Job and Career
+## An Employer's Role in Your Work, Job and Career
 
 In it's simplest terms, I believe that an employer's job begins with the assignment of meaningful, relevant tasks and ends with a paycheque. In between that space there is opportunity to challenge an employee, to contribute to their growth and provide guidance on how to develop their skills in such a way that it serves the company and helps to realize the goals of the individual, wherever possible. 
 
@@ -73,7 +73,7 @@ As employees we have to concede that an employer is concerned with generating in
 
 If an employer is mentoring you to make your work part of your life, I boldly challenge you to push back and define strong bounds through which your work cannot cross. Someone in a mentorship role who guides employees with banter of blending work and life is clearly not interested in the career of the employee, and places higher weight on the importance of completed work than on the individual. I don't want to work _there_. 
 
-##Why Work Isn't "Intricately Intertwined" With Your Life
+## Why Work Isn't "Intricately Intertwined" With Your Life
 
 I will yield that the original post did not prescribe an explanation of "work", which is why I have above, so I'll argue this from the perspective of both "work" and "job" as I've defined in this article.
 
@@ -85,7 +85,7 @@ Wherever you land, you need time to recharge. I agree with the sentiment from th
 
 
 
-##Some Well-Deserved Exceptions
+## Some Well-Deserved Exceptions
 
 I know some incredible folks who have taken entirely different walks of life than I. They have found success in ways that would not work for me, as I have found success in ways that may not work for you. Here are some scenarios where your workday may bleed more frequently into your personal life. 
 
@@ -102,7 +102,7 @@ I know some incredible folks who have taken entirely different walks of life tha
 In spite of these, I still believe that the cross-over time can be mitigated to a large degree. The important thing to do in these cases is to be more effective at communicating when the windows of work will be and ensuring that you have the support of those around you to help enforce it. Your husband or wife won't know that you are expecting a call unless you've found a way to share it with them.
 
 
-##What to do With All of This
+## What to do With All of This
 
 First of all, don't sell the farm. If you're finding that something in your career, your job or your work is unsettling, make sure you have set of reasonable questions you can ask yourself to find out why. Talk with your employer about ways to make it right and, if needed, start to explore alternate work arrangements inside your organization, or outside of it.
 
