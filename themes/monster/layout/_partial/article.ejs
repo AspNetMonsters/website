@@ -1,11 +1,11 @@
 <div class="post post-2 post-gallery single-post">
     <div class="post-type"><i class="fa fa-image"></i></div>
-    <div class="post-author"><img alt="" src="images/monster_character_simon.jpg"></div>
+    <div class="post-author"><img alt="" src="images/<%= post.author.thumb %>"></div>
 
     <div class="post-head" style="margin-top:60px;">
         <h3><a href="<%- url_for(post.path) %>"><%= post.title %></a></h3>
         <div class="post-meta">
-            <div><i class="fa fa-user"></i>BY : <a href="#">NextGen</a></div>
+            <div><i class="fa fa-user"></i>BY : <a href="#"><%= post.author.name %></a></div>
             <div><i class="fa fa-clock-o"></i><time datetime="<%= date_xml(post.date) %>" itemprop="datePublished"><%= date(post.date, null) %></time></div>
             <div><i class="fa fa-comments"></i><a href="#">100 Comments</a></div>
             <div><i class="fa fa-heart"></i><a href="#">100</a></div>

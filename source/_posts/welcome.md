@@ -2,7 +2,8 @@
 title: "Your Work and Your Life are _NOT_ Intricately Intertwined"
 date: 2016-01-09 14:25:50
 tags:
-excerpt: "You are **always** setting expectations. When you answer an email at 10pm, you are setting an expectation. When let a call go to voicemail at 6pm, you are setting an expectation.  These are difficult things to accept, especially if you're in competition for advancement or your employer is challenging your boundaries on a regular basis, but just remember that resetting expectations is much more difficult that setting them in the first place. Remembering that every action you take (or don't) defines how people will expect you to act in the future." 
+excerpt: "You are **always** setting expectations. When you answer an email at 10pm, you are setting an expectation. When let a call go to voicemail at 6pm, you are setting an expectation.  These are difficult things to accept, especially if you're in competition for advancement or your employer is challenging your boundaries on a regular basis, but just remember that resetting expectations is much more difficult that setting them in the first place. Remembering that every action you take (or don't) defines how people will expect you to act in the future."
+authorId: james  
 ---
 
 I am currently an employee and likely will be for the foreseeable future. My career aspirations do not include management despite the fact that I love to lead teams (there is a significant difference between the two, but I'll save that for a different post). I firmly believe that you can lead a work life and a personal life that are largely disconnected and be quite successful doing so.
