@@ -3986,4 +3986,8 @@ body {
     /*height: 100%;*/
 }
 
+.thumb-right {
+    float: right;
+    margin: 0 0 15px 15px;
+}
 
