@@ -1,0 +1,33 @@
+<div class="wrap-search">
+    <form method="post">
+        <input type="search" name="s" value="Search here ..." onfocus="if(this.value==this.defaultValue)this.value='';" onblur="if(this.value=='')this.value=this.defaultValue;">
+    </form>
+</div>
+<!-- End wrap-search -->
+
+<!-- Fixed navbar -->
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header" style="color:#F4EDED; padding:10px;">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+            aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="logo" href="/"><img src="/images/logo_100.png" /></a>
+            <a class="navbar-brand" href="/">The ASP.NET Monsters</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+
+            <ul class="nav navbar-nav navbar-right">
+            <% for (var i in theme.menu){ %>
+                <li><a href="<%- url_for(theme.menu[i]) %>"><%= i %></a></li>
+             <% } %>
+            </ul>
+
+        </div>
+        <!--/.nav-collapse -->
+    </div>
+</nav>

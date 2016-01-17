@@ -1,0 +1,21 @@
+::-moz-selection {
+    background: #e74c3c;
+}
+::selection {
+    background: #e74c3c;
+}
+.social-ul li a:hover,.go-up,.widget-about,.post-type,.button,.comment-edit-link,.comment-reply-link,.post-quote .post-wrap,.post-link .post-inner.link,.post-gallery .post-img .bx-controls-direction a:hover,.widget-dribbble .bx-controls-direction a:hover,.related-posts .bx-controls-direction a:hover,.post-soundcloud .post-img,.post-twitter .post-img,.post-facebook .post-img,.widget-posts-img a:before,.widget_tag_cloud a:hover,.widget-login-password a:hover,.navigation.navigation-2 li:hover ul,.related-post-one:hover .related-post-type,.blockquote-2,.widget .search-submit,input[type="submit"],input[type="button"],.portfolio-filter li a:hover,.portfolio-filter li.current a,.portfolio-one:hover .portfolio-content,.block-box-title-more:hover,.block-box-img a:before,.carousel-box-img a:before,#footer-top .widget_tag_cloud a:hover,.box-slideshow .bx-controls-direction a:hover,.news-ticker-title,.news-ticker-content .bx-controls-direction a:hover,.review_rating,.rating_score,.styled-select::before,.fileinputs span,.post-edit a:hover i,.post-delete a:hover i {
+	background-color: #e74c3c;
+}
+.color,.logo a,.navigation li:hover > a,.navigation li ul li:hover > a,.navigation li.current_page_item > a,.navigation li ul li.current_page_item > a,.navigation.navigation-2 > ul > li.current_page_item > a,.navigation.navigation-2 > ul > li:hover > a,.copyrights a,.post-meta div a,.post-head > h3 a:hover,.post-meta div span,.widget li a:hover,.widget-posts-content span a,.widget .widget-comments-content > a,.page-404 h2,.related-post-head span a,.commentlist li.comment .comment-body .comment-text .author span,.commentlist li.comment .comment-body .comment-text .author span a,blockquote .author,.post-meta .post-tags a:hover,.post a:hover,.accordion-archive ul li:hover:before,.navigation_mobile > ul li:hover > a,.navigation_mobile > ul li:hover:before,.navigation_mobile > ul li:hover > a > span i,.navigation_mobile_click:hover,.navigation_mobile_click:hover:before,.portfolio-meta h6 a:hover,.portfolio-item-2 .portfolio-meta h6 a,.block-box-title-more,.block-box-title a:hover,.block-box-1 li .block-box-content > a:first-child:hover,.block-box-1 li .block-box-content span a,.carousel-box-1 li .block-box-content > a:first-child:hover,.carousel-box-1 li .block-box-content span a,.carousel-box-2 li .block-box-content span a,.footer-subscribe h3,#footer-top a:hover,#footer-top .widget-posts-content span a,#footer-top .widget .post-content-small span a,.box-slideshow-content > a:hover,.box-slideshow-content span a,.criteria_score,.summary_score,.post .post-inner-content a,.navigation > ul > li.mega-menu li li > a:hover,.navigation > ul > li.mega-menu li li:hover:before,.navigation li.current-menu-item > a,.navigation li.current-menu-parent > a,.navigation > ul > li.mega-menu li.current_page_item > a,.navigation > ul > li.mega-menu li li.current_page_item:before {
+	color: #e74c3c;
+}
+.loader_html,.widget_tag_cloud a:hover,.related-posts .bx-controls-direction a:hover,blockquote,.block-box-title-more:hover,#footer-top .widget_tag_cloud a:hover {
+	border-color: #e74c3c;
+}
+.post-quote-top,.post-quote-bottom,.post-link .post-inner.link .fa-link,.widget .widget-posts-img i.fa,.block-box-img:hover i.fa,.carousel-box-img:hover i.fa {
+	color: #d82425;
+}
+.widget-about-img {
+	border-color: #d82425;
+}
