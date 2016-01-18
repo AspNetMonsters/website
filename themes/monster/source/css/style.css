@@ -3403,10 +3403,13 @@ li.block-box-first {
 }
 /* footer */
 #footer {
-	line-height: 94px;
+	line-height: 60px;
 	background-color: #010101;
 	margin-top: 60px;
-	position: relative;
+	position: fixed;
+    bottom: 0px;
+    font-size: 13px;
+    width: 100%;
 }
 #footer.footer-no-top {
 	margin-top: 0;
@@ -3421,7 +3424,7 @@ li.block-box-first {
 .social-ul li {
 	float: left;
 	list-style: none;
-	margin: 33px 5px 0 0;
+	margin: 16px 5px 0 0;
 	line-height: normal;
 }
 .social-ul li:last-child {
