@@ -71,3 +71,5 @@ deploy:
   type: git
   repo: git@github.com:AspNetMonsters/website.git
   branch: blog_output
+  
+disqus_shortname: aspnetmonsters
