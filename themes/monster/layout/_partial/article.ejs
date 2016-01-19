@@ -43,7 +43,9 @@
                         </div>
                         <!-- End follow-social -->
                     </div>
-                    <a href="<%- url_for(post.path) %>" class="button post-more">Continue Reading</a>
+                    <% if (index){ %>
+                       <a href="<%- url_for(post.path) %>" class="button post-more">Continue Reading</a>
+                    <% } %>
                 </div>
                 <!-- End post-meta -->
             </div>
