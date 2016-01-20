@@ -14,9 +14,11 @@
     </div>
     <!-- End post-head -->
     <div class="post-wrap">
-        <div class="post-img">
-            <a href="#"><img alt="" src="images/a.jpg"></a>
-        </div>
+            <% if (post.featureImage){ %>                  
+            <div class="post-img">
+                <a href="#"><img alt="" src="images/<%- post.featureImage %>"></a>
+            </div>              
+            <% } %>
         <div class="post-inner">
             <% if (post.excerpt && index){ %>
                 <%- post.excerpt %>
