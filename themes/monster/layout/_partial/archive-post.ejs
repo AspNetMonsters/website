@@ -15,6 +15,12 @@
     </div>
     <!-- End post-head -->
     <div class="post-wrap">
+        <% if (post.featureImage){ %>                  
+        <div class="post-img">
+            <a href="#"><img alt="" src="images/<%- post.featureImage %>"></a>
+        </div>              
+        <% } %>
+
         <div class="post-inner">
             <p> <%= post.excerpt %> </p>
             <div class="clearfix"></div>
