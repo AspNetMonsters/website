@@ -7,8 +7,7 @@
         <div class="post-meta">
             <div><i class="fa fa-user"></i>BY : <a href="#"><%= post.author.name %></a></div>
             <div><i class="fa fa-clock-o"></i><time datetime="<%= date_xml(post.date) %>" itemprop="datePublished"><%= date(post.date, null) %></time></div>
-            <div><i class="fa fa-comments"></i><a href="#">100 Comments</a></div>
-            <div><i class="fa fa-heart"></i><a href="#">100</a></div>
+            <div><i class="fa fa-comments"></i><a href="<%- post.permalink %>#disqus_thread" class="article-comment-link">Comments</a></div>
         </div>
         <!-- End post-meta -->
         <div class="clearfix"></div>

@@ -5,10 +5,9 @@
     <div class="post-head" style="margin-top:60px;">
         <h3><a href="post.html"><%= post.title %></a></h3>
         <div class="post-meta">
-            <div><i class="fa fa-user"></i>BY : <a href="#">NextGen</a></div>
-            <div><i class="fa fa-clock-o"></i>December 30, 2015</div>
-            <div><i class="fa fa-comments"></i><a href="#">100 Comments</a></div>
-            <div><i class="fa fa-heart"></i><a href="#">100</a></div>
+            <div><i class="fa fa-user"></i>BY : <%= post.author.name %></div>
+            <div><i class="fa fa-clock-o"></i><time datetime="<%= date_xml(post.date) %>" itemprop="datePublished"><%= date(post.date, null) %></time></div>
+            <div><i class="fa fa-comments"></i><a href="<%- post.permalink %>#disqus_thread" class="article-comment-link">Comments</a></div>
         </div>
         <!-- End post-meta -->
         <div class="clearfix"></div>
