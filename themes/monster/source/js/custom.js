@@ -86,17 +86,6 @@
 		}
 	});
 	
-	/* Share follow */
-	
-	jQuery(".post-meta-share > a").click(function (){
-		var share_social = jQuery(this).parent();
-		if (share_social.hasClass("share-active")) {
-			share_social.removeClass("share-active");
-		}else {
-			share_social.addClass("share-active");
-		}
-		return false;
-	});
 	
 	/* bxSlider */
 	

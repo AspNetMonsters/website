@@ -1,11 +1,14 @@
 title: Grrr, Rowr - The Monsters are Here
 authorId: monsters
 date: 2016-01-05 12:12:12
+categories:
+ - general
 featureImage: logo_large.png
+permalink: welcome
 ---
 First there was ASP, then ASP.NET then everything changed in ASP.NET but we still, inexplicably, called it ASP.NET. 
 
-The ASP.NET Monsters are here to explain everything they know about ASP.NET Core and MVC 6. Once or so per week Dave, James and Simon publish a new, short video about some aspect of ASP.net in their own, monstrous, style.
+The ASP.NET Monsters are here to explain everything they know about ASP.NET Core and the new version of the MVC Framework, known as ASP.NET Core MVC. Once or so per week Dave, James and Simon publish a new, short video about some aspect of ASP.net in their own, monstrous, style.
 
 Meet The Monsters.
 
