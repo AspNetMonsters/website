@@ -25,21 +25,18 @@
             <div class="clearfix"></div>
             <div class="post-share-view">
                 <div class="post-meta">
-                    <div><i class="fa fa-eye"></i><span>10 </span>Views</div>
                     <div class="post-meta-share">
-                        <i class="fa fa-share-alt"></i>
-                        <a href="#">Share This</a>
-                        <div class="share-social">
-                            <ul>
-                                <li class="social-facebook"><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                <li class="social-twitter"><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                <li class="social-google"><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                            </ul>
-                            <i class="fa fa-caret-down"></i>
-                        </div>
-                        <!-- End follow-social -->
+                        <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=<%- post.permalink %>"><i class="fa fa-facebook"></i>Facebook</a> 
                     </div>
-                    <a href="post.html" class="button post-more">Continue Reading</a>
+                    <div class="post-meta-share">
+                        <a target="_blank" href="https://twitter.com/home?status=Blog%20post%20from%20%40aspnetmonsters%3A%20<%- post.title %>%20<%- post.permalink %>"><i class="fa fa-twitter"></i>Twitter</a>
+                    </div>
+                    <div class="post-meta-share">
+                        <a target="_blank" href="https://plus.google.com/share?url=<%- post.permalink %>"><i class="fa fa-google-plus"></i>Google+</a>
+                    </div>
+                    <% if (index){ %>
+                       <a href="<%- url_for(post.path) %>" class="button post-more">Continue Reading</a>
+                    <% } %>
                 </div>
                 <!-- End post-meta -->
             </div>
