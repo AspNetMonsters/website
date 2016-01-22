@@ -7,7 +7,7 @@ tags:
 categories:
   - News
 authorId: simon_timms
-excerpt: "What the rename was and why it didn't go far enough"
+date: 2016-01-20 21:36:09
 ---
 
 Did you hear the news? [ASP.NET 5 is dead](http://www.hanselman.com/blog/ASPNET5IsDeadIntroducingASPNETCore10AndNETCore10.aspx) it is now called ASP.NET Core 1.0. The name for this next generation of ASP.net(that's the capitalization I'm using because this isn't your grandmother typing in YAHOO.COM) has been up in the air for a while. We first heard the real details about ASP.net vNext at the MVP summit in 2014 and the first question on everybody's mind was "what it was going to be called?". At the time there wasn't a decision on that. <!-- more --> The perception at Microsoft seemed to be that the ASP.net moniker has a long and illustrious history. There is a lot of marketing behind the name and most developers, whether they work in the technology or not, have heard of ASP.net. Thus no matter what the final name was going to be it was pretty much a certainty that it would contain "ASP.net" in some form or another. 
