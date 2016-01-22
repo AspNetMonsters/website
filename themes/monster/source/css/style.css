@@ -3412,7 +3412,7 @@ li.block-box-first {
     width: 100%;
 }
 
-@media only screen and (max-width: 479px) {
+@media only screen and (max-width: 767px) {
  #footer{
      position: relative;
  }   
