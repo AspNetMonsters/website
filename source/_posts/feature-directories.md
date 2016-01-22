@@ -99,6 +99,6 @@ services.Configure<RazorViewEngineOptions>(options =>
  
  We can now put our views closer to the rest of the related code and avoid the pain of jumping about a bunch.
  
- ![A feature](http://i.imgur.com/vPFa8TM.jpg)
+ ![A feature](http://i.imgur.com/4ONe5xz.jpg)
  
  Using this same approach you could point your views to any place within the project. I'm sure you'll come up with better ideas than me.
