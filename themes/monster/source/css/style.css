@@ -3411,6 +3411,13 @@ li.block-box-first {
     font-size: 13px;
     width: 100%;
 }
+
+@media only screen and (max-width: 767px) {
+ #footer{
+     position: relative;
+ }   
+}
+
 #footer.footer-no-top {
 	margin-top: 0;
 }
