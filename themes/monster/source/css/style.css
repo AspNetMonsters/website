@@ -3991,3 +3991,30 @@ body {
     margin: 0 0 15px 15px;
 }
 
+.category-list-count
+{
+    padding-left: 5px;
+    color: color-grey;
+    font-size: 0.85em;
+}
+.category-list-count:before{
+    content: "("
+}
+ 
+.category-list-count:after{
+    content: ")"
+}   
+
+
+.tag-list-count
+{
+    padding-left: 5px;
+    color: color-grey;
+    font-size: 0.85em;
+}
+.tag-list-count:before{
+    content: "("
+}
+.tag-list-count:after{
+    content: ")"
+}   
