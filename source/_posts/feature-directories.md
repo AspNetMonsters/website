@@ -11,6 +11,10 @@ date: 2016-01-22 06:45:00
 authorId: simon_timms
 ---
 
+Feature folders provide an alternative, and possibly better approach to arranging your code inside of an MVC project.
+
+<!-- more -->
+
 A couple of Prairie Dev Cons ago I went to a talk by Jimmy Bogard in which, amongst other things, he talked about MediatR. Fast forward a couple of years and I find myself on projects which make use of MediatR like Martha Stewart uses a glue gun(quite a lot). I really like it because it moves the logic out of your controller and into services. This leaves the controllers almost empty except for dealing with talking to the views - a single responsibility. 
 
 We end up with a controllers directory and a features directory. In the features directory is a directory for each "feature" in our application. So we might have a folder for login, a folder for search, and a folder for user list. In the folders we typically have 
