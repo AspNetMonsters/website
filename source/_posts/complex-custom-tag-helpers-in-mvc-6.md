@@ -1,12 +1,11 @@
 title: Complex Custom Tag Helpers in MVC 6
 date: 2015-12-28 17:00:00
 categories:
-  - MVC 6
+  - ASP.NET Core
   - Tag Helpers
 tags:
-  - ASP.NET MVC
-  - ASP.NET 5
-  - MVC 6
+  - ASP.NET Core
+  - MVC
   - VS 2015
   - Tag Helpers
 authorId: dave_paquette
