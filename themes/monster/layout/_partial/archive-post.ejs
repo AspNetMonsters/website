@@ -1,6 +1,5 @@
-<div class="post post-2 post-gallery single-post">
-    <div class="post-type"><i class="fa fa-image"></i></div>
-    <div class="post-author"><img alt="" src="images/monster_character_simon.jpg"></div>
+<div class="post post-2 post-gallery single-post">    
+    <div class="post-author"><img alt="<%= post.author.name %>" src="/images/<%= post.author.thumb %>"></div>
 
     <div class="post-head" style="margin-top:60px;">
         <h3><a href="post.html"><%= post.title %></a></h3>
@@ -16,12 +15,12 @@
     <div class="post-wrap">
         <% if (post.featureImage){ %>                  
         <div class="post-img">
-            <a href="#"><img alt="" src="images/<%- post.featureImage %>"></a>
+            <a href="#"><img alt="" src="/images/<%- post.featureImage %>"></a>
         </div>              
         <% } %>
 
         <div class="post-inner">
-            <p> <%= post.excerpt %> </p>
+            <p> <%- post.excerpt %> </p>
             <div class="clearfix"></div>
             <div class="post-share-view">
                 <div class="post-meta">
