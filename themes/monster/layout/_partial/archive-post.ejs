@@ -2,7 +2,7 @@
     <div class="post-author"><img alt="<%= post.author.name %>" src="/images/<%= post.author.thumb %>"></div>
 
     <div class="post-head" style="margin-top:60px;">
-        <h3><a href="post.html"><%= post.title %></a></h3>
+        <h3><a href="<%- url_for(post.path) %>"><%= post.title %></a></h3>
         <div class="post-meta">
             <div><i class="fa fa-user"></i>BY : <%= post.author.name %></div>
             <div><i class="fa fa-clock-o"></i><time datetime="<%= date_xml(post.date) %>" itemprop="datePublished"><%= date(post.date, null) %></time></div>
