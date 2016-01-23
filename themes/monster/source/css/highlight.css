@@ -6,22 +6,22 @@ pre, .highlight, .gist {
   background: #333 !important;
   margin: 0.5em 0;
   padding: 0;
-  overflow: auto;
+  width: 100%;
+  overflow: auto;  
   color: #ccc;  
   font-size: 14px;
   text-shadow: none;
+  line-height: 20px;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   border-radius: 4px;  
   border-style: solid;
   border-color: #ddd;
   border-width: 1px 0;
-  line-height: 20px;
 }
 
 code {
   background: #eee;
-  border: 1px solid #d6d6d6;
   padding: 0 5px;
   margin: 0 2px;
   font-size: 90%;
@@ -57,13 +57,21 @@ pre code {
 }
 
 .highlight table {
-  margin: 0;
-  width: auto;  
+  margin: 7px;
+  width: auto;
+  background: transparent;
+  border: none;
 }
 
+.highlight table tbody,
+.highlight table tr {
+   border: none;
+   background: transparent;
+}
 .highlight td {
   border: none;
   padding: 0;  
+  background: transparent;
 }
 
 .highlight td.gutter {
@@ -71,7 +79,7 @@ pre code {
 }
 
 .highlight td.code {
-  width: 100%;  
+  width: 100%;    
 }
 
 /* gist */
