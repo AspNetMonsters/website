@@ -5,7 +5,7 @@
 pre, .highlight, .gist {  
   background: #333 !important;
   margin: 0.5em 0;
-  padding: 1em 2%;
+  padding: 0;
   overflow: auto;
   color: #ccc;  
   font-size: 14px;
@@ -64,6 +64,14 @@ pre code {
 .highlight td {
   border: none;
   padding: 0;  
+}
+
+.highlight td.gutter {
+    width: auto;
+}
+
+.highlight td.code {
+  width: 100%;  
 }
 
 /* gist */
