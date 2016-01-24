@@ -3,7 +3,7 @@ categories:
   - MVC 6
 tags:
   - ASP.NET MVC
-  - ASP.NET CORE 1
+  - ASP.NET Core
   - MVC 6
   - VS 2015
   - Tag Helpers

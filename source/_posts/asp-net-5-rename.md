@@ -2,7 +2,6 @@
 title: ASP.net vNext is now ASP.net 5 is now ASP.net Core 1.0
 layout: post
 tags:
-  - ASP.NET 5
   - ASP.NET Core
 categories:
   - News

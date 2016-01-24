@@ -1,8 +1,8 @@
 title: Supporting Options and Arguments in Your dnx Commands
 tags:
-  - ASP.NET
+  - ASP.NET Core
   - DNX
-  - Visual Studio 2015
+  - VS 2015
 id: 7671
 categories:
   - Code Dive

@@ -3,7 +3,7 @@ layout: post
 title: Goodbye Child Actions, Hello View Components
 tags:
   - ASP.NET Core
-  - MVC
+  - MVC 6
   - View Components
 categories:
   - ASP.NET Core

@@ -5,7 +5,7 @@ categories:
   - Tag Helpers
 tags:
   - ASP.NET Core
-  - MVC
+  - MVC 6
   - VS 2015
   - Tag Helpers
 date: 2015-06-22 10:45:00

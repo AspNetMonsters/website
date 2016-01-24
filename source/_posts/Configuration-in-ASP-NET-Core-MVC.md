@@ -2,7 +2,6 @@ title: "Configuration in ASP.NET Core MVC"
 layout: post
 tags:
   - "ASP.NET Core"
-  - "ASP.NET 5"
 categories:
   - Code Dive
 authorId: james_chambers

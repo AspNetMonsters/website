@@ -1,8 +1,7 @@
 title: JSON Configuration in ASP.NET Core MVC
 layout: post
 tags:
-  - "ASP.NET Core"
-  - "ASP.NET 5"
+  - ASP.NET Core
 categories:
   - Code Dive
 authorId: james_chambers

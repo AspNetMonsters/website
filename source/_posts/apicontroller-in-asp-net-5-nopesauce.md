@@ -1,7 +1,7 @@
 title: ApiController in ASP.NET 5? Nopesauce.
 tags:
-  - ASP.NET
-  - MVC6
+  - ASP.NET Core
+  - ASP.NET Core MVC
   - Web API
 id: 7711
 categories:

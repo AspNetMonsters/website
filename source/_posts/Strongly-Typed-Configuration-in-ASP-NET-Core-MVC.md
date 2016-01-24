@@ -2,8 +2,9 @@ title: Strongly-Typed Configuration in ASP.NET Core MVC
 layout: post
 tags:
   - ASP.NET Core
+  - Configuration  
 categories:
-  - Code Dive
+  - Development
 authorId: james_chambers
 date: 2016-01-23 10:29:12
 originalurl: http://jameschambers.com/2016/01/Strongly-Typed-Configuration-in-ASP-NET-Core-MVC/

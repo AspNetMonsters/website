@@ -5,7 +5,8 @@ layout: post
 tags:
  - ASP.NET Core
  - ASP.NET Core MVC
- - DNX
+ - Configuration
+ - JavaScript
  - Tag Helpers
  - View Components
  - Visual Studio 2015
