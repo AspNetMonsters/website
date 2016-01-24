@@ -3,11 +3,10 @@ layout: post
 title: Goodbye Child Actions, Hello View Components
 tags:
   - ASP.NET Core
-  - MVC 6
+  - ASP.NET Core MVC
   - View Components
 categories:
-  - ASP.NET Core
-  - View Components
+ - Development 
 authorId: dave_paquette
 originalurl: 'http://www.davepaquette.com/archive/2016/01/02/goodbye-child-actions-hello-view-components.aspx'
 date: 2016-01-02 10:42:41

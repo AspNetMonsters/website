@@ -2,8 +2,9 @@ title: JSON Configuration in ASP.NET Core MVC
 layout: post
 tags:
   - ASP.NET Core
+  - Configuration  
 categories:
-  - Code Dive
+  - Development
 authorId: james_chambers
 date: 2016-01-21 21:36:09
 originalurl: http://jameschambers.com/2016/01/json-config-in-aspnetcoremvc/

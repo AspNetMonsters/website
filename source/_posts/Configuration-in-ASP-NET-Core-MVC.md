@@ -1,9 +1,11 @@
 title: "Configuration in ASP.NET Core MVC"
 layout: post
 tags:
-  - "ASP.NET Core"
+  - ASP.NET Core
+  - ASP.NET Core MVC
+  - Configuration
 categories:
-  - Code Dive
+  - Development
 authorId: james_chambers
 date: 2016-01-20 20:27:23
 originalurl: http://jameschambers.com/2016/01/Configuration-in-ASP-NET-Core-MVC/

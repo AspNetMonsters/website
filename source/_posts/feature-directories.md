@@ -1,11 +1,10 @@
 title: Feature Folders in ASP.net Core MVC 1
 categories:
-  - MVC 6
+  - Development
 tags:
-  - ASP.NET MVC
   - ASP.NET Core
-  - MVC 6
-  - VS 2015
+  - ASP.NET Core MVC
+  - Visual Studio 2015
   - Tag Helpers
 date: 2016-01-22 06:45:00
 authorId: simon_timms

@@ -2,7 +2,9 @@ title: Grrr, Rowr - The Monsters are Here
 authorId: monsters
 date: 2016-01-05 12:12:12
 categories:
- - General
+  - News
+tags:
+  - ASP.NET Core
 featureImage: logo_large.png
 permalink: welcome
 ---

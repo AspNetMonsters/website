@@ -1,10 +1,10 @@
 title: Writing Custom Commands for DNX with ASP.NET 5.0
 tags:
   - ASP.NET Core
-  - VS 2015
+  - Visual Studio 2015
 id: 7531
 categories:
-  - Code Dive
+  - Development
 date: 2015-08-11 02:30:07
 authorId: james_chambers
 originalurl: http://jameschambers.com/2015/08/writing-custom-commands-for-dnx-with-asp-net-5-0/

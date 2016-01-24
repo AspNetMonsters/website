@@ -1,12 +1,11 @@
 title: Creating custom MVC 6 Tag Helpers
 id: 6001
 categories:
-  - ASP.NET Core
-  - Tag Helpers
+  - Development
 tags:
   - ASP.NET Core
-  - MVC 6
-  - VS 2015
+  - ASP.NET Core MVC
+  - Visual Studio 2015
   - Tag Helpers
 date: 2015-06-22 10:45:00
 authorId: dave_paquette

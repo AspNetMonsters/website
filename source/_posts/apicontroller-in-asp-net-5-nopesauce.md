@@ -5,7 +5,7 @@ tags:
   - Web API
 id: 7711
 categories:
-  - Code Dive
+  - Development
 date: 2015-11-02 22:39:31
 authorId: james_chambers
 originalurl: http://jameschambers.com/2015/11/apicontroller-in-asp-net-5-nopesauce/
