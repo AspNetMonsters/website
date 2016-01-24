@@ -8,6 +8,7 @@ categories:
   - Code Dive
 date: 2015-11-02 22:39:31
 authorId: james_chambers
+originalurl: http://jameschambers.com/2015/11/apicontroller-in-asp-net-5-nopesauce/
 ---
 
 If you’re developing in ASP.NET Web API you are familiar with the concept of inheriting from the base ApiController class. This class is still around in ASP.NET 5, but it is likely not meant for you to use.&nbsp; Here’s why your cheese has moved.

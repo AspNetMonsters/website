@@ -7,6 +7,7 @@ categories:
   - Code Dive
 date: 2015-08-11 02:30:07
 authorId: james_chambers
+originalurl: http://jameschambers.com/2015/08/writing-custom-commands-for-dnx-with-asp-net-5-0/
 ---
 
 If you are a developer on the .NET stack, you’ve now got access to a great new extension to your development environment. DNX, or the .NET Execution Environment, is a powerful new extensibility point that you can leverage to build project extensions, cross-platform utilities, build-time extensions and support for automation. In this article I’ll walk you through the process of building your own custom DNX command on top of ASP.NET 5.0.
@@ -16,117 +17,35 @@ If you are a developer on the .NET stack, you’ve now got access to a great new
 ## Where You’ve Seen It
 
 DNX has the ability to scan a project.json and look for commands that you install as packages or that you create yourself. If you’ve started following the examples of the MVC Framework or perhaps with Entity Framework, you may have seen things like this in your project.json:
-<pre class="csharpcode">  <span class="str">"commands"</span>: {
-    <span class="str">"web"</span>: <span class="str">"Microsoft.AspNet.Hosting --config hosting.ini"</span>,
-    <span class="str">"ef"</span>: <span class="str">"EntityFramework.Commands"</span>
-  }</pre><style type="text/css">.csharpcode, .csharpcode pre
-{
-	font-size: small;
-	color: black;
-	font-family: consolas, "Courier New", courier, monospace;
-	background-color: #ffffff;
-	/*white-space: pre;*/
-}
-.csharpcode pre { margin: 0em; }
-.csharpcode .rem { color: #008000; }
-.csharpcode .kwrd { color: #0000ff; }
-.csharpcode .str { color: #006080; }
-.csharpcode .op { color: #0000c0; }
-.csharpcode .preproc { color: #cc6633; }
-.csharpcode .asp { background-color: #ffff00; }
-.csharpcode .html { color: #800000; }
-.csharpcode .attr { color: #ff0000; }
-.csharpcode .alt 
-{
-	background-color: #f4f4f4;
-	width: 100%;
-	margin: 0em;
-}
-.csharpcode .lnum { color: #606060; }
-</style>
 
-[![image](https://jcblogimages.blob.core.windows.net/img/2015/08/image_thumb2.png "image")](https://jcblogimages.blob.core.windows.net/img/2015/08/image5.png)These entries are here so that DNX understands the alias you assign (such as “web” or “ef”) and how it maps to an assembly that you’ve created or taken on as a dependency.&nbsp; The EF reference is quite straightforward above, simply saying that any call to “ef” via DNX will go into the entry point in EntityFramework.Commands.&nbsp; You would invoke that as follows from the directory of your _project_:
-<pre class="csharpcode">dnx . ef </pre><style type="text/css">.csharpcode, .csharpcode pre
-{
-	font-size: small;
-	color: black;
-	font-family: consolas, "Courier New", courier, monospace;
-	background-color: #ffffff;
-	/*white-space: pre;*/
-}
-.csharpcode pre { margin: 0em; }
-.csharpcode .rem { color: #008000; }
-.csharpcode .kwrd { color: #0000ff; }
-.csharpcode .str { color: #006080; }
-.csharpcode .op { color: #0000c0; }
-.csharpcode .preproc { color: #cc6633; }
-.csharpcode .asp { background-color: #ffff00; }
-.csharpcode .html { color: #800000; }
-.csharpcode .attr { color: #ff0000; }
-.csharpcode .alt 
-{
-	background-color: #f4f4f4;
-	width: 100%;
-	margin: 0em;
-}
-.csharpcode .lnum { color: #606060; }
-</style>
+{% codeblock lang:javascript %}
+"commands": {
+    "web": "Microsoft.AspNet.Hosting --config hosting.ini",
+    "ef": "EntityFramework.Commands"
+  }
+{% endcodeblock %}
+
+[![image](https://jcblogimages.blob.core.windows.net/img/2015/08/image_thumb2.png "image")](https://jcblogimages.blob.core.windows.net/img/2015/08/image5.png)
+
+These entries are here so that DNX understands the alias you assign (such as “web” or “ef”) and how it maps to an assembly that you’ve created or taken on as a dependency. The EF reference is quite straightforward above, simply saying that any call to “ef” via DNX will go into the entry point in EntityFramework.Commands.&nbsp; You would invoke that as follows from the directory of your _project_:
+
+```
+dnx . ef 
+```
 
 All parameters that are passed in are available to you as well, so if you were to instead use:
-<pre class="csharpcode">dnx . ef help migration</pre><style type="text/css">.csharpcode, .csharpcode pre
-{
-	font-size: small;
-	color: black;
-	font-family: consolas, "Courier New", courier, monospace;
-	background-color: #ffffff;
-	/*white-space: pre;*/
-}
-.csharpcode pre { margin: 0em; }
-.csharpcode .rem { color: #008000; }
-.csharpcode .kwrd { color: #0000ff; }
-.csharpcode .str { color: #006080; }
-.csharpcode .op { color: #0000c0; }
-.csharpcode .preproc { color: #cc6633; }
-.csharpcode .asp { background-color: #ffff00; }
-.csharpcode .html { color: #800000; }
-.csharpcode .attr { color: #ff0000; }
-.csharpcode .alt 
-{
-	background-color: #f4f4f4;
-	width: 100%;
-	margin: 0em;
-}
-.csharpcode .lnum { color: #606060; }
-</style>
+
+```
+dnx . ef help migration
+```
 
 Then EF would be getting the params “help migrations” to parse and process. As can be clearly seen in the “web” alias, you can also specify defaults that get passed into the command when it is executed, thus, the call to web in the above project.json passes in the path and filename of the configuration file to be used when starting IIS express. 
 
 There is no special meaning to “ef” or “web”. These are just names that you assign so that the correct mapping can be made. If you changed “ef” to “right-said-fred” you would be able to run migrations from the command line like so:
-<pre class="csharpcode">dnx . right-said-fred migration add too-sexy</pre><style type="text/css">.csharpcode, .csharpcode pre
-{
-	font-size: small;
-	color: black;
-	font-family: consolas, "Courier New", courier, monospace;
-	background-color: #ffffff;
-	/*white-space: pre;*/
-}
-.csharpcode pre { margin: 0em; }
-.csharpcode .rem { color: #008000; }
-.csharpcode .kwrd { color: #0000ff; }
-.csharpcode .str { color: #006080; }
-.csharpcode .op { color: #0000c0; }
-.csharpcode .preproc { color: #cc6633; }
-.csharpcode .asp { background-color: #ffff00; }
-.csharpcode .html { color: #800000; }
-.csharpcode .attr { color: #ff0000; }
-.csharpcode .alt 
-{
-	background-color: #f4f4f4;
-	width: 100%;
-	margin: 0em;
-}
-.csharpcode .lnum { color: #606060; }
-</style>
+
+```
+dnx . right-said-fred migration add too-sexy
+```
 
 Great! So you can create commands, pass in parameters and share these commands through the project.json file. But now what?
 
@@ -169,252 +88,81 @@ It is far more likely that you’re going to need to do something in the context
 
 First, let’s add some dependencies to your project.json:
 
-<pre class="csharpcode">  <span class="str">"dependencies"</span>: {
-    <span class="str">"Microsoft.Framework.Runtime.Abstractions"</span>: <span class="str">"1.0.0-beta6"</span>,
-    <span class="str">"Microsoft.Framework.Configuration.Abstractions"</span>: <span class="str">"1.0.0-beta6"</span>,
-    <span class="str">"Microsoft.Framework.Configuration.Json"</span>: <span class="str">"1.0.0-beta6"</span>,
-    <span class="str">"Microsoft.Framework.Configuration.UserSecrets"</span>: <span class="str">"1.0.0-beta6"</span>,
-    <span class="str">"Microsoft.Framework.Configuration.CommandLine"</span>: <span class="str">"1.0.0-beta6"</span>
-  }</pre><style type="text/css">.csharpcode, .csharpcode pre
-{
-	font-size: small;
-	color: black;
-	font-family: consolas, "Courier New", courier, monospace;
-	background-color: #ffffff;
-	/*white-space: pre;*/
-}
-.csharpcode pre { margin: 0em; }
-.csharpcode .rem { color: #008000; }
-.csharpcode .kwrd { color: #0000ff; }
-.csharpcode .str { color: #006080; }
-.csharpcode .op { color: #0000c0; }
-.csharpcode .preproc { color: #cc6633; }
-.csharpcode .asp { background-color: #ffff00; }
-.csharpcode .html { color: #800000; }
-.csharpcode .attr { color: #ff0000; }
-.csharpcode .alt 
-{
-	background-color: #f4f4f4;
-	width: 100%;
-	margin: 0em;
-}
-.csharpcode .lnum { color: #606060; }
-</style>
+{% codeblock lang:js %}
+"dependencies": {
+    "Microsoft.Framework.Runtime.Abstractions": "1.0.0-beta6",
+    "Microsoft.Framework.Configuration.Abstractions": "1.0.0-beta6",
+    "Microsoft.Framework.Configuration.Json": "1.0.0-beta6",
+    "Microsoft.Framework.Configuration.UserSecrets": "1.0.0-beta6",
+    "Microsoft.Framework.Configuration.CommandLine": "1.0.0-beta6"
+  }
+{% endcodeblock %}
 
 Now let’s add a new JSON file to our project called config.json with the following contents:
 
-<pre class="csharpcode">{
-  <span class="str">"command-text"</span>: <span class="str">"Say hello to my little DNX"</span>
-}</pre><style type="text/css">.csharpcode, .csharpcode pre
+{% codeblock lang:js %}
 {
-	font-size: small;
-	color: black;
-	font-family: consolas, "Courier New", courier, monospace;
-	background-color: #ffffff;
-	/*white-space: pre;*/
+ "command-text": "Say hello to my little DNX"
 }
-.csharpcode pre { margin: 0em; }
-.csharpcode .rem { color: #008000; }
-.csharpcode .kwrd { color: #0000ff; }
-.csharpcode .str { color: #006080; }
-.csharpcode .op { color: #0000c0; }
-.csharpcode .preproc { color: #cc6633; }
-.csharpcode .asp { background-color: #ffff00; }
-.csharpcode .html { color: #800000; }
-.csharpcode .attr { color: #ff0000; }
-.csharpcode .alt 
-{
-	background-color: #f4f4f4;
-	width: 100%;
-	margin: 0em;
-}
-.csharpcode .lnum { color: #606060; }
-</style>
+{% endcodeblock %}
 
 Getting there. Next, let’s bulk up the constructor of the Program class, add a private member and a Configuration property:
 
-<pre class="csharpcode"><span class="kwrd">private</span> <span class="kwrd">readonly</span> IApplicationEnvironment _appEnv;
+{% codeblock lang:csharp %}
+private readonly IApplicationEnvironment _appEnv;
 
-<span class="kwrd">public</span> Program(IApplicationEnvironment appEnv)
+public Program(IApplicationEnvironment appEnv)
 {
     _appEnv = appEnv;
 }
 
-<span class="kwrd">public</span> IConfiguration Configuration { get; set; }</pre><style type="text/css">.csharpcode, .csharpcode pre
-{
-	font-size: small;
-	color: black;
-	font-family: consolas, "Courier New", courier, monospace;
-	background-color: #ffffff;
-	/*white-space: pre;*/
-}
-.csharpcode pre { margin: 0em; }
-.csharpcode .rem { color: #008000; }
-.csharpcode .kwrd { color: #0000ff; }
-.csharpcode .str { color: #006080; }
-.csharpcode .op { color: #0000c0; }
-.csharpcode .preproc { color: #cc6633; }
-.csharpcode .asp { background-color: #ffff00; }
-.csharpcode .html { color: #800000; }
-.csharpcode .attr { color: #ff0000; }
-.csharpcode .alt 
-{
-	background-color: #f4f4f4;
-	width: 100%;
-	margin: 0em;
-}
-.csharpcode .lnum { color: #606060; }
-</style>
+public IConfiguration Configuration { get; set; }
+
+{% endcodeblock %}
 
 We also need to add a method to Program that handles loading the config, taking in what it can from the config file, but loading on top of that any arguments passed in from the console:
-<pre class="csharpcode"><span class="kwrd">private</span> <span class="kwrd">void</span> BuildConfiguration(<span class="kwrd">string</span>[] args)
+
+{% codeblock lang:csharp %}
+private void BuildConfiguration(string[] args)
 {
-    var builder = <span class="kwrd">new</span> ConfigurationBuilder(_appEnv.ApplicationBasePath)
-        .AddJsonFile(<span class="str">"config.json"</span>)
+    var builder = new ConfigurationBuilder(_appEnv.ApplicationBasePath)
+        .AddJsonFile("config.json")
         .AddCommandLine(args);
 
     Configuration = builder.Build();
-}</pre><style type="text/css">.csharpcode, .csharpcode pre
-{
-	font-size: small;
-	color: black;
-	font-family: consolas, "Courier New", courier, monospace;
-	background-color: #ffffff;
-	/*white-space: pre;*/
 }
-.csharpcode pre { margin: 0em; }
-.csharpcode .rem { color: #008000; }
-.csharpcode .kwrd { color: #0000ff; }
-.csharpcode .str { color: #006080; }
-.csharpcode .op { color: #0000c0; }
-.csharpcode .preproc { color: #cc6633; }
-.csharpcode .asp { background-color: #ffff00; }
-.csharpcode .html { color: #800000; }
-.csharpcode .attr { color: #ff0000; }
-.csharpcode .alt 
-{
-	background-color: #f4f4f4;
-	width: 100%;
-	margin: 0em;
-}
-.csharpcode .lnum { color: #606060; }
-</style>
+{% endcodeblock %}
 
-Finally, we’ll add a little more meat to our our Main method:
-<pre class="csharpcode"><span class="kwrd">public</span> <span class="kwrd">void</span> Main(<span class="kwrd">string</span>[] args)
+Finally, we’ll add a little more meat to our Main method:
+
+{% codeblock lang:csharp %}
+public void Main(string[] args)
 {
     BuildConfiguration(args);
 
-    Console.WriteLine(Configuration.Get(<span class="str">"command-text"</span>));
+    Console.WriteLine(Configuration.Get("command-text"));
     Console.ReadLine();
-}</pre>
+}
+{% endcodeblock %}
 
-<style type="text/css">.csharpcode, .csharpcode pre
-{
-	font-size: small;
-	color: black;
-	font-family: consolas, "Courier New", courier, monospace;
-	background-color: #ffffff;
-	/*white-space: pre;*/
-}
-.csharpcode pre { margin: 0em; }
-.csharpcode .rem { color: #008000; }
-.csharpcode .kwrd { color: #0000ff; }
-.csharpcode .str { color: #006080; }
-.csharpcode .op { color: #0000c0; }
-.csharpcode .preproc { color: #cc6633; }
-.csharpcode .asp { background-color: #ffff00; }
-.csharpcode .html { color: #800000; }
-.csharpcode .attr { color: #ff0000; }
-.csharpcode .alt 
-{
-	background-color: #f4f4f4;
-	width: 100%;
-	margin: 0em;
-}
-.csharpcode .lnum { color: #606060; }
-</style>The above sample can now be executed as a command. I’ve got the following command mapping in my project.json file (yes, the same project you use to create the command can also expose the command):
-<pre class="csharpcode">  <span class="str">"commands"</span>: {
-    <span class="str">"DnxCommands"</span>: <span class="str">"DnxCommands"</span>
-  }</pre><style type="text/css">.csharpcode, .csharpcode pre
-{
-	font-size: small;
-	color: black;
-	font-family: consolas, "Courier New", courier, monospace;
-	background-color: #ffffff;
-	/*white-space: pre;*/
-}
-.csharpcode pre { margin: 0em; }
-.csharpcode .rem { color: #008000; }
-.csharpcode .kwrd { color: #0000ff; }
-.csharpcode .str { color: #006080; }
-.csharpcode .op { color: #0000c0; }
-.csharpcode .preproc { color: #cc6633; }
-.csharpcode .asp { background-color: #ffff00; }
-.csharpcode .html { color: #800000; }
-.csharpcode .attr { color: #ff0000; }
-.csharpcode .alt 
-{
-	background-color: #f4f4f4;
-	width: 100%;
-	margin: 0em;
-}
-.csharpcode .lnum { color: #606060; }
-</style>
+The above sample can now be executed as a command. I’ve got the following command mapping in my project.json file (yes, the same project you use to create the command can also expose the command):
 
-This means that from the console in the dir of my project I can just type in the following: 
-<pre class="csharpcode">dnx . DnxCommands</pre><style type="text/css">.csharpcode, .csharpcode pre
-{
-	font-size: small;
-	color: black;
-	font-family: consolas, "Courier New", courier, monospace;
-	background-color: #ffffff;
-	/*white-space: pre;*/
-}
-.csharpcode pre { margin: 0em; }
-.csharpcode .rem { color: #008000; }
-.csharpcode .kwrd { color: #0000ff; }
-.csharpcode .str { color: #006080; }
-.csharpcode .op { color: #0000c0; }
-.csharpcode .preproc { color: #cc6633; }
-.csharpcode .asp { background-color: #ffff00; }
-.csharpcode .html { color: #800000; }
-.csharpcode .attr { color: #ff0000; }
-.csharpcode .alt 
-{
-	background-color: #f4f4f4;
-	width: 100%;
-	margin: 0em;
-}
-.csharpcode .lnum { color: #606060; }
-</style>
+{% codeblock lang:js %}
+"commands": {
+    "DnxCommands": "DnxCommands"
+  }
+{% endcodeblock %}
+This means that from the console in the dir of my project I can just type in the following:
+
+``` 
+dnx . DnxCommands
+```
 
 I can also now reference this project from any other project (or push my bits to NuGet and share them to any project) and use the command from there. Other projects can add the “command-text” key to their config.json files and specify their own value, or they can feed in the parameter as an arg to the command:
-<pre class="csharpcode">dnx . DnxCommands command-text=<span class="str">"'Pop!' goes the weasel"</span></pre><style type="text/css">.csharpcode, .csharpcode pre
-{
-	font-size: small;
-	color: black;
-	font-family: consolas, "Courier New", courier, monospace;
-	background-color: #ffffff;
-	/*white-space: pre;*/
-}
-.csharpcode pre { margin: 0em; }
-.csharpcode .rem { color: #008000; }
-.csharpcode .kwrd { color: #0000ff; }
-.csharpcode .str { color: #006080; }
-.csharpcode .op { color: #0000c0; }
-.csharpcode .preproc { color: #cc6633; }
-.csharpcode .asp { background-color: #ffff00; }
-.csharpcode .html { color: #800000; }
-.csharpcode .attr { color: #ff0000; }
-.csharpcode .alt 
-{
-	background-color: #f4f4f4;
-	width: 100%;
-	margin: 0em;
-}
-.csharpcode .lnum { color: #606060; }
-</style>
+
+```
+dnx . DnxCommands command-text="'Pop!' goes the weasel"
+```
 
 In my [sample solution on GitHub](https://github.com/MisterJames/DnxCommands/), I also have a second project which renames the alias and has it’s own config file that is read in by the command.
 
