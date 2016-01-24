@@ -1,12 +1,12 @@
 title: The Monsters Weekly - Episode 1 'Startup.cs' 
-featureImage: logo_large.png
+featureImage: logo_579.png
 tags: 
- - Monsters Weekly
+ - ASP.NET Core
+ - Configuration
 authorId: monsters
-date: 2016-01-21 10:49::12
+date: 2016-01-26 06:00:00
 categories:
- - general
-featureImage: logo_large.png
+  - Monsters Weekly
 permalink: monsters-weekly\ep1
 ---
 
@@ -14,7 +14,9 @@ Well, here we go! This is the inaugural installment of The Monsters Weekly, wher
 
 <!-- more -->
 
-[video link here]
+<iframe width="420" height="315" src="https://www.youtube.com/embed/jyd0TWO5KDc" frameborder="0" allowfullscreen></iframe>
 
-[video notes here] 
+Not sure where to start in ASP.NET Core? Well, in `startup.cs`, of course. We run the file top-to bottom covering some basic configuration, dependency injection, browser link, database error pages, service configuration and the Julie Lerman of Canada.  This is an intro - we cover a lot of ground at 30,000 feet, but don't worry, we'll be breaking it down in the weeks ahead. 
+
+The production code for this video is `VG`. 
 
