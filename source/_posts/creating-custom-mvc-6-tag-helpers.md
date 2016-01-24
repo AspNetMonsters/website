@@ -11,6 +11,7 @@ tags:
   - Tag Helpers
 date: 2015-06-22 10:45:00
 authorId: dave_paquette
+originalurl: http://www.davepaquette.com/archive/2015/06/22/creating-custom-mvc-6-tag-helpers.aspx
 ---
 
 _Updated Nov 22, 2015:_ Updated to account for changes in ASP.NET 5 RC1

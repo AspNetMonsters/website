@@ -10,6 +10,7 @@ tags:
   - VS 2015
   - Tag Helpers
 authorId: dave_paquette
+originalurl: http://www.davepaquette.com/archive/2015/12/28/complex-custom-tag-helpers-in-mvc-6.aspx
 ---
 In a previous blog post we talked about how to create [a simple tag helper](http://www.davepaquette.com/archive/2015/06/22/creating-custom-mvc-6-tag-helpers.aspx) in MVC 6. In today's post we take this one step further and create a more complex tag helper that is made up of multiple parts.
 

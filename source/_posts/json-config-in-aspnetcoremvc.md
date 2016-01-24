@@ -7,6 +7,7 @@ categories:
   - Code Dive
 authorId: james_chambers
 date: 2016-01-21 21:36:09
+originalurl: http://jameschambers.com/2016/01/json-config-in-aspnetcoremvc/
 ---
 
 Structured data in earlier versions of ASP.NET meant creating and registering custom types and configuration sections for our applications. In ASP.NET Core and in Core MVC, structured configuration is a breeze with support for JSON documents as the storage mechanism and the ability to flatten hierarchies into highly portable keys.

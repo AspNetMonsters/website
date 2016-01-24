@@ -7,6 +7,7 @@ categories:
   - Code Dive
 authorId: james_chambers
 date: 2016-01-20 20:27:23
+originalurl: http://jameschambers.com/2016/01/Configuration-in-ASP-NET-Core-MVC/
 ---
 
 ![Config in Startup.cs](https://jcblogimages.blob.core.windows.net:443/img/2016/01/startup-config.png)

@@ -6,6 +6,7 @@ categories:
   - Code Dive
 authorId: james_chambers
 date: 2016-01-23 10:29:12
+originalurl: http://jameschambers.com/2016/01/Strongly-Typed-Configuration-in-ASP-NET-Core-MVC/
 ---
 
 Over the last __[two](http://jameschambers.com/2016/01/Configuration-in-ASP-NET-Core-MVC/)__ __[posts](http://jameschambers.com/2016/01/json-config-in-aspnetcoremvc/)__ I worked through the basics of configuration in ASP.NET and how to leverage structured data in your JSON config files. Now it's time to take a deeper look at how to access relevant parts of your configuration throughout the rest of your project.
