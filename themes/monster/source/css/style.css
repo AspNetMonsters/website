@@ -4025,3 +4025,16 @@ body {
 .tag-list-count:after{
     content: ")"
 }   
+
+.archive-list-count
+{
+    padding-left: 5px;
+    color: color-grey;
+    font-size: 0.85em;
+}
+.archive-list-count:before{
+    content: "("
+}
+.archive-list-count:after{
+    content: ")"
+} 
