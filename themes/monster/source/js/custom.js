@@ -149,20 +149,7 @@
 		});
 	});
 	
-	/* niceScroll */
-	
-	jQuery("html").niceScroll({
-		scrollspeed: 60,
-		mousescrollstep: 38,
-		cursorwidth: 6,
-		cursorborder: 0,
-		cursorcolor: '#263241',
-		autohidemode: false,
-		zindex: 9999999,
-		horizrailenabled: false,
-		cursorborderradius: 0,
-	});
-	
+
 	/* animation */
 	
 	jQuery(".animation").each( function() {
