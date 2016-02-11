@@ -7,7 +7,7 @@ tags:
   - Gulp
   - ASP.NET Core MVC 
 authorId: monsters
-date: 2016-01-28 06:00:00
+date: 2016-02-02 06:00:00
 categories:
   - Monsters Weekly
 permalink: monsters-weekly\ep3
