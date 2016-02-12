@@ -17,7 +17,7 @@ In this, Episode 2 of The Monsters Weekly, we take a deeper look at some of the 
 
 <!-- more -->
 
-<iframe width="689" height="516" src="https://www.youtube.com/embed/4cA2Xa6JNiQ" frameborder="0" allowfullscreen></iframe>
+<iframe src="https://channel9.msdn.com/Series/aspnetmonsters/Episode-2-Static-Files/player" width="640" height="360" allowFullScreen frameBorder="0"></iframe>
 
 Static files are easy to enable and configure via middleware. This video is a quick walkthrough - less than 8 minutes - and will show you how to do it. 
 

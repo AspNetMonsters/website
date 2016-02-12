@@ -17,7 +17,7 @@ Ready for a great new feature in ASP.NET Core MVC? The Razor view engine now sup
 
 <!-- more -->
 
-<iframe width="689" height="516" src="https://www.youtube.com/embed/392hNZg3XZw" frameborder="0" allowfullscreen></iframe>
+<iframe src="https://channel9.msdn.com/Series/aspnetmonsters/Episode-4-Tag-Helpers-in-Razor/player" width="640" height="360" allowFullScreen frameBorder="0"></iframe>
 
 Tag helpers look a lot like custom HTML attributes and might be familiar to you if you've worked with frameworks like Angular, however these are rendered on the server and not included in the response to the client. 
 
