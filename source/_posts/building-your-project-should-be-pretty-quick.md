@@ -5,8 +5,9 @@ tags:
 categories:
   - Development
 authorId: james_chambers
-originalUrl: 'http://jameschambers.com/2016/02/building-your-project-should-be-pretty-quick/'
+originalurl: 'http://jameschambers.com/2016/02/building-your-project-should-be-pretty-quick/'
 date: 2016-02-11 22:12:54
+disqus_shortname: jameschambers
 ---
 People, this is 2016. If you're waiting on your project to build or feel like your IDE is sluggish, it's time to inventory and make sure you have the optimal configuraiton for development rig. Let's talk quickly about the things that make your machine go fast (or slow) and some simple tweaks that can get your builds moving along more quickly.
 

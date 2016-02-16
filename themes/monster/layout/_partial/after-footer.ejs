@@ -1,9 +1,16 @@
 <% if (config.disqus_shortname){ %>
 <script>
   var disqus_shortname = '<%= config.disqus_shortname %>';
+  <% if (page.disqus_shortname){ %>
+  disqus_shortname = '<%= page.disqus_shortname %>';
+  <% } %> 
   <% if (page.permalink){ %>
-  var disqus_url = '<%= page.permalink %>';
+  var disqus_url = '<%= page.permalink %>';  
   <% } %>
+  <% if (page.originalurl){ %>
+  disqus_url = '<%= page.originalurl %>';  
+  <% } %>
+
   (function(){
     var dsq = document.createElement('script');
     dsq.type = 'text/javascript';
