@@ -17,7 +17,7 @@ Here comes Episode 3 of The Monsters Weekly, and with it our run down of the def
 
 <!-- more -->
 
-<iframe width="689" height="516" src="https://www.youtube.com/embed/3HeF2SZrIR0" frameborder="0" allowfullscreen></iframe>
+<iframe src="https://channel9.msdn.com/Series/aspnetmonsters/Episode-3-Default-Gulp-File/player" width="640" height="360" allowFullScreen frameBorder="0"></iframe>
 
 There are big changes in ASP.NET, but there are also small, but important changes to be aware of. Check out the new way to consume third party libraries and perform compile-time tasks like bundling, minification and moving assets around. 
 

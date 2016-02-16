@@ -14,7 +14,7 @@ Well, here we go! This is the inaugural installment of The Monsters Weekly, wher
 
 <!-- more -->
 
-<iframe width="689" height="516" src="https://www.youtube.com/embed/jyd0TWO5KDc" frameborder="0" allowfullscreen></iframe>
+<iframe src="https://channel9.msdn.com/Series/aspnetmonsters/Episode-1-Startupcs/player" width="640" height="360" allowFullScreen frameBorder="0"></iframe>
 
 Not sure where to start in ASP.NET Core? Well, in `startup.cs`, of course. We run the file top-to bottom covering some basic configuration, dependency injection, browser link, database error pages, service configuration and the Julie Lerman of Canada.  This is an intro - we cover a lot of ground at 30,000 feet, but don't worry, we'll be breaking it down in the weeks ahead. 
 
