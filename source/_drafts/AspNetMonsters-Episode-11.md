@@ -23,4 +23,4 @@ Here in episode 11, Dave demonstrates some of the open-source Yeomon templates f
 
 Be sure to follow [the Monsters on Twitter](https://twitter.com/AspNetMonsters) and check out [the blog](http://aspnetmonsters.com) for related posts.
 
-The production code for this episode is IG.
+The production code for this episode is dm.
