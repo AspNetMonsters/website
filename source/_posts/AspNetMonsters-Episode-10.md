@@ -13,7 +13,7 @@ categories:
 permalink: monsters-weekly\ep10
 ---
 
-While configuration has been greatly simplified in ASP.NET Core, it won't provide an answer for all the situations all of the time. One such case is when you need to save and load configuration settings from a database, so here, we'll show you how.
+While configuration has been greatly simplified in ASP.NET Core, it won't provide an answer for all the situations all of the time. One such case is when you need to save and load configuration settings from a database so, here, we'll show you how.
 
 <!-- more -->
 
@@ -21,6 +21,6 @@ While configuration has been greatly simplified in ASP.NET Core, it won't provid
 
 In this episode, Monster James walks us through the components required to build out a simple, custom configuration provider that can read in your settings from a database.  The Monsters also talk through the mechanics and importance of overriding values of settings when using multiple sources for configuration.
 
-Be sure to follow the monsters on Twitter and check out the blog for related posts.
+Be sure to follow [the Monsters on Twitter](https://twitter.com/AspNetMonsters) and check out [the blog](http://aspnetmonsters.com) for related posts.
 
 The production code for this episode is hh.
