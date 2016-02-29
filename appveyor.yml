@@ -3,5 +3,5 @@ environment:
   githubtoken:
     secure: W27HI1sXnMlvqMNTJYW01BzNiu/8QqWkkFSK5n4cst6F6FT7QjhkC7UcvHN50hoi
 build_script:
-- ps: "git config --global credential.helper store\ngit config --global user.name \"Monster Deploy\"\ngit config --global user.email contact@aspnetmonsters.com\ngit config --global push.default simple\nAdd-Content \"$env:USERPROFILE\\.git-credentials\" \"https://$($env:githubtoken):x-oauth-basic@github.com`n\"\n \nnpm install\nnpm install -g hexo\nhexo generate\n\nxcopy .\\public\\* .\\.deploy_git\\ /s /y \ncd .deploy_git\ngit init .\ngit add -A \ngit commit -m 'deploy'\ngit push -u \"https://github.com/AspNetMonsters/website.git\" HEAD:blog_output"
+- ps: "git config --global credential.helper store\ngit config --global user.name \"Monster Deploy\"\ngit config --global user.email contact@aspnetmonsters.com\ngit config --global push.default simple\nAdd-Content \"$env:USERPROFILE\\.git-credentials\" \"https://$($env:githubtoken):x-oauth-basic@github.com`n\"\n \nnpm install\nnpm install -g hexo\nhexo generate\n\nxcopy .\\public\\* .\\.deploy_git\\ /s /y \ncd .deploy_git\ngit init .\ngit add -A \ngit commit -m 'deploy'\ngit push -f -u \"https://github.com/AspNetMonsters/website.git\" HEAD:blog_output"
 test: off
