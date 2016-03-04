@@ -1,10 +1,10 @@
 ---
-title: The Monsters Weekly - Episode 8 'Tour of the Default ASP.NET MVC Project' 
+title: The Monsters Weekly - Episode 12 - 'Dependency Injection in ASP.NET Core'
 layout: post
 featureImage: logo_579.png
 tags: 
   - ASP.NET Core
-  - Configuration
+  - Dependency Injection
   - ASP.NET Core MVC 
 authorId: monsters
 date: 2016-02-18 06:00:00
@@ -13,7 +13,7 @@ categories:
 permalink: monsters-weekly\ep8
 ---
 
-There is a lot of newness in the default project in MVC Core, so we wanted to break it down and help make it feel a little more familiar. This is episode #8, and we're walking you through the "File -> New Project" experience.
+T
 
 <!-- more -->
 
