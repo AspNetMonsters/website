@@ -8,7 +8,7 @@ tags:
   - Configuration
   - ASP.NET Core MVC 
 authorId: monsters
-date: 2016-02-18 06:00:00
+date: 2016-03-03 06:00:00
 categories:
   - Monsters Weekly
 permalink: monsters-weekly\ep12
