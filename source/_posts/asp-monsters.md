@@ -8,11 +8,15 @@ tags:
 featureImage: logo_large.png
 permalink: welcome
 ---
-First there was ASP, then ASP.NET then everything changed in ASP.NET but we still, inexplicably, called it ASP.NET. 
 
 The ASP.NET Monsters are here to explain everything they know about ASP.NET Core and the new version of the MVC Framework, known as ASP.NET Core MVC. Once or so per week Dave, James and Simon publish a new, short video about some aspect of ASP.net in their own, monstrous, style.
 
-Meet The Monsters.
+# Watch the Videos
+Our monsterific videos are hosted on Channel 9, and you can view the [entire list here](https://channel9.msdn.com/Series/aspnetmonsters?sort=recent#tab_sortBy_recent), or start watching from the beginning below.
+
+<iframe src="https://channel9.msdn.com/Series/aspnetmonsters/Episode-1-Startupcs/player" width="640" height="360" allowFullScreen frameBorder="0"></iframe>
+
+# Meet The Monsters.
 
 <!-- more -->
 

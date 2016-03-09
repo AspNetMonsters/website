@@ -13,7 +13,7 @@ categories:
 permalink: monsters-weekly\ep11
 ---
 
-If cross platform is going to be the song sung by the ASP.NET community, the console tooling is really going to have to keep step with other tech stacks. Yeomon generators for ASP.NET Core give developers the basics needed to avoid the requirement of crufting toghether projects and new files.
+If cross platform is going to be the song sung by the ASP.NET community, the console tooling is really going to have to keep step with other tech stacks. Yeomon generators for ASP.NET Core give developers the basics needed to avoid  the requirement of crufting toghether projects and new files.
 
 <!-- more -->
 
@@ -23,4 +23,4 @@ Here in episode 11, Dave demonstrates some of the open-source Yeomon templates f
 
 Be sure to follow [the Monsters on Twitter](https://twitter.com/AspNetMonsters) and check out [the blog](http://aspnetmonsters.com) for related posts.
 
-The production code for this episode is IG.
+The production code for this episode is dm.
