@@ -5,6 +5,8 @@ featureImage: /src/modal-tag-helper.png
 tags: 
   - ASP.NET Core
   - .NET Core
+  - Razor
+  - ASP.NET Core MVC
   - Tag Helpers
 authorId: monsters
 date: 2016-03-29 11:00:00
