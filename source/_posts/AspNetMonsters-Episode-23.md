@@ -1,5 +1,5 @@
 ---
-title: The Monsters Weekly - Episode 23 - 'Working With Sensitive Data: User Secrets'
+title: The Monsters Weekly - Episode 23 - 'Working With Sensitive Data - User Secrets'
 layout: post
 featureImage: logo_579.png
 tags: 
