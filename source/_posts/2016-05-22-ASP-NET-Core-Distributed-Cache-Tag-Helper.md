@@ -9,7 +9,7 @@ categories:
   - ASP.NET Core
   - Tag Helpers
 authorId: dave_paquette
-originalurl: 'http://www.davepaquette.com/archive/2016/5/22/ASP-NET-Core-Distributed-Cache-Tag-Helper.aspx'
+originalurl: 'http://www.davepaquette.com/archive/2016/05/22/ASP-NET-Core-Distributed-Cache-Tag-Helper.aspx'
 date: 2016-05-22 12:11:17
 excerpt: The anxiously awaited ASP.NET Core RC2 has finally landed and with it we have a shiny new tag helper to explorer. In this post we will explore the new Distributed Cache tag helper and how it differs from the already existing Cache tag helper.
 ---
