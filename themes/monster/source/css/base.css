@@ -637,3 +637,19 @@ img {
 	vertical-align: middle;
 	height: auto;
 }
+.guest-image
+{
+	clear:both;
+	float:right;
+}
+.guest-name
+{
+	font-weight: bold;
+	font-size: 1.5em;
+}
+.guest-date
+{
+	font-style: italic;
+	font-size: 0.8em;
+	color: #888;
+}
