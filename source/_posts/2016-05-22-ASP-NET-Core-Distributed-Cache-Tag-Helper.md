@@ -6,8 +6,7 @@ tags:
   - Tag Helpers
   - MVC
 categories:
-  - ASP.NET Core
-  - Tag Helpers
+  - Development
 authorId: dave_paquette
 originalurl: 'http://www.davepaquette.com/archive/2016/05/22/ASP-NET-Core-Distributed-Cache-Tag-Helper.aspx'
 date: 2016-05-22 12:11:17
