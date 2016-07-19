@@ -48,7 +48,7 @@ Hey, we don't want you to do this for nothing! We are going to evaluate _every_ 
 
 ## Second Place
   - Telerik DevCraft Complete + one year support and update subscription
-  - An ASP.NET Monsters t-shirt and stickers
+  - Some groovy ASP.NET Monsters stickers
   - A signed photo of Jon Galloway
   - Your solution featured in an Episode of the Monsters Weekly
 
