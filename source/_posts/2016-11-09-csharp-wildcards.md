@@ -11,7 +11,7 @@ authorId: simon_timms
 originalurl: http://blog.simontimms.com/2016/11/09/c-wildcardsdiscardsignororators/
 ---
 
-There is some great discussion going on about including discard variables in C#, possibly even for the C# 7 timeframe. It is so new that the name for them is still up in the air. In Haskel it is called a whilecard. I think this is a great feature which is found in other languages but isn't well known for people who haven't done funcitonal programming. The C# language has been sneaking into being a bit more functional over the last few releases. There is support for lambdas and there has been a bunch of work on immutability. Let's take a walk through how wildcards works. 
+There is some great discussion going on about including discard variables in C#, possibly even for the C# 7 timeframe. It is so new that the name for them is still up in the air. In Haskel it is called a wildcard. I think this is a great feature which is found in other languages but isn't well known for people who haven't done funcitonal programming. The C# language has been sneaking into being a bit more functional over the last few releases. There is support for lambdas and there has been a bunch of work on immutability. Let's take a walk through how wildcards works. 
 
 Let's say that we have a function which has a number of output paramaters:
 
