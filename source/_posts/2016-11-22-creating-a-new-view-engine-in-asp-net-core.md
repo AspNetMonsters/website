@@ -10,7 +10,7 @@ categories:
 authorId: dave_paquette
 originalurl: 'http://www.davepaquette.com/archive/2016/11/22/creating-a-new-view-engine-in-asp-net-core.aspx'
 date: 2016-11-22 12:00
-excerpt: At the ASP.NET Hackathon in Redmond, we replaced the Razor view engine with Pug. It started off as one but it kind of worked okay so we rolled with it. 
+excerpt: At the ASP.NET Hackathon in Redmond, we replaced the Razor view engine with Pug. It started off as a joke but it kind of worked okay so we rolled with it. 
 ---
 
 Earlier in November, the [ASP.NET Monsters](http://aspnetmonsters.com/2016/01/welcome/) had the opportunity to take part in the ASP.NET Core hackathon at the Microsoft MVP Summit. In past years, we have used the hackathon as an opportunity to spend some time working on GenFu. This year, we wanted to try something a little different.
