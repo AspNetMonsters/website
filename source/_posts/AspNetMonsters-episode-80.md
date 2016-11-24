@@ -4,11 +4,11 @@ title: The Monsters Weekly - Episode 80 -  ASP.NET 1.1 was Released...Time to Pu
 layout: post
 featureImage: logo_579.png
 tags: 
-- ASP.NET Core
+  - ASP.NET Core
 authorId: monsters
 date: 2016-11-22 03:00:00
 categories:
-- Monsters Weekly
+  - Monsters Weekly
 permalink: monsters-weekly\ep80
 ---
 
