@@ -6,7 +6,7 @@ featureImage: logo_579.png
 tags: 
   - ASP.NET Core
 authorId: monsters
-date: 2016-11-22 08:00:00
+date: 2016-11-22 03:00:00
 categories:
   - Monsters Weekly
 permalink: monsters-weekly\ep80
