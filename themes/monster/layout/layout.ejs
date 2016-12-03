@@ -5,19 +5,17 @@
         <%- partial('_partial/header', null, {cache: !config.relative_link}) %>
         <div class="clearfix"></div>
 
-        <div class="sections">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-8 main-content">
-                        <%- body %>
-                    </div>
-                    <% if (theme.sidebar && theme.sidebar !== 'bottom'){ %>
-                        <div class="col-md-4 sidebar">
-                            <%- partial('_partial/sidebar', null, {cache: !config.relative_link}) %>
-                        </div>
-                    <% } %>
+        <div class="sections body-section">
+            <div class="row">
+                <div class="col-md-8 main-content">
+                    <%- body %>
                 </div>
-            </div>            
+                <% if (theme.sidebar && theme.sidebar !== 'bottom'){ %>
+                    <div class="col-md-3 sidebar">
+                        <%- partial('_partial/sidebar', null, {cache: !config.relative_link}) %>
+                    </div>
+                <% } %>
+            </div>       
        </div>
        <div class="clearfix"></div>
     </div>

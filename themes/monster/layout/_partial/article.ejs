@@ -1,56 +1,59 @@
-<div class="post post-2 post-gallery single-post">
-    <div class="post-author"><img alt="<%= post.author.name %>" src="/images/<%= post.author.thumb %>"></div>
-
-    <div class="post-head" style="margin-top:60px;">
-        <h3><a href="<%- url_for(post.path) %>"><%= post.title %></a></h3>
-        <div class="post-meta">
-            <div><i class="fa fa-user"></i>BY : <a href="#"><%= post.author.name %></a></div>
-            <div><i class="fa fa-clock-o"></i><time datetime="<%= date_xml(post.date) %>" itemprop="datePublished"><%= date(post.date, null) %></time></div>
-            <div><i class="fa fa-comments"></i><a href="<%- post.permalink %>#disqus_thread" class="article-comment-link">Comments</a></div>
-        </div>
-        <!-- End post-meta -->
-        <div class="clearfix"></div>
+<div class="post post-2 post-gallery single-post row">
+    <div class="col-md-1">
+        <div class="post-author"><img alt="<%= post.author.name %>" src="/images/<%= post.author.thumb %>"></div>
     </div>
-    <!-- End post-head -->
-    <div class="post-wrap">
-            <% if (post.featureImage){ %>                  
-            <div class="post-img">
-                <a href="#"><img alt="" src="/images/<%- post.featureImage %>"></a>
-            </div>              
-            <% } %>
-        <div class="post-inner">
-            <% if (post.excerpt && index){ %>
-                <%- post.excerpt %>
-                
-            <% } else { %>
-                <%- partial('post/originalurl') %>
-                <%- post.content %>
-            <% } %>
-
-            <div class="clearfix"></div>
-            <div class="post-share-view">
-                <div class="post-meta">
-                    <div class="post-meta-share">
-                        <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=<%- post.permalink %>"><i class="fa fa-facebook"></i> Facebook</a> 
-                    </div>
-                    <div class="post-meta-share">
-                        <a target="_blank" href="https://twitter.com/home?status=Blog%20post%20from%20%40aspnetmonsters%3A%20<%- post.title %>%20<%- post.permalink %>"><i class="fa fa-twitter"></i> Twitter</a>
-                    </div>
-                    <div class="post-meta-share">
-                        <a target="_blank" href="https://plus.google.com/share?url=<%- post.permalink %>"><i class="fa fa-google-plus"></i> Google+</a>
-                    </div>
-                    <% if (index){ %>
-                       <a href="<%- url_for(post.path) %>" class="button post-more">Continue Reading</a>
-                    <% } %>
-                </div>
-                <!-- End post-meta -->
+    <div class="col-md-11">
+        <div class="post-head">
+            <h3><a href="<%- url_for(post.path) %>"><%= post.title %></a></h3>
+            <div class="post-meta">
+                <div><i class="fa fa-user"></i>BY : <a href="#"><%= post.author.name %></a></div>
+                <div><i class="fa fa-clock-o"></i><time datetime="<%= date_xml(post.date) %>" itemprop="datePublished"><%= date(post.date, null) %></time></div>
+                <div><i class="fa fa-comments"></i><a href="<%- post.permalink %>#disqus_thread" class="article-comment-link">Comments</a></div>
             </div>
-            <!-- End post-share-view -->
+            <!-- End post-meta -->
             <div class="clearfix"></div>
         </div>
-        <!-- End post-inner -->
+        <!-- End post-head -->
+        <div class="post-wrap">
+                <% if (post.featureImage){ %>                  
+                <div class="post-img">
+                    <a href="#"><img alt="" src="/images/<%- post.featureImage %>"></a>
+                </div>              
+                <% } %>
+            <div class="post-inner">
+                <% if (post.excerpt && index){ %>
+                    <%- post.excerpt %>
+                    
+                <% } else { %>
+                    <%- partial('post/originalurl') %>
+                    <%- post.content %>
+                <% } %>
+
+                <div class="clearfix"></div>
+                <div class="post-share-view">
+                    <div class="post-meta">
+                        <div class="post-meta-share">
+                            <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=<%- post.permalink %>"><i class="fa fa-facebook"></i> Facebook</a> 
+                        </div>
+                        <div class="post-meta-share">
+                            <a target="_blank" href="https://twitter.com/home?status=Blog%20post%20from%20%40aspnetmonsters%3A%20<%- post.title %>%20<%- post.permalink %>"><i class="fa fa-twitter"></i> Twitter</a>
+                        </div>
+                        <div class="post-meta-share">
+                            <a target="_blank" href="https://plus.google.com/share?url=<%- post.permalink %>"><i class="fa fa-google-plus"></i> Google+</a>
+                        </div>
+                        <% if (index){ %>
+                        <a href="<%- url_for(post.path) %>" class="button post-more">Continue Reading</a>
+                        <% } %>
+                    </div>
+                    <!-- End post-meta -->
+                </div>
+                <!-- End post-share-view -->
+                <div class="clearfix"></div>
+            </div>
+            <!-- End post-inner -->
+        </div>
+        <!-- End post-wrap -->
     </div>
-    <!-- End post-wrap -->
 </div>
 <!-- End post -->
 

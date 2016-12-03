@@ -1,8 +1,8 @@
 
 
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,600,700);
-@import url(http://fonts.googleapis.com/css?family=Lato);
-@import url(http://fonts.googleapis.com/css?family=Roboto+Slab:400,700);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600,700);
+@import url(https://fonts.googleapis.com/css?family=Lato);
+@import url(https://fonts.googleapis.com/css?family=Roboto+Slab:400,700);
 
 /* 01 - General & Basic Styles */
 body {
@@ -12,6 +12,12 @@ body {
 	-webkit-font-smoothing: antialiased;
 	overflow-x: hidden;
 }
+
+.body-section{
+	margin-top: 40px;
+    margin-left: 10px;
+}
+
 input,textarea {
 	-webkit-font-smoothing: antialiased;
 }
@@ -1388,12 +1394,11 @@ article.post .post-inner iframe {
 	overflow: hidden;
 	position: absolute;
 	top: 0;
-	left: -80px;
 }
 .post-author img {
 	text-align: center;
-	height: 70px;
-	width: 70px;
+	height: 60px;
+	width: 60px;
 }
 /* Post 3 */
 .post-3 .post-type,.post-3 .post-author {
