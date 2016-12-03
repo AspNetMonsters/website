@@ -14,6 +14,7 @@ all agree that web development would be a lot less interesting. We are fortunate
 to have some of the community's best and brightest thinkers join us to chat
 here on the Monsters.
 
+
 <hr/>
 
 [<img class="guest-image" src="https://sec.ch9.ms/ch9/d5a3/82581bef-9f5b-4976-aec6-523e4b28d5a3/EP59_220.jpg" />](https://channel9.msdn.com/Series/aspnetmonsters/ASPNET-Monsters-59-Razor-with-Taylor-Mullen)
