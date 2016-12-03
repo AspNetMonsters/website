@@ -9,10 +9,49 @@ permalink: guests
 ---
 
 ## Guests from the ASP.NET Community
-Without a diverse set of folks working in the web space, I think we could
-all agree that web development would be a lot less interesting. We are fortunate
-to have some of the community's best and brightest thinkers join us to chat
-here on the Monsters.
+Without a diverse set of folks working in the web space, I think we could all agree that web development would be a lot less interesting. We are fortunate to have some of the community's best and brightest thinkers join us to chat here on the Monsters.
+
+<hr/>
+
+[<img class="guest-image" src="https://sec.ch9.ms/ch9/29ac/e357b5f8-d0bf-45a4-8f9c-d541649f29ac/EP79_220.jpg" />](https://channel9.msdn.com/Series/aspnetmonsters/ASPNET-Monsters-79-Code-Labs-with-Jon-Galloway)
+
+<span class="guest-name">Jon Galloway</span>
+Episode 79: [ASP.NET Core Code Labs](https://channel9.msdn.com/Series/aspnetmonsters/ASPNET-Monsters-79-Code-Labs-with-Jon-Galloway) <span class="guest-date">Nov 17, 2016</span>
+<div class="social-ul">
+  <ul>
+    <li class="social-twitter"><a href="https://twitter.com/jongalloway"><i class="fa fa-twitter"></i></a></li>
+  </ul>
+</div>
+
+<hr/>
+
+
+[<img class="guest-image" src="https://sec.ch9.ms/ch9/73d4/895756f5-1a03-42a7-b581-e9cb9e9173d4/EP78_220.jpg" />](https://channel9.msdn.com/Series/aspnetmonsters/ASPNET-Monsters-78-Azure-Functions-with-Chris-Anderson)
+
+<span class="guest-name">Christopher Anderson</span>
+Episode 78: [Azure Functions](https://channel9.msdn.com/Series/aspnetmonsters/ASPNET-Monsters-78-Azure-Functions-with-Chris-Anderson) <span class="guest-date">Nov 15, 2016</span>
+<div class="social-ul">
+  <ul>
+    <li class="social-twitter"><a href="https://twitter.com/crandycodes"><i class="fa fa-twitter"></i></a></li>
+  </ul>
+</div>
+
+<hr/>
+
+
+[<img class="guest-image" src="https://sec.ch9.ms/ch9/2580/3bd98b98-9a47-4734-ac8f-a652cbc12580/EP61_220.jpg" />](https://channel9.msdn.com/Series/aspnetmonsters/ASPNET-Monsters-61-Building-APIs-with-Darrel-Miller)
+
+<span class="guest-name">Darrel Miller</span>
+Episode 61: [Building APIs](https://channel9.msdn.com/Series/aspnetmonsters/ASPNET-Monsters-61-Building-APIs-with-Darrel-Miller) <span class="guest-date">Aug 25, 2016</span>
+<div class="social-ul">
+  <ul>
+    <li class="social-twitter"><a href="https://twitter.com/darrel_miller"><i class="fa fa-twitter"></i></a></li>
+  </ul>
+</div>
+
+
+
+
 
 
 <hr/>
