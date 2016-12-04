@@ -1,10 +1,9 @@
 <%- partial('_partial/head') %>
 <body>
-
     <div id="wrap" class="stripe grid_1200">
         <%- partial('_partial/header', null, {cache: !config.relative_link}) %>
         <div class="clearfix"></div>
-
+        <div class="monster-message"><div class="container"><a id="monstermessagelink" href="http://click.linksynergy.com/link?id=qigXCeNV4sI&offerid=389397.2497285&type=2&murl=https%3A%2F%2Fwww.microsoftpressstore.com%2Ftitle%2F9781509304066"><strong>Buy our book:</strong> ASP.NET Core Application Development <i class="fa fa-external-link"></i></a></div></div>
         <div class="sections body-section">
             <div class="row">
                 <div class="col-md-8 main-content">
@@ -22,5 +21,33 @@
     <%- partial('_partial/footer', null, {cache: !config.relative_link}) %>    
     <%- partial('_partial/mobile-nav', null, {cache: !config.relative_link}) %>
     <%- partial('_partial/after-footer') %>  
+    <script type="text/javascript">
+        function ready(fn) {
+        if (document.readyState != 'loading'){
+            fn();
+        } else {
+            document.addEventListener('DOMContentLoaded', fn);
+        }
+        }
+
+        ready(function() {
+            // min inclusive, max exclusive
+            function getRandomInt(min, max) {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min)) + min;
+            }
+
+            var referalLinks = 
+            [
+            "http://click.linksynergy.com/link?id=hKA2dsKjtSk&offerid=389397.2497285&type=2&murl=https%3A%2F%2Fwww.microsoftpressstore.com%2Ftitle%2F9781509304066", //James
+            "http://click.linksynergy.com/link?id=Me3LX4kXqhE&offerid=389397.2497285&type=2&murl=https%3A%2F%2Fwww.microsoftpressstore.com%2Ftitle%2F9781509304066", //Simon
+            "http://click.linksynergy.com/link?id=qigXCeNV4sI&offerid=389397.2497285&type=2&murl=https%3A%2F%2Fwww.microsoftpressstore.com%2Ftitle%2F9781509304066" //Dave
+            ];
+
+            var buynowlink = document.getElementById('monstermessagelink');
+            buynowlink.href = referalLinks[getRandomInt(0,referalLinks.length)];
+        });
+    </script>
 </body>
 </html>

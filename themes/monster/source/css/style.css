@@ -4043,3 +4043,17 @@ body {
 .archive-list-count:after{
     content: ")"
 } 
+
+.monster-message {
+	padding: 7px 20px;
+	background-color: #010101;
+}
+
+.monster-message a {
+	text-decoration: none;
+	color: #e74c3c;
+}
+
+.monster-message a strong {
+	color: #f1f1f1;
+}
