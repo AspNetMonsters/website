@@ -14,14 +14,14 @@ I want so hard to like docker, but docker sure doesn't make it easy. Consider tr
 There are two approaches to putting spaces or whitespace in that I've found. The first is to use a variable 
 
 ```
-    ENV PATH_WITH_SPACE "c:\program files\"
+    ENV PATH_WITH_SPACE "c:/program files/"
     COPY thisisdumb.txt ${PATH_WITH_SPACE}
 ```
 
 The other is to use this insane quasi-json syntax
 
 ```
-    COPY ["thisisdumb.txt", "c:\program files\"]
+    COPY ["thisisdumb.txt", "c:/program files/"]
 ```
 
 Take your pick.
