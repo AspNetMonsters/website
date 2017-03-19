@@ -14,6 +14,8 @@ In the last post we looked at how to set up RabbitMQ in a Windows container. It 
 
 A pretty common use case when building a web application is that we want to do some background processing which takes longer than we'd like to keep a request open for. Doing so would lock up an IIS thread too, which ins't optimal. In this example we'd like to make our user creation a background process.
 
+<!-- more -->
+
 To start we need a command which is just a plain old CLR object
 
 ```
