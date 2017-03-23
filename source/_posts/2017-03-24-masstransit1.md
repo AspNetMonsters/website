@@ -14,6 +14,8 @@ In the last post, we created an application which can send tasks to a background
 
 There are a couple of good options in the .NET space which can be layered on top of raw queues. NServiceBus is perhaps the most well know option. There is, of course, a cost to running NServiceBus as it is a commercial product. In my mind the cost of NServiceBus is well worth it for small and medium installations. For large installations I'd recommend building more tightly on top of cloud based transports, but that's a topic for another blog post. 
 
+<!-- more -->
+
 MassTransit is another great option. Comparing the two is beyond the scope of this article but there are some [good](http://stackoverflow.com/questions/13647423/nservicebus-vs-masstransit) [articles](http://looselycoupledlabs.com/2014/11/masstransit-versus-nservicebus-fight/) on that already. MassTransit layer an actual messaging layer on top of either RabbitMQ or Azure Service Bus which means that is provides for serialization routing. 
 
 We should, perhaps, take a moment here to talk about the two types of messages we use in a message driven system. The first is a command. Commands are instructions to perform some action. They are named in the imperative such as 
