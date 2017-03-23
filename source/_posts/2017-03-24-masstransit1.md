@@ -34,12 +34,12 @@ An event is raised in a single location but may be consumed by many services. Ev
 
 Returning to MassTransit we will create an example web application which sends commands and a console application which consumes messages. Let's start start building the message producer first. A number of packages will need to be added to the project.json
 
- ```
+```
     "MassTransit": "3.5.5",
     "MassTransit.RabbitMQ": "3.5.5",
     "Common": "1.0.0-*",
     "Autofac.Extensions.DependencyInjection": "4.0.0",
-``` 
+```
 
 The MassTransit and MassTransit packages provide the backbone of MassTransit and the bindings to RabbitMQ. Autofac will be used to handle the dependency injection of complex objects. The build in DI system might be sufficient but I have a preference for Autofac. Finally, the Common project contains the message interfaces. MassTransit will hydrate new messages for us based on interfaces so we don't actually have to construct concrete classes. The nice part is that this effectivly enables multiple inheritance. 
 
@@ -113,7 +113,7 @@ public HomeController(IBus bus)
 public async Task<IActionResult> Index()
 {
     var addUserEndpoint = await _bus.GetSendEndpoint(new Uri("rabbitmq://172.22.149.120/AddUser1"));
-``` 
+```
 
 Again you can see that we have a bit of a reliance on some hard coded strings. We'll look at addressing some of this in a later post. For now it sufices to observe that we send to a specific address. Once we have the endpoint we can send the message
 
