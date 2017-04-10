@@ -1,4 +1,7 @@
 version: 1.0.{build}
+branches:
+  only:
+  - master
 environment:
   githubtoken:
     secure: 6UdjYMziBfsieFKLVjOUJV7WeBnuUYje7qkpRGUDXy2i0OJoAzugAjTsGWIw2/g8
