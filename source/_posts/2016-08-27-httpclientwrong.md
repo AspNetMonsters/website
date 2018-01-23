@@ -51,14 +51,14 @@ namespace ConsoleApplication
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args) 
         {
             Console.WriteLine("Starting connections");
             for(int i = 0; i<10; i++)
             {
                 using(var client = new HttpClient())
                 {
-                    var result = client.GetAsync("http://aspnetmonsters.com").Result;
+                    var result = await client.GetAsync("http://aspnetmonsters.com");
                     Console.WriteLine(result.StatusCode);
                 }
             }
@@ -147,12 +147,12 @@ namespace ConsoleApplication
     public class Program
     {
         private static HttpClient Client = new HttpClient();
-        public static void Main(string[] args)
+        public static async Task Main(string[] args) 
         {
             Console.WriteLine("Starting connections");
             for(int i = 0; i<10; i++)
             {
-                var result = Client.GetAsync("http://aspnetmonsters.com").Result;
+                var result = await Client.GetAsync("http://aspnetmonsters.com");
                 Console.WriteLine(result.StatusCode);
             }
             Console.WriteLine("Connections done");

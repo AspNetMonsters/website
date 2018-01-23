@@ -60,7 +60,7 @@ The equivalent using the Authorize tag helper would be to add the `asp-authorize
 
 You can also specify a comma separated list of roles, in which case the HTML would be rendered if the user was a member of any of the roles specified.
 
-## Policy Based Authorizaation
+## Policy Based Authorization
 The `[Authorize]` attribe also provides an option to authorize users based on the requirements specified in a Policy. You can learn more about the specifics of this approach by reading the offical docs on [Claims-Based Authorization](https://docs.microsoft.com/en-us/aspnet/core/security/authorization/claims) and [Custom-Policy Based Authorization](https://docs.microsoft.com/en-us/aspnet/core/security/authorization/policies). Policy based authorization is applied by specifying `Policy` property for the `[Authorize]` attribute as follows:
 
 {% codeblock lang:csharp %}
@@ -180,7 +180,7 @@ The Authorize tag helper is also available on [NuGet](https://www.nuget.org/pack
 dotnet add package TagHelperSamples.Authorization
 ```
 
-Let me know what you think. Would you like to see this tag helper including in the next release of ASP.NET Core?
+Let me know what you think. Would you like to see this tag helper included in the next release of ASP.NET Core?
 
 # What's Next?
 If you choose to use the Authorize tag helper in your application, you should remember that hiding a section of HTML is not enough to fully secure your application. You also need to make sure that authorization is applied to any related controllers and action methods. The Authorize tag helper is meant to be used in conjugtion with the `[Authorize]` attribute, not as a replacement for it.
