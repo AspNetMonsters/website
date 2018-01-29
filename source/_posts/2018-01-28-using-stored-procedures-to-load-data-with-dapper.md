@@ -10,7 +10,7 @@ categories:
   - Development
 authorId: dave_paquette
 originalurl: 'https://www.davepaquette.com/archive/2018/01/28/using-stored-procedures-to-load-data-with-dapper.aspx'
-date: 2018-01-28 20:00:00
+date: 2018-01-28 20:00:01
 excerpt:
 Let's just get this one out of the way early. Stored procedures are not my favorite way to get data from SQL Server but there was a time when they were extremely popular. They are still heavily used today and so this series would not be complete without covering how to use stored procedures with Dapper. 
 ---
