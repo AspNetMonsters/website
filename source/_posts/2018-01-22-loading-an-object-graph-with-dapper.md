@@ -13,7 +13,9 @@ originalurl: 'https://www.davepaquette.com/archive/2018/01/22/loading-an-object-
 date: 2018-01-22 21:30:00
 excerpt: I was recently asked to create a read-only web API to expose some parts of a system's data model to third party developers. While Entity Framework is often my go-to tool for data access, I thought this was a good scenario to use Dapper instead. This series of blog posts explores dapper and how you might use it in your application. Today, we will start with the basics of loading and mapping a database table to a C# class. 
 ---
-I was recently asked to create a read-only web API to expose some parts of a system's data model to third party developers. While [Entity Framework](https://docs.microsoft.com/en-us/ef/) is often my go-to tool for data access, I thought this was a good scenario to use Dapper instead. This series of blog posts explores dapper and how you might use it in your application. Today, we will start with the basics of loading a mapping and database table to a C# class. 
+I was recently asked to create a read-only web API to expose some parts of a system's data model to third party developers. While [Entity Framework](https://docs.microsoft.com/en-us/ef/) is often my go-to tool for data access, I thought this was a good scenario to use Dapper instead. This series of blog posts explores dapper and how you might use it in your application. To see the full list of posts, visit the [Dapper Series Index Page](https://www.davepaquette.com/archive/2018/01/21/exploring-dapper-series.aspx).
+ 
+ Today, we will start with the basics of loading a mapping and database table to a C# class. 
 
 # What is Dapper?
 [Dapper](https://github.com/StackExchange/Dapper) calls itself a simple object mapper for .NET and is usually lumped into the category of micro ORM (Object Relational Mapper). When compared to a fully featured ORM like Entity Framework, Dapper lacks certain features like change-tracking, lazy loading and the ability to translate complex LINQ expressions to SQL queries. The fact that Dapper is missing these features is probably the single best thing about Dapper. While it might seem like you're giving up a lot, you are also gaining a lot by dropping those types of features. Dapper is fast since it doesn't do a lot of the magic that Entity Framework does under the covers. Since there is less magic, Dapper is also a lot easier to understand which can lead to lower maintenance costs and maybe even fewer bugs. 
@@ -106,6 +108,8 @@ using(var connection = new SqlConnection(_connectionString))
   //Do Dapper Things
 }
 {% endcodeblock %}
+
+As @Disman pointed out in the comments, it is not necessary to call `connection.OpenAsync()`. If the connection is not already opened, Dapper will call `OpenAsync` for you. Call me old fashioned but I think that whoever created the connection should be the one responsible for opening it, that's why I like to open the connection before calling Dapper.
 
 Let's get back to our example. To query for a single `Aircraft`, we call the `QuerySingleAsync` method, specifying the `Aircraft` type parameter. The type parameter tells Dapper what class type to return. Dapper will take the results of the query that gets executed and map the column values to properties of the specified type. We also pass in two arguments. The first is the query that will return a single row based on a specified `@Id` parameter.
 
