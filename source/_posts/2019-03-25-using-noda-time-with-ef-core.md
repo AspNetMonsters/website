@@ -7,7 +7,7 @@ tags:
 categories:
  - Development
 authorId: dave_paquette
-originalurl: 'http://www.davepaquette.com/archive/2015/12/28/using-noda-time-with-ef-core.aspx'
+https://www.davepaquette.com/archive/2019/03/26/using-noda-time-with-ef-core.aspx
 date: 2019-03-26 07:00:00
 excerpt: Noda Time is a fantastic date/time library for .NET. I started using it recently and it really simplified the logic around handling dates. Unfortunately, I ran in to some problems with using Noda Time together with Entity Framework Core.
 ---
