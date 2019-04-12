@@ -89,19 +89,19 @@ Now, back in the HTML part of your csthml, wrap the `form` in a div that has an 
 
 Next, bind the `<select>` element to the data in your `Vue` object. In Vue, data binding is done using a combination of custom attributes that start with `v-` and the double curly bracket (aka. Mustache) syntax for text. 
 
-{% codeblock lang:html %}
+```html
 <div class="form-group">
     @Html.LabelFor(model => model.CountryCode, new { @class = "control-label col-md-2" })
     <div class="col-md-10">
         <select id="CountryCode" name="CountryCode" class="form-control" 
                 v-model="selectedCountryCode">
             <option v-for="country in countries" v-bind:value="country.code">
-                {{country.name}}
+                {{ country.name }}
             </option>
         </select>
     </div>
 </div>
-{% endcodeblock %}
+```
 
 Now, when you run the app, you should see a dropdown containing Canada and United States.
 
@@ -140,17 +140,17 @@ Here I used jQuery to make the call to the server. In the Vue community, [Axios]
 
 Back in the HTML, bind the `change` event from the country select element to the `countryChanged` method using the `v-on:change` attribute.
 
-{% codeblock lang:html %}
+```html
 <select id="CountryCode" name="CountryCode" class="form-control" 
         v-model="selectedCountryCode" v-on:change="countryChanged">
     <option v-for="country in countries" v-bind:value="country.code">
         {{country.name}}
     </option>
 </select>
-{% endcodeblock %}
+```
 
 Now you can add a select element for the provinces.
-{% codeblock lang:html %}
+```html
 <div class="form-group">
     @Html.LabelFor(model => model.ProvinceCode, new { @class = "control-label col-md-2" })
     <div class="col-md-10">
@@ -162,7 +162,7 @@ Now you can add a select element for the provinces.
         </select>
     </div>
 </div>
-{% endcodeblock %}
+```
 
 Voila! You now have a working set of cascading dropdowns.
 
@@ -197,7 +197,7 @@ var app = new Vue({
 {% endcodeblock %}
 
 In your HTML, bind the `disabled` attribute to the `isProvincesLoading` property.
-{% codeblock lang:html %}
+```html
 <div class="form-group">
 <select id="ProvinceCode" name="ProvinceCode" class="form-control"
         v-model="selectedProvinceCode"
@@ -206,13 +206,13 @@ In your HTML, bind the `disabled` attribute to the `isProvincesLoading` property
         {{province.Name}}
     </option>
 </select>
-{% endcodeblock %}
+```
 
 ### Putting it all together
 
 Here is the entire cshtml file.
 
-{% codeblock lang:html%}
+```html
 @{
     ViewBag.Title = "Location Settings";
 }
@@ -280,7 +280,7 @@ Here is the entire cshtml file.
         });
     </script>
 }
-{% endcodeblock %}
+```
 
 ## Wrapping it up
 I hope this gives you a taste for how easy it is to work with Vue. My current thinking is that Vue should be the default choice for client side frameworks in existing ASP.NET MVC apps.
