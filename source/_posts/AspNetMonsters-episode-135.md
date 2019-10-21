@@ -15,4 +15,4 @@ permalink: monsters-weekly\ep135
 ASP.NET Core 3.0 has been officially released! In this week's episode, Dave takes a look at the changes to the new default HostBuilder that bootstraps all ASP.NET Core processes.
 
 <!--more-->
-<iframe frameborder="0" scrolling="no" seamless="seamless" webkitallowfullscreen="webkitAllowFullScreen" mozallowfullscreen="mozallowfullscreen" allowfullscreen="allowfullscreen" id="okplayer" width="480" height="270" src="http://youtube.com/embed/Y3IH88ayirk" style="position: absolute; top: 0px; left: 0px; width: 480px; height: 270px;"></iframe>
+<iframe width="1280" height="720" src="https://www.youtube.com/embed/Y3IH88ayirk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
