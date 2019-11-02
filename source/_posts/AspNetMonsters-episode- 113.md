@@ -2,7 +2,6 @@
 ---
 title: The Monsters Weekly - Episode  113 -  Authorize Resource Tag Helper
 layout: post
-featureImage: logo_579.png
 tags: 
   - ASP.NET Core
 authorId: monsters
@@ -19,5 +18,5 @@ Blog Post - https://www.davepaquette.com/archive/2017/11/28/authorize-resource-t
 Official ASP.NET Core Docs - https://docs.microsoft.com/en-us/aspnet/core/security/authorization/resourcebased?tabs=aspnetcore2x 
 NuGet Package: https://www.nuget.org/packages/TagHelperSamples.Authorization/
 
-<!--more-->
+
 <iframe width="1280" height="693" src="https://www.youtube.com/embed/xaV9OrbdgiU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

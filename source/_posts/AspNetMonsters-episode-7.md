@@ -1,7 +1,6 @@
 ---
 title: The Monsters Weekly - Episode 7 'Custom Tag Helpers' 
 layout: post
-featureImage: logo_579.png
 tags: 
   - ASP.NET Core
   - Razor

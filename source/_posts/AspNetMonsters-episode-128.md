@@ -2,7 +2,6 @@
 ---
 title: The Monsters Weekly - Episode 128 -  Scripted Load testing with Artillery
 layout: post
-featureImage: logo_579.png
 tags: 
   - ASP.NET Core
 authorId: monsters
@@ -18,5 +17,5 @@ Related Episode #126: Basic Load Testing with Artillery https://www.youtube.com/
 
 https://artillery.io/
 
-<!--more-->
+
 <iframe width="1280" height="720" src="https://www.youtube.com/embed/92p68lZPYx4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

@@ -2,7 +2,6 @@
 ---
 title: The Monsters Weekly - Episode 125 -  Using SignalR in a Background Service
 layout: post
-featureImage: logo_579.png
 tags: 
   - ASP.NET Core
 authorId: monsters
@@ -16,5 +15,5 @@ In today's episode, Monster Dave expands on the Hosted Services example from Epi
 
 SignalR Core Docs - https://docs.microsoft.com/en-us/aspnet/core/tutorials/signalr
 
-<!--more-->
+
 <iframe width="1280" height="720" src="https://www.youtube.com/embed/2uJm8a70waQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

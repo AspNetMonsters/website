@@ -2,7 +2,6 @@
 ---
 title: The Monsters Weekly - Episode 133 -  Visual Studio Extensions 1
 layout: post
-featureImage: logo_579.png
 tags: 
   - ASP.NET Core
 authorId: monsters
@@ -19,5 +18,5 @@ Simon shares some of his favorite VS Code Extensions
 * Remote https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack
 * GitLens https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens
 
-<!--more-->
+
 <iframe width="1280" height="720" src="https://www.youtube.com/embed/pWzHgjHddn8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

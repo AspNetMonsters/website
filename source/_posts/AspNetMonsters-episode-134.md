@@ -2,7 +2,6 @@
 ---
 title: The Monsters Weekly - Episode 134 -  Visual Studio Extensions 2
 layout: post
-featureImage: logo_579.png
 tags: 
   - ASP.NET Core
 authorId: monsters
@@ -21,5 +20,5 @@ Simon shares some of his favorite VS Code Extensions
 * Azure Resource Manager Tools - https://marketplace.visualstudio.com/...
 * npm Script Explorer -https://code.visualstudio.com/updates...
 
-<!--more-->
+
 <iframe width="1280" height="720" src="https://www.youtube.com/embed/4gjy48Z5k6Q" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

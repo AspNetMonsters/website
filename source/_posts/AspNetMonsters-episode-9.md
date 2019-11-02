@@ -1,7 +1,6 @@
 ---
 title: The Monsters Weekly - Episode 9 - What Makes a Controller 
 layout: post
-featureImage: logo_579.png
 tags: 
   - ASP.NET Core
   - ASP.NET Core MVC 

@@ -2,7 +2,6 @@
 ---
 title: The Monsters Weekly - Episode 124 -  Dev Containers
 layout: post
-featureImage: logo_579.png
 tags: 
   - ASP.NET Core
 authorId: monsters
@@ -14,5 +13,5 @@ permalink: monsters-weekly\ep124
 
 DevContainers can be used in VS Code to make environments easily reproducible for multiple developers.
 
-<!--more-->
+
 <iframe width="1280" height="720" src="https://www.youtube.com/embed/fLLfTJ7tr00" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

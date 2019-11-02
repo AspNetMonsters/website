@@ -2,7 +2,6 @@
 ---
 title: The Monsters Weekly - Episode 129 -  Tracking Changes in SQL Server
 layout: post
-featureImage: logo_579.png
 tags: 
   - ASP.NET Core
 authorId: monsters
@@ -16,5 +15,5 @@ A common problem is how to build change tracking into your application. In this 
 
 https://docs.microsoft.com/en-us/sql/...
 
-<!--more-->
+
 <iframe width="1280" height="720" src="https://www.youtube.com/embed/dVXXC-xL3Dc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

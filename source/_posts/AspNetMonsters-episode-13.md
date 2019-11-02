@@ -1,7 +1,6 @@
 ---
 title: The Monsters Weekly - Episode 13 - 'Basics of .NET Core'
 layout: post
-featureImage: logo_579.png
 tags: 
   - ASP.NET Core
   - .NET Core

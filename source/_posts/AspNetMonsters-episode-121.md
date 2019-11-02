@@ -2,7 +2,6 @@
 ---
 title: The Monsters Weekly - Episode 121 -  What's up with Server Side Blazor?
 layout: post
-featureImage: logo_579.png
 tags: 
   - ASP.NET Core
 authorId: monsters
@@ -17,5 +16,5 @@ In this episode, we dig in to Blazor's server-side hosting model (aka. Razor Com
 Blazor - https://blazor.net
 MessagePack - https://msgpack.org/
 
-<!--more-->
+
 <iframe width="1280" height="720" src="https://www.youtube.com/embed/9QRKjUoA9iY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

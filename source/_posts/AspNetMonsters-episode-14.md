@@ -1,7 +1,6 @@
 ---
 title: The Monsters Weekly - Episode 14 - 'Docker'
 layout: post
-featureImage: logo_579.png
 tags: 
   - ASP.NET Core
   - .NET Core

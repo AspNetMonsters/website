@@ -1,7 +1,6 @@
 ---
 title: The Monsters Weekly - Episode 6 'JSON Data and The Options Pattern' 
 layout: post
-featureImage: logo_579.png
 tags: 
   - ASP.NET Core
   - Configuration

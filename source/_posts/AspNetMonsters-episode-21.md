@@ -1,7 +1,6 @@
 ---
 title: The Monsters Weekly - Episode 21 - 'Donuts, Donut Holes & Razor Output Caching with Tag Helpers'
 layout: post
-featureImage: logo_579.png
 tags: 
   - ASP.NET Core
   - GitHub

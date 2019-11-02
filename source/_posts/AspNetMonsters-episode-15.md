@@ -1,7 +1,6 @@
 ---
 title: The Monsters Weekly - Episode 15 - 'ASP.NET Core on Docker'
 layout: post
-featureImage: logo_579.png
 tags: 
   - ASP.NET Core
   - .NET Core
@@ -15,7 +14,7 @@ permalink: monsters-weekly\ep15
 
 Ah, at last we get to running ASP.NET Core on a Docker image! In this episode the monsters start up their simple ASP.NET Core application inside of a docker container running on a virtualized Linux environment. Learn what goes into a Docker file and how Docker Machine makes all this possible on Windows. 
 
-<!--more-->
+
 <iframe src="https://channel9.msdn.com/Series/aspnetmonsters/Episode-15-ASPNET-Core-on-Docker/player" width="640" height="360" allowFullScreen frameBorder="0"></iframe>
 
 

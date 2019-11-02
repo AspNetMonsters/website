@@ -16,7 +16,7 @@ permalink: monsters-weekly\ep17
 
 In our previous episode we had a look at the built-in mechanisms which we are afforded by virtue of using ASP.NET Core. Now it's time to take a deeper look at a fundamental concept to modern logging - structured log messages - and how to take advantage of it.
 
-<!--more-->
+
 <iframe src="https://channel9.msdn.com/Series/aspnetmonsters/Episode-17-Structured-Logging-with-Serilog-in-ASPNET-Core/player" width="640" height="360" allowFullScreen frameBorder="0"></iframe>
 
 In this installment in our series, Monster James is diving into what it takes to use a third-party logging library and an HTTP logging service to capture serialized, structured logs. We'll look at an installation of Seq to capture the logs, and Serilog to push logs to the server.

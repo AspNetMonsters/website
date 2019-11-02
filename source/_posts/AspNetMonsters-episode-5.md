@@ -1,7 +1,6 @@
 ---
 title: The Monsters Weekly - Episode 5 'Configuration Settings' 
 layout: post
-featureImage: logo_579.png
 tags: 
   - ASP.NET Core
   - Configuration

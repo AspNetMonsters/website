@@ -1,7 +1,6 @@
 ---
 title: The Monsters Weekly - Episode 8 'Tour of the Default ASP.NET MVC Project' 
 layout: post
-featureImage: logo_579.png
 tags: 
   - ASP.NET Core
   - Configuration

@@ -2,7 +2,6 @@
 ---
 title: The Monsters Weekly - Episode 131 -  Mediatr
 layout: post
-featureImage: logo_579.png
 tags: 
   - ASP.NET Core
 authorId: monsters
@@ -16,5 +15,5 @@ In this episode, we look at the mediator pattern with Mediatr
 
 https://github.com/jbogard/MediatR
 
-<!--more-->
+
 <iframe width="1280" height="720" src="https://www.youtube.com/embed/zSEF7_Crx5A" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
