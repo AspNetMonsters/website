@@ -10,7 +10,7 @@ permalink: aspnetcorebook
 
 ## Announcing the Microsoft Press "ASP.NET Core Application Development" Book from the ASP.NET Monsters
 
-<h3><a id="buynow_link" href="http://click.linksynergy.com/link?id=hKA2dsKjtSk&offerid=389397.2497285&type=2&murl=https%3A%2F%2Fwww.microsoftpressstore.com%2Ftitle%2F9781509304066">Buy Now</a></h3>
+<h3><a id="buynow_link" href="https://www.amazon.ca/ASP-NET-Core-Application-Development-application-ebook/dp/B01N9E92QY">Buy Now</a></h3>
 
 
 ![ASP.NET Core Application Development](/images/src/ASP.NET Core Application Development.jpg "ASP.NET Core Application Development")
@@ -42,9 +42,7 @@ function ready(fn) {
 
     var referalLinks = 
     [
-      "http://click.linksynergy.com/link?id=hKA2dsKjtSk&offerid=145238.2497285&type=2&murl=http%3A%2F%2Fwww.informit.com%2Ftitle%2F9781509304066", //James
-      "http://click.linksynergy.com/link?id=Me3LX4kXqhE&offerid=389397.2497285&type=2&murl=https%3A%2F%2Fwww.microsoftpressstore.com%2Ftitle%2F9781509304066", //Simon
-      "http://click.linksynergy.com/link?id=qigXCeNV4sI&offerid=145238.2497285&type=2&murl=http%3A%2F%2Fwww.informit.com%2Ftitle%2F9781509304066" //Dave
+      "https://www.amazon.ca/ASP-NET-Core-Application-Development-application-ebook/dp/B01N9E92QY"
     ];
 
     var buynowlink = document.getElementById('buynow_link');
