@@ -1,6 +1,6 @@
 
 ---
-title: Monsters Weekly \#149 -  Fluent Assertions in .NET
+title: Monsters Weekly 149 -  Fluent Assertions in .NET
 layout: post
 tags: 
   - ASP.NET Core
