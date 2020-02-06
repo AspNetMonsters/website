@@ -7,7 +7,7 @@ tags:
   - Application Insights
   - Azure
 categories:
-  - Application Insights
+  - Development
 authorId: dave_paquette
 originalurl: 'http://www.davepaquette.com/archive/2020/02/05/setting-cloud-role-name-in-application-insights.aspx'
 date: 2020-02-05 19:59:38
