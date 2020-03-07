@@ -9,11 +9,11 @@ tags:
 categories:
   - Development
 authorId: dave_paquette
-originalurl: 'http://www.davepaquette.com/archive/2020/02/05/setting-cloud-role-name-in-application-insights.aspx'
+originalurl: 'https://www.davepaquette.com/archive/2020/02/05/setting-cloud-role-name-in-application-insights.aspx'
 date: 2020-02-05 19:59:38
 excerpt: A continuation in my series of love letters about Application Insights. Today I dig into the importance of setting cloud role name. 
 ---
-This post is a continuation of my series about using [Application Insights in ASP.NET Core](http://www.davepaquette.com/archive/2020/01/20/getting-the-most-out-of-application-insights-for-net-core-apps.aspx). Today we will explore the concept of Cloud Role and why it's an important thing to get right for your application.
+This post is a continuation of my series about using [Application Insights in ASP.NET Core](https://www.davepaquette.com/archive/2020/01/20/getting-the-most-out-of-application-insights-for-net-core-apps.aspx). Today we will explore the concept of Cloud Role and why it's an important thing to get right for your application.
 
 In any application that involves more than a single server process/service, the concept of _Cloud Role_ becomes really important in Application Insights. A Cloud Role roughly represents a process that runs somewhere on a server or possibly on a number of servers. A cloud role made up of 2 things: a _cloud role name_ and a _cloud role instance_. 
 
@@ -35,7 +35,7 @@ The cloud role instance tells us which specific server the cloud role is running
 The application insights SDK sets the cloud role instance to the name of the server hosting the service. For example, the name of the VM or the name of the underlying compute instance hosting the app in App Service. In my experience, the SDK does a good job here and I don't usually need to override the cloud role instance.
 
 ## Setting Cloud Role Name using a Telemetry Initializer
-Telemetery Initializers are a powerful mechanism for customizing the telemetry that is collected by the Application Insights SDK. By creating and registering a telemetry initializer, you can overwrite or extend the properties of any piece of telemetry collected by Application Insights.
+Telemetry Initializers are a powerful mechanism for customizing the telemetry that is collected by the Application Insights SDK. By creating and registering a telemetry initializer, you can overwrite or extend the properties of any piece of telemetry collected by Application Insights.
 
 To set the Cloud Role Name, create a class that implements `ITelemetryInitializer` and in the `Initialize` method set the `telemetry.Context.Cloud.RoleName` to the cloud role name for the current application. 
 

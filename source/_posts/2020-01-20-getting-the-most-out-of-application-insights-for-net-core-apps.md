@@ -9,7 +9,7 @@ tags:
 categories:
   - Development
 authorId: dave_paquette
-originalurl: 'http://www.davepaquette.com/archive/2020/01/20/getting-the-most-out-of-application-insights-for-net-core-apps.aspx'
+originalurl: 'https://www.davepaquette.com/archive/2020/01/20/getting-the-most-out-of-application-insights-for-net-core-apps.aspx'
 date: 2020-01-20 11:50:18
 excerpt: If you've worked with me in the last couple years, you know that I've fallen in love with Application Insights.  This is the first in a series of posts designed to help you get the most out of Application Insights for .NET Core applications.
 ---
@@ -68,4 +68,8 @@ I've often heard developers say "I can't use Application Insights because we're 
 ## Next Steps
 Out of the box, Application Insights provides a tremendous amount of value but I always find myself having to customize a few things to really get the most out of the telemetry. Fortunately, the SDK provides some useful extension points. My plan is to follow up this post with a few more posts that go over those customizations in detail. I also have started to create a [NuGet package](https://github.com/AspNetMonsters/ApplicationInsights) to simplify those customizations so stay tuned!
 
+## *Update
+Other posts in this series:
+[Setting Cloud Role Name](https://www.davepaquette.com/archive/2020/02/05/setting-cloud-role-name-in-application-insights.aspx)
+[Enhancing Application Insights Request Telemetry](https://www.davepaquette.com/archive/2020/03/07/enhancing-application-insights-request-telemetry.aspx)
 
