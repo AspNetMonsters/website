@@ -56,7 +56,7 @@ Then, enable static site hosting for this account.
 az storage blob service-properties update --account-name davefancyapp123 --static-website --404-document 404.html --index-document index.html
 ```
 
-Your storage account will now have a blob container named `$web`. That contents of that container will be available on the URL _accountname_.z21.web.core.windows.net/. For example, https://davefancyapp123.z21.web.core.windows.net/.
+Your storage account will now have a blob container named `$web`. That contents of that container will be available on the URL _accountname_.z21.web.core.windows.net/. For example, `https://davefancyapp123.z21.web.core.windows.net/`.
 
 ## Deploying your app
 To deploy your app to the site, all you need to do is copy your app's static files to the `$web` container in the storage account you created above. For my react app, that means running `npm run build` and copying the build output to the `$web` container. 
@@ -83,7 +83,7 @@ az cdn endpoint create -n davefancyapp123cdnendpoint --profile-name davefancyapp
 
 Note: See the [az cli docs](https://docs.microsoft.com/en-us/cli/azure/cdn/endpoint?view=azure-cli-latest#az-cdn-endpoint-create) for more information on the options available when creating a CDN endpoint.
 
-Now your site should be available from _endpointname_.azureedge.net. In my case https://davefancyapp123cdnendpoint.azureedge.net/. Note that the endpoint is created quickly but it can take some time for the actual content to propagate through the CDN. You might initially get a 404 when you visit the URL.
+Now your site should be available from _endpointname_.azureedge.net. In my case `https://davefancyapp123cdnendpoint.azureedge.net/`. Note that the endpoint is created quickly but it can take some time for the actual content to propagate through the CDN. You might initially get a 404 when you visit the URL.
 
 ### Create CDN Endpoint Rules
 These 2 steps are optional. The first one is highly recommended. The second is optional depending on the type of app your deploying. 
