@@ -20,4 +20,4 @@ Previous Episode:
 Playwright Video Verification: https://playwright.dev/#path=docs%2Fverification.md&q=videos
 Playwright-test: https://github.com/microsoft/playwright-test
 
-<iframe width="1084" height="610" src="https://www.youtube.com/embed/pk3MNKMla3E" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="1084" height="610" src="https://www.youtube.com/embed/UtvgzQ5zP4Y" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
