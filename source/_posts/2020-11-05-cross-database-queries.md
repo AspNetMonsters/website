@@ -10,7 +10,7 @@ I seem to be picking up a few projects lately which require migrating data up to
 
 <!--more-->
 
-Unfortunately, whacking developers with a ruler and making them rewrite their business logic to observer proper domain boundaries isn't always on the cards. This is a problem when migrating them to SQL Azure because querying across databases, even ones on the same server, isn't permitted. 
+Unfortunately, whacking developers with a ruler and making them rewrite their business logic to observe proper domain boundaries isn't always on the cards. This is a problem when migrating them to SQL Azure because querying across databases, even ones on the same server, isn't permitted. 
 
 ![Broken query across databases](https://blog.simontimms.com/images/elasticquery/brokenQuery.png)
 
