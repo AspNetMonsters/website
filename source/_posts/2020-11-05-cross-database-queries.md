@@ -3,7 +3,7 @@ layout: post
 title: Querying Across Databases In SQL Azure
 authorId: simon_timms
 date: 2020-11-05 14:00
-
+originalurl: https://blog.simontimms.com/2020/11/05/2020-11-05-cross-database-queries/
 ---
 
 I seem to be picking up a few projects lately which require migrating data up to Azure SQL from an on premise database. One of the things that people tend to do when they have on premise databases is query across databases or link servers together. It is a really tempting prospect to be able to query the `orders` database from the `customers` database. There are, of course, numerous problems with taking this approach not the least of which is making it very difficult to change database schema. We have all heard that it is madness to integrate applications at the database level and that's one of the reasons. 
