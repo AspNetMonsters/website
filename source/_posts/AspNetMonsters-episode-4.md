@@ -1,6 +1,7 @@
 ---
 title: The Monsters Weekly - Episode 4 'Tag Helpers in Razor' 
 layout: post
+featureImage: logo_579.png
 tags: 
   - ASP.NET Core
   - Razor
