@@ -1,6 +1,6 @@
 
 ---
-title: Monsters Weekly 193 -  Background Tasks: Hangfire 101
+title: Monsters Weekly 193 -  Background Tasks Hangfire 101
 layout: post
 tags: 
   - ASP.NET Core
