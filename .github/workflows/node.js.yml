@@ -34,5 +34,14 @@ jobs:
         connection_string: ${{ secrets.BLOB_CONNECTION_STRING }}
         container_name: $web
         source_dir: public
+    - name: Azure Login
+      uses: Azure/login@v1
+      with:
+        creds: ${{AZURE_CREDENTIALS}}
+    - name: Azure CLI Action
+      uses: Azure/cli@1.0.4
+      with:
+        inlineScript: az cdn endpoint purge -n aspnetmonsters -g aspnetmonsters --profile-name  aspnetmonsters --no-wait --content-paths '/' '/index.html'
+        
         
         
