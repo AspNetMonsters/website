@@ -1,0 +1,503 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>ASP.NET Monsters</title>
+  
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://aspnetmonsters.com/"/>
+  <updated>2021-01-12T14:54:25.046Z</updated>
+  <id>http://aspnetmonsters.com/</id>
+  
+  <author>
+    <name>The Monsters</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Monsters Weekly 200d -  Conversations with Nik Molar</title>
+    <link href="http://aspnetmonsters.com/2021/01/monsters-weekly%5Cep200d/"/>
+    <id>http://aspnetmonsters.com/2021/01/monsters-weekly\ep200d/</id>
+    <published>2021-01-12T14:00:00.000Z</published>
+    <updated>2021-01-12T14:54:25.046Z</updated>
+    
+    <content type="html"><![CDATA[<p>Over the last decade as Monsters we’ve been so fortunate to connect with so many great people in the industry. In this 5 part series leading up to episode 200 we reconnect with some of the visionaries, teachers, mentors and community members who have inspired us along the way.</p><p>This was a great conversation where we travelled from pressing issues such as the origin of peanuts in chocolate bars, to ‘meat space’, to the humbling experience of being a project manager and the amazing evolution of product development based on a deep and sincere conversation with end users.</p><p>Nik first crossed our paths working on a tool called Glimpse about a decade ago. Glimpse helped MVC developers understand better what was going on server-side in their applications, the ‘F12 Developer Tools’ of the server, so to speak. That began a wild ride from Glimpse, to RedGate, to Application Insights, to working with the WC3, working alongside others in the early days of Open Analytics to his current role at Microsoft.</p><p>Working on CodeSpaces now for about the last two years, Nik brings a wealth of experience, knowledge and a track record of impressive contributions to the open source community and in helping other developers.</p><iframe width="1084" height="610" src="https://www.youtube.com/embed/6B7IDr5Gvmc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;Over the last decade as Monsters we’ve been so fortunate to connect with so many great people in the industry. In this 5 part series lead
+      
+    
+    </summary>
+    
+      <category term="Monsters Weekly" scheme="http://aspnetmonsters.com/categories/Monsters-Weekly/"/>
+    
+    
+      <category term="ASP.NET Core" scheme="http://aspnetmonsters.com/tags/ASP-NET-Core/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Monsters Weekly 200c -  Conversations with Andrew Stanton-Nurse</title>
+    <link href="http://aspnetmonsters.com/2021/01/monsters-weekly%5Cep200c/"/>
+    <id>http://aspnetmonsters.com/2021/01/monsters-weekly\ep200c/</id>
+    <published>2021-01-04T14:00:00.000Z</published>
+    <updated>2021-01-12T14:54:25.046Z</updated>
+    
+    <content type="html"><![CDATA[<p>Over the last decade as Monsters we’ve been so fortunate to connect with so many great people in the industry. In this 5 part series leading up to episode 200 we reconnect with some of the visionaries, teachers, mentors and community members who have inspired us along the way.</p><p>In episode ‘200c’ we get Andrew Stanton-Nurse on the line to talk about internships, the early days of Nuget and the MVC Framework as well as .NET Core. Once all long-out projects, Andrew had a front row seat on the teams that made those products real.</p><p>Today, Andrew is at GitHub, rewiring the innards to be more modular, experimenting behind the scenes and working to improve the code that serves and backs over 100 million projects worldwide.</p><iframe width="1084" height="610" src="https://www.youtube.com/embed/gEXVfqyRADU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;Over the last decade as Monsters we’ve been so fortunate to connect with so many great people in the industry. In this 5 part series lead
+      
+    
+    </summary>
+    
+      <category term="Monsters Weekly" scheme="http://aspnetmonsters.com/categories/Monsters-Weekly/"/>
+    
+    
+      <category term="ASP.NET Core" scheme="http://aspnetmonsters.com/tags/ASP-NET-Core/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Monsters Weekly 195 -  Playwright with Arjun Attam</title>
+    <link href="http://aspnetmonsters.com/2020/12/monsters-weekly%5Cep195/"/>
+    <id>http://aspnetmonsters.com/2020/12/monsters-weekly\ep195/</id>
+    <published>2020-12-23T14:00:00.000Z</published>
+    <updated>2021-01-12T14:54:25.046Z</updated>
+    
+    <content type="html"><![CDATA[<p>Arjun Attam, Program Manager on the Playwright team, talks about the motivation behind Playwright. We hear from the source about the role of browser automation in today’s web app development ecosystem and hear some helpful tips on how to be successful with Playwright.</p><p>Arjun: <a href="https://twitter.com/arjunattam" target="_blank" rel="noopener">https://twitter.com/arjunattam</a><br>Playwright: <a href="https://playwright.dev/" target="_blank" rel="noopener">https://playwright.dev/</a></p><iframe width="1084" height="610" src="https://www.youtube.com/embed/Aa65sHGWR1A" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;Arjun Attam, Program Manager on the Playwright team, talks about the motivation behind Playwright. We hear from the source about the role
+      
+    
+    </summary>
+    
+      <category term="Monsters Weekly" scheme="http://aspnetmonsters.com/categories/Monsters-Weekly/"/>
+    
+    
+      <category term="ASP.NET Core" scheme="http://aspnetmonsters.com/tags/ASP-NET-Core/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Monsters Weekly 200b -  Conversations with Julie Lerman</title>
+    <link href="http://aspnetmonsters.com/2020/12/monsters-weekly%5Cep200b/"/>
+    <id>http://aspnetmonsters.com/2020/12/monsters-weekly\ep200b/</id>
+    <published>2020-12-21T14:00:00.000Z</published>
+    <updated>2021-01-12T14:54:25.046Z</updated>
+    
+    <content type="html"><![CDATA[<p>Over the last decade as Monsters we’ve been so fortunate to connect with so many great people in the industry. In this 5 part series leading up to episode 200 we reconnect with some of the visionaries, teachers, mentors and community members who have inspired us along the way.</p><p>In part 2 we catch up with Entity Framework advocate and specialist Julie Lerman. Julie’s been on the front lines seeing all the updates, staying connected to the EF team and presenting live (when legal!). Long time author, mentor and trainer, Julie’s known for jumping in and helping teams discover approaches to solving data problems.</p><p>In this episode we talk through the state of EF, upgrading from version to version, Cosmos DB, domain driven design, snow and kidnapping. Unfortunately, we were not able to settle who has the best maple syrup.</p><p>Settle in, have a coffee for Julie and sit back while we chew on all things EF Core (and more!).</p><p>Referenced in the show:</p><p>Vladik Khononov <a href="https://twitter.com/vladikk?lang=en" target="_blank" rel="noopener">https://twitter.com/vladikk?lang=en</a><br>EF Core <a href="https://docs.microsoft.com/en-us/ef/core/" target="_blank" rel="noopener">https://docs.microsoft.com/en-us/ef/core/</a><br>On Github: <a href="https://github.com/dotnet/efcore" target="_blank" rel="noopener">https://github.com/dotnet/efcore</a><br>Julie’s Pluralsight Courses: <a href="https://www.pluralsight.com/authors/julie-lerman" target="_blank" rel="noopener">https://www.pluralsight.com/authors/julie-lerman</a></p><iframe width="1084" height="610" src="https://www.youtube.com/embed/fxTl84zg7zY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;Over the last decade as Monsters we’ve been so fortunate to connect with so many great people in the industry. In this 5 part series lead
+      
+    
+    </summary>
+    
+      <category term="Monsters Weekly" scheme="http://aspnetmonsters.com/categories/Monsters-Weekly/"/>
+    
+    
+      <category term="ASP.NET Core" scheme="http://aspnetmonsters.com/tags/ASP-NET-Core/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Monsters Weekly 200a -  Conversations with Jon Galloway</title>
+    <link href="http://aspnetmonsters.com/2020/12/monsters-weekly%5Cep200a/"/>
+    <id>http://aspnetmonsters.com/2020/12/monsters-weekly\ep200a/</id>
+    <published>2020-12-15T14:00:00.000Z</published>
+    <updated>2021-01-12T14:54:25.046Z</updated>
+    
+    <content type="html"><![CDATA[<p>Over the last decade as Monsters we’ve been so fortunate to connect with so many great people in the industry. In this 5 part series leading up to episode 200 we reconnect with some of the visionaries, teachers, mentors and community members who have inspired us along the way.</p><p>In part 1, we visit with Jon Galloway, currently working on the team that is making the experience of development AWESOME for those who work on Mac.</p><p>We chat about the turns and hills that shaped his journey, the excitement and challenge of being someone who builds community, and what’s ahead in the years to come.</p><iframe width="1084" height="610" src="https://www.youtube.com/embed/QaQS-m11bLg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;Over the last decade as Monsters we’ve been so fortunate to connect with so many great people in the industry. In this 5 part series lead
+      
+    
+    </summary>
+    
+      <category term="Monsters Weekly" scheme="http://aspnetmonsters.com/categories/Monsters-Weekly/"/>
+    
+    
+      <category term="ASP.NET Core" scheme="http://aspnetmonsters.com/tags/ASP-NET-Core/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Monsters Weekly 194 -  Single File Applications in .NET 5</title>
+    <link href="http://aspnetmonsters.com/2020/12/monsters-weekly%5Cep194/"/>
+    <id>http://aspnetmonsters.com/2020/12/monsters-weekly\ep194/</id>
+    <published>2020-12-07T14:00:00.000Z</published>
+    <updated>2021-01-12T14:54:25.046Z</updated>
+    
+    <content type="html"><![CDATA[<p>In today’s episode, we take a look at publishing self-contained single file executables in .NET 5. Publishing applications in this way allows us to easily deploy our .NET 5 applications to devices that don’t have the .NET runtime installed. We can even build executables for Linux from our Windows development machine.</p><p>Links:<br><a href="https://docs.microsoft.com/en-us/dotnet/core/deploying/single-file" target="_blank" rel="noopener">https://docs.microsoft.com/en-us/dotnet/core/deploying/single-file</a><br><a href="https://docs.microsoft.com/en-us/dotnet/core/rid-catalog" target="_blank" rel="noopener">https://docs.microsoft.com/en-us/dotnet/core/rid-catalog</a></p><iframe width="1084" height="610" src="https://www.youtube.com/embed/Eetj3CmeBQI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;In today’s episode, we take a look at publishing self-contained single file executables in .NET 5. Publishing applications in this way al
+      
+    
+    </summary>
+    
+      <category term="Monsters Weekly" scheme="http://aspnetmonsters.com/categories/Monsters-Weekly/"/>
+    
+    
+      <category term="ASP.NET Core" scheme="http://aspnetmonsters.com/tags/ASP-NET-Core/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Monsters Weekly 193 -  Background Tasks Hangfire 101</title>
+    <link href="http://aspnetmonsters.com/2020/11/monsters-weekly%5Cep193/"/>
+    <id>http://aspnetmonsters.com/2020/11/monsters-weekly\ep193/</id>
+    <published>2020-11-30T14:00:00.000Z</published>
+    <updated>2021-01-12T14:54:25.046Z</updated>
+    
+    <content type="html"><![CDATA[<p>Break your work down into smaller pieces that can be completed in the background, even if your user walks away from the page. In this episode we’re giving an into to Hangfire, a mature open source library that allows you to process background tasks in a fire-and-forget manner in any environment, local, server or cloud.</p><p>Project: <a href="https://www.hangfire.io/" target="_blank" rel="noopener">https://www.hangfire.io/</a><br>Install: <a href="https://www.nuget.org/packages/Hangfire/" target="_blank" rel="noopener">https://www.nuget.org/packages/Hangfire/</a><br>Repo: <a href="https://github.com/HangfireIO" target="_blank" rel="noopener">https://github.com/HangfireIO</a></p><iframe width="1084" height="610" src="https://www.youtube.com/embed/ovVyuOWdg6c" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;Break your work down into smaller pieces that can be completed in the background, even if your user walks away from the page. In this epi
+      
+    
+    </summary>
+    
+      <category term="Monsters Weekly" scheme="http://aspnetmonsters.com/categories/Monsters-Weekly/"/>
+    
+    
+      <category term="ASP.NET Core" scheme="http://aspnetmonsters.com/tags/ASP-NET-Core/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Processing Google reCaptcha Tokens in ASP.NET Core</title>
+    <link href="http://aspnetmonsters.com/2020/11/Processing-Google-reCaptcha-Tokens-in-ASP-NET-Core/"/>
+    <id>http://aspnetmonsters.com/2020/11/Processing-Google-reCaptcha-Tokens-in-ASP-NET-Core/</id>
+    <published>2020-11-29T14:26:04.000Z</published>
+    <updated>2021-01-12T14:54:25.077Z</updated>
+    
+    <content type="html"><![CDATA[<p>Integrating a simple test to help prevent malignant input on your site is as simple as integrating a few lines of code into your website.</p><p>Now, if I could I’d pinch myself to make sure I’m not a robot, but I know very well that if I’m smart enough to think of that, they must have also programmed a sense of touch and pain into me as well. So testing to see if a website user is going to be even more daunting, because we can’t even pinch <em>them</em>. </p><p>Thankfully, the <a href="https://www.google.com/recaptcha/about/" target="_blank" rel="noopener">reCaptcha service</a> offered by Google is free add-on to your site that will help to avoid bad data getting into your site, prevent malicious users from gaining access to your resources, and helping you to avoid unwanted side effects of bots that pile up junk data through your forms.</p><p>Read on to see how to get this all wired up in a Razor Pages application in ASP.NET Core. Heck, if you are in an MVC app or are building a Web API (or Azure Function) this would all still serve useful!</p><a id="more"></a><h2 id="The-Way-it-Works"><a href="#The-Way-it-Works" class="headerlink" title="The Way it Works"></a>The Way it Works</h2><p>Here’s how it works: actually, we don’t know. Google holds their cards pretty close. The thing is, the more anyone knows about the service, the easier it is for the bad peeps to figure out a way to bypass it. So, as far as the actual “non-robot” side of things goes, we’re going to leave that part to the perfectly capable engineers at Google.</p><p><strong>However</strong>, we can certainly use the service without having to know it’s technical innards. The important part is that some client side code will help us to generate a token through the reCaptcha service using a client secret that is only valid for the domains we specify. Then, we can  use that token to verify that it was approved by reCaptcha on our server with a different, private key, that we and only we know and can use to validate the token.</p><p>And those are the key principles: a client-side token and a back-end verification of said token.</p><h2 id="How-to-Use-It"><a href="#How-to-Use-It" class="headerlink" title="How to Use It"></a>How to Use It</h2><p>First, pop over to <a href="https://www.google.com/recaptcha/about/" target="_blank" rel="noopener">reCaptcha</a>, sign in and go to the Admin Console. From there you can create or manage sites. I chose the “invisible” implementation because it’s fairly non-invasive but it is still able to provide a great level of protection to my site.</p><p>There are actually pretty good docs once you generate your keys, namely:</p><ul><li><a href="https://developers.google.com/recaptcha/docs/invisible" target="_blank" rel="noopener">Client Side Integration</a></li><li><a href="https://developers.google.com/recaptcha/docs/verify" target="_blank" rel="noopener">Server Side Integration</a></li></ul><p>But those docs are implementation agnostic, so we’ll have a look at how to get things going in a Razor Pages application. What we need to do in the Razor Pages and ASP.NET space is something like this:</p><ol><li>Add user secrets</li><li>Create a service that can be injected into our view</li><li>Update our startup to read the config and use the service</li><li>Update our view to include the script and configuration</li><li>Update our page code to setup the client key as well as to process the token</li></ol><h3 id="Add-User-Secrets-and-Update-Application-Config"><a href="#Add-User-Secrets-and-Update-Application-Config" class="headerlink" title="Add User Secrets and Update Application Config"></a>Add User Secrets and Update Application Config</h3><p>We don’t want to put our secrets into source control lest the directory be public or otherwise exposed. I like to create a placeholder in my <code>appsettings.json</code> file for the data like so:</p><figure class="highlight 1c"><table><tr><td class="code"><pre><span class="line"><span class="string">"Captcha"</span>: &#123;</span><br><span class="line">  <span class="string">"ClientKey"</span>: <span class="string">""</span>,</span><br><span class="line">  <span class="string">"ServerKey"</span>: <span class="string">""</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>Now, whenever someone on my team (or me, on a different computer) pulls down the source code it’s easy to copy and paste the configuration section into my user secrets, which are never added to the repo.</p><p>Now, right-click on your project in Visual Studio and choose “Manage User Secrets”, then copy and paste the above into the root of the JSON document. Fill in the keys with the secrets from your Google configuration. </p><p>It’s also a good idea at this time to update your staging and production environments, or any build automation steps or key stores where you would need these settings. Remember that the end result is a key-value pair, so the JSON nesting should be removed before you set a key somewhere and the key should be the composite of all property names in the path assembled with colon. What I mean by that is that our settings above will be <code>Captcha:ClientKey</code> and <code>Captcha:ServerKey</code> when you add them to your other environments. </p><p>The second side of the configuration is the ability to work with the data in a POCO. We create a class for this so that we can take advantage of the <a href="https://docs.microsoft.com/en-us/aspnet/core/fundamentals/configuration/options?view=aspnetcore-5.0" target="_blank" rel="noopener">options pattern</a>. The class looks like this:</p><figure class="highlight arduino"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CaptchaSettings</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">string</span> ClientKey &#123; <span class="built_in">get</span>; <span class="built_in">set</span>; &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">string</span> ServerKey &#123; <span class="built_in">get</span>; <span class="built_in">set</span>; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>Two simple properties in a class. Easy-peasy.</p><h3 id="A-CaptchaVerificationService-Service"><a href="#A-CaptchaVerificationService-Service" class="headerlink" title="A CaptchaVerificationService Service"></a>A <code>CaptchaVerificationService</code> Service</h3><p>Here is the complete listing of the service I’ve created to handle the verifications. I have chosen to have a <code>false</code> result by default in the event of a service verification failure or other communication exception, but you can choose a default that best suits your needs.</p><figure class="highlight cs"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">CaptchaVerificationService</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">private</span> CaptchaSettings captchaSettings;</span><br><span class="line">    <span class="keyword">private</span> ILogger&lt;CaptchaVerificationService&gt; logger;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">string</span> ClientKey =&gt; captchaSettings.ClientKey;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">CaptchaVerificationService</span>(<span class="params">IOptions&lt;CaptchaSettings&gt; captchaSettings, ILogger&lt;CaptchaVerificationService&gt; logger</span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="keyword">this</span>.captchaSettings = captchaSettings.Value;</span><br><span class="line">        <span class="keyword">this</span>.logger = logger;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">async</span> Task&lt;<span class="keyword">bool</span>&gt; <span class="title">IsCaptchaValid</span>(<span class="params"><span class="keyword">string</span> token</span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="keyword">var</span> result = <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">var</span> googleVerificationUrl = <span class="string">"https://www.google.com/recaptcha/api/siteverify"</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">using</span> <span class="keyword">var</span> client = <span class="keyword">new</span> HttpClient();</span><br><span class="line"></span><br><span class="line">            <span class="keyword">var</span> response = <span class="keyword">await</span> client.PostAsync(<span class="string">$"<span class="subst">&#123;googleVerificationUrl&#125;</span>?secret=<span class="subst">&#123;captchaSettings.ServerKey&#125;</span>&amp;response=<span class="subst">&#123;token&#125;</span>"</span>, <span class="literal">null</span>);</span><br><span class="line">            <span class="keyword">var</span> jsonString = <span class="keyword">await</span> response.Content.ReadAsStringAsync();</span><br><span class="line">            <span class="keyword">var</span> captchaVerfication = JsonConvert.DeserializeObject&lt;CaptchaVerificationResponse&gt;(jsonString);</span><br><span class="line"></span><br><span class="line">            result = captchaVerfication.success;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">catch</span> (Exception e)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">// fail gracefully, but log</span></span><br><span class="line">            logger.LogError(<span class="string">"Failed to process captcha validation"</span>, e);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="Wiring-up-the-Configuration-and-Services"><a href="#Wiring-up-the-Configuration-and-Services" class="headerlink" title="Wiring up the Configuration and Services"></a>Wiring up the Configuration and Services</h3><p>Next up, head over to your <code>Startup</code> class and pop into your <code>ConfigureServices</code> method to add these two lines:</p><figure class="highlight abnf"><table><tr><td class="code"><pre><span class="line">services.AddOptions&lt;CaptchaSettings&gt;().BindConfiguration(<span class="string">"Captcha"</span>)<span class="comment">;</span></span><br><span class="line">services.AddTransient&lt;CaptchaVerificationService&gt;()<span class="comment">;</span></span><br></pre></td></tr></table></figure><p>The first line pulls the configuration from your key store, configuration file or user secrets, depending on your environment. The second just makes our little verification class available for dependency injection.</p><h3 id="Add-Assets-and-Configuration-to-our-View"><a href="#Add-Assets-and-Configuration-to-our-View" class="headerlink" title="Add Assets and Configuration to our View"></a>Add Assets and Configuration to our View</h3><p>Our view will have to be updated to integrate some code from the sample on the reCaptcha site. We’ll include the script from Google, and add a callback that submits our form. This code is in my <code>cshtml</code> view containing a form where I want the captcha to appear.</p><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://www.google.com/recaptcha/api.js"</span> <span class="attr">async</span> <span class="attr">defer</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="actionscript">       <span class="function"><span class="keyword">function</span> <span class="title">onSubmit</span><span class="params">(token)</span> </span>&#123;</span></span><br><span class="line"><span class="javascript">           <span class="built_in">document</span>.getElementById(<span class="string">"email-form"</span>).submit();</span></span><br><span class="line">       &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure><p>Next, we update the submit button in the view to include a few properties that help the script understand what kind of captcha we’re generating and to specify the callback.</p><figure class="highlight armasm"><table><tr><td class="code"><pre><span class="line">&lt;<span class="keyword">button </span>class=<span class="string">"g-recaptcha"</span> <span class="meta">data</span>-sitekey=<span class="string">"@Model.CaptchaClientKey"</span> <span class="meta">data</span>-callback=<span class="string">'onSubmit'</span>&gt;<span class="meta">Keep</span> me posted!&lt;/<span class="keyword">button&gt;</span></span><br></pre></td></tr></table></figure><p>You’ll notice in there the client key…this is why we took advantage of the <code>IOptions</code> bits and exposed it through the service. It’s part of the page model for simplicity, and we just load it up on the <code>get</code> request in the next step.</p><h3 id="Checking-the-Final-Boxes"><a href="#Checking-the-Final-Boxes" class="headerlink" title="Checking the Final Boxes"></a>Checking the Final Boxes</h3><p>That was a captcha pun, in case you missed it.</p><p>Anyway, the last step is to add a bit of code to our page’s <code>.cs</code> file. Let’s start with the class-level field for the service reference and the property we expose through our page model.</p><figure class="highlight cs"><table><tr><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">readonly</span> CaptchaVerificationService verificationService;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">string</span> CaptchaClientKey &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br></pre></td></tr></table></figure><p>As well we’re going to need to capture the token from our form on the way back from the view to the server. The field is named in a non-CLR way, so we use the <code>Name</code> property on our binding to tie it to the way Google names the token in the client script.</p><figure class="highlight cs"><table><tr><td class="code"><pre><span class="line">[<span class="meta">BindProperty(Name = <span class="meta-string">"g-recaptcha-response"</span>)</span>]</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">string</span> CaptchaResponse &#123;<span class="keyword">get</span>;<span class="keyword">set</span>;&#125;</span><br></pre></td></tr></table></figure><p>Our constructor also needs some massaging. My page is called <code>Index</code> so appropriately my class is called <code>IndexModel</code>. </p><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">IndexModel</span><span class="params">(CaptchaVerificationService verificationService)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.verificationService = verificationService;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure><p>And, finally, our <code>OnPost</code> method needs to include the service check before proceeding with any data processing.</p><figure class="highlight cs"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">async</span> Task <span class="title">OnPost</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// validate input</span></span><br><span class="line">    <span class="keyword">var</span> requestIsValid = <span class="keyword">await</span> <span class="keyword">this</span>.verificationService.IsCaptchaValid(CaptchaResponse);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (requestIsValid)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// do your processing...</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="Ship-it"><a href="#Ship-it" class="headerlink" title="Ship it!"></a>Ship it!</h2><p>Stitching together all of the parts takes a bit of work on the first pass, but once the config and service are in place, it literally only takes a couple of minutes to wire up your views (pages, controllers, etc.). reCaptcha is a pretty slick addition to your site that can help prevent script kiddies, bots and purveyors of evil from fluffing with your data. Because no one likes getting their data fluffed.</p><p>Happy coding!</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Integrating a simple test to help prevent malignant input on your site is as simple as integrating a few lines of code into your website.&lt;/p&gt;
+&lt;p&gt;Now, if I could I’d pinch myself to make sure I’m not a robot, but I know very well that if I’m smart enough to think of that, they must have also programmed a sense of touch and pain into me as well. So testing to see if a website user is going to be even more daunting, because we can’t even pinch &lt;em&gt;them&lt;/em&gt;. &lt;/p&gt;
+&lt;p&gt;Thankfully, the &lt;a href=&quot;https://www.google.com/recaptcha/about/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;reCaptcha service&lt;/a&gt; offered by Google is free add-on to your site that will help to avoid bad data getting into your site, prevent malicious users from gaining access to your resources, and helping you to avoid unwanted side effects of bots that pile up junk data through your forms.&lt;/p&gt;
+&lt;p&gt;Read on to see how to get this all wired up in a Razor Pages application in ASP.NET Core. Heck, if you are in an MVC app or are building a Web API (or Azure Function) this would all still serve useful!&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Development" scheme="http://aspnetmonsters.com/categories/Development/"/>
+    
+      <category term="Monsters Weekly" scheme="http://aspnetmonsters.com/categories/Development/Monsters-Weekly/"/>
+    
+    
+      <category term="ASP.NET Core" scheme="http://aspnetmonsters.com/tags/ASP-NET-Core/"/>
+    
+      <category term="Visual Studio 2019" scheme="http://aspnetmonsters.com/tags/Visual-Studio-2019/"/>
+    
+      <category term="reCaptcha" scheme="http://aspnetmonsters.com/tags/reCaptcha/"/>
+    
+      <category term="Web API" scheme="http://aspnetmonsters.com/tags/Web-API/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Monsters Weekly 192 -  C# 9 Top Level Statements</title>
+    <link href="http://aspnetmonsters.com/2020/11/monsters-weekly%5Cep192/"/>
+    <id>http://aspnetmonsters.com/2020/11/monsters-weekly\ep192/</id>
+    <published>2020-11-24T14:00:00.000Z</published>
+    <updated>2021-01-12T14:54:25.046Z</updated>
+    
+    <content type="html"><![CDATA[<p>C# brings with it a bunch of new features. Top level statements or programs make it easier to get started in C# if you haven’t written a program in it before. They can also make developing small applications faster.</p><iframe width="1084" height="610" src="https://www.youtube.com/embed/zLqNXTinA_k" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;C# brings with it a bunch of new features. Top level statements or programs make it easier to get started in C# if you haven’t written a 
+      
+    
+    </summary>
+    
+      <category term="Monsters Weekly" scheme="http://aspnetmonsters.com/categories/Monsters-Weekly/"/>
+    
+    
+      <category term="ASP.NET Core" scheme="http://aspnetmonsters.com/tags/ASP-NET-Core/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Allocating a Serverless Database in SQL Azure</title>
+    <link href="http://aspnetmonsters.com/2020/11/2020-11-18-serverless-sql-azure-terraform/"/>
+    <id>http://aspnetmonsters.com/2020/11/2020-11-18-serverless-sql-azure-terraform/</id>
+    <published>2020-11-18T20:00:00.000Z</published>
+    <updated>2021-01-12T14:54:24.999Z</updated>
+    
+    <content type="html"><![CDATA[<p>I’m pretty big on the SQL Azure Serverless SKU. It allows you to scale databases up and down automatically within a band of between 0.75 and 40 vCores on Gen5 hardware. It also supports auto-pausing which can shut down the entire database during periods of inactivity. I’m provisioning a bunch of databases for a client and we’re not sure what performance tier is going to be needed. Eventually we may move to an elastic pool but initially we wanted to allocate the databases in a serverless configuration so we can ascertain a performance envelope. We wanted to allocate the resources in a terraform template but had a little trouble figuring it out. </p><a id="more"></a><p>Traditionally we’ve been using the resource <code>azurerm_sql_database</code> for our databases but this provider is starting to be deprecated in favour of <code>azurerm_mssql_database</code> which has better support for some of the more modern concept in SQL Azure. The <a href="https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/mssql_database#state" target="_blank" rel="noopener">documentation</a> is pretty good for it but while there was a <code>min_capacity</code> we couldn’t find an equivalent <code>max_capacity</code>. Turns out you can set the max capacity using the SKU. So we had something like </p><figure class="highlight nix"><table><tr><td class="code"><pre><span class="line">resource <span class="string">"azurerm_mssql_database"</span> <span class="string">"database"</span> &#123;</span><br><span class="line">  <span class="attr">name</span>                        = var.database_name</span><br><span class="line">  <span class="attr">server_id</span>                   = var.database_server_id</span><br><span class="line">  <span class="attr">max_size_gb</span>                 = var.database_max_size_gb</span><br><span class="line">  <span class="attr">auto_pause_delay_in_minutes</span> = -<span class="number">1</span></span><br><span class="line">  <span class="attr">min_capacity</span>                = <span class="number">1</span></span><br><span class="line">  <span class="attr">sku_name</span>                    = <span class="string">"GP_S_Gen5_6"</span></span><br><span class="line">  <span class="attr">tags</span> = &#123;</span><br><span class="line">    <span class="attr">environment</span> = var.prefix</span><br><span class="line">  &#125;</span><br><span class="line">  short_term_retention_policy &#123;</span><br><span class="line">    <span class="attr">retention_days</span> = <span class="number">14</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>This allocates a database with a capacity of between 1 and 6 vCPU that has auto pause disabled. The S in the GP_S_Gen5_6 stands for serverless and the 6 denotes the maximum capacity. </p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;I’m pretty big on the SQL Azure Serverless SKU. It allows you to scale databases up and down automatically within a band of between 0.75 and 40 vCores on Gen5 hardware. It also supports auto-pausing which can shut down the entire database during periods of inactivity. I’m provisioning a bunch of databases for a client and we’re not sure what performance tier is going to be needed. Eventually we may move to an elastic pool but initially we wanted to allocate the databases in a serverless configuration so we can ascertain a performance envelope. We wanted to allocate the resources in a terraform template but had a little trouble figuring it out. &lt;/p&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Monsters Weekly 191 -  C# 9 Pattern Matching</title>
+    <link href="http://aspnetmonsters.com/2020/11/monsters-weekly%5Cep191/"/>
+    <id>http://aspnetmonsters.com/2020/11/monsters-weekly\ep191/</id>
+    <published>2020-11-16T14:00:00.000Z</published>
+    <updated>2021-01-12T14:54:25.046Z</updated>
+    
+    <content type="html"><![CDATA[<p>C# 9 brings pattern matching to a fantastic place allowing you to express complex patterns cleanly. In this episode we’ll play with some of the patterns you can use to make your code cleaner and leaner.</p><iframe width="1084" height="610" src="https://www.youtube.com/embed/41N2zqkRXjg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;C# 9 brings pattern matching to a fantastic place allowing you to express complex patterns cleanly. In this episode we’ll play with some 
+      
+    
+    </summary>
+    
+      <category term="Monsters Weekly" scheme="http://aspnetmonsters.com/categories/Monsters-Weekly/"/>
+    
+    
+      <category term="ASP.NET Core" scheme="http://aspnetmonsters.com/tags/ASP-NET-Core/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Running Stored Procedures Across Databases in Azure</title>
+    <link href="http://aspnetmonsters.com/2020/11/2020-11-09-cross-database-procs/"/>
+    <id>http://aspnetmonsters.com/2020/11/2020-11-09-cross-database-procs/</id>
+    <published>2020-11-09T20:00:00.000Z</published>
+    <updated>2021-01-12T14:54:24.999Z</updated>
+    
+    <content type="html"><![CDATA[<p>In a <a href="https://blog.simontimms.com/2020/11/05/2020-11-05-cross-database-queries/" target="_blank" rel="noopener">previous article</a> I talked about how to run queries across database instances on Azure using ElasticQuery. One of the limitations I talked about was the in ability to update data in the source database. Well that isn’t entirely accurate. You can do it if you make use of stored procedures. </p><a id="more"></a><p>Running a stored proc on a remote database is a little bit weird looking but once you get your head around that then it is perfectly usable. Let’s go back to the same example we used before with a products database an an orders database. In the products database let’s add a stored procedure to add a new product and return the count of products.</p><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">procedure</span> addProduct</span><br><span class="line"> @item <span class="keyword">nvarchar</span>(<span class="number">50</span>)</span><br><span class="line"><span class="keyword">as</span></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> Products(<span class="keyword">name</span>) <span class="keyword">values</span>(@item);</span><br><span class="line"><span class="keyword">select</span> <span class="keyword">count</span>(*) cnt <span class="keyword">from</span> products;</span><br><span class="line">go</span><br></pre></td></tr></table></figure><p>Now over in our orders database we can use our existing database connection to call this stored proc</p><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">sp_execute_remote ProductsSource, </span><br><span class="line">                  N'addProduct @item', </span><br><span class="line">                  @params = N'@item nvarchar(50)', </span><br><span class="line">                  @item = 'long sleeved shirts';</span><br></pre></td></tr></table></figure><p>At first glance this is a little confusing so let’s break it down. </p><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">sp_execute_remote ProductsSource,</span><br></pre></td></tr></table></figure><p>This line instructs that we want to run a stored procedure and that it should use the ProductsSource data connection. </p><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">N'addProduct @item',</span><br></pre></td></tr></table></figure><p>This line lists the stored proc to run and the parameters to pass to it. You’ll notice that it is a NVarchar string passed as a single parameter.</p><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">@params = N'@item nvarchar(50)',</span><br></pre></td></tr></table></figure><p>This line lists all the parameters to pass and their type. If you have multiple then you’d comma separate them here: <code>N&#39;@item nvarchar(50), @price number(10,2)&#39;</code></p><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="keyword">@item</span> = <span class="string">'long sleeved shirts'</span>;</span><br></pre></td></tr></table></figure><p>This final line is an args-style array of the values for the parameters. Again if you had a second parameter you’d pass it in as separate item here <code>@item = &#39;long sleeved shirts&#39;, @price=10.99</code></p><p>Running this command gets us something like </p><figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">cnt  <span class="variable">$ShardName</span></span><br><span class="line">6  [<span class="attribute">DataSource</span>=testias.database.windows.net <span class="attribute">Database</span>=testias]</span><br></pre></td></tr></table></figure><p>You’ll notice that nifty ShardName colum which tells you about the source. This is because you can use a shard map to execute the stored procedure against lots of shards at once.</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;In a &lt;a href=&quot;https://blog.simontimms.com/2020/11/05/2020-11-05-cross-database-queries/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;previous article&lt;/a&gt; I talked about how to run queries across database instances on Azure using ElasticQuery. One of the limitations I talked about was the in ability to update data in the source database. Well that isn’t entirely accurate. You can do it if you make use of stored procedures. &lt;/p&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Monsters Weekly 190 -  Using Elastic Query on SQL Azure</title>
+    <link href="http://aspnetmonsters.com/2020/11/monsters-weekly%5Cep190/"/>
+    <id>http://aspnetmonsters.com/2020/11/monsters-weekly\ep190/</id>
+    <published>2020-11-09T14:00:00.000Z</published>
+    <updated>2021-01-12T14:54:25.046Z</updated>
+    
+    <content type="html"><![CDATA[<p>SQL Azure doesn’t let you run queries between database instances. But if you’re migrating off on premise databases where you’ve been able to do that you probably don’t want to rewrite a bunch of code. Turns out there is a way around that using SQL Azure Elastic Query. </p><p>Links<br>Documentation - <a href="https://docs.microsoft.com/en-us/azure/azure-sql/database/elastic-query-overview" target="_blank" rel="noopener">https://docs.microsoft.com/en-us/azure/azure-sql/database/elastic-query-overview</a></p><iframe width="1084" height="610" src="https://www.youtube.com/embed/IAx1nsh5-Ao" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;SQL Azure doesn’t let you run queries between database instances. But if you’re migrating off on premise databases where you’ve been able
+      
+    
+    </summary>
+    
+      <category term="Monsters Weekly" scheme="http://aspnetmonsters.com/categories/Monsters-Weekly/"/>
+    
+    
+      <category term="ASP.NET Core" scheme="http://aspnetmonsters.com/tags/ASP-NET-Core/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Azure Processor Limits</title>
+    <link href="http://aspnetmonsters.com/2020/11/2020-11-05-processor-limits/"/>
+    <id>http://aspnetmonsters.com/2020/11/2020-11-05-processor-limits/</id>
+    <published>2020-11-05T21:00:00.000Z</published>
+    <updated>2021-01-12T14:54:24.999Z</updated>
+    
+    <content type="html"><![CDATA[<p>Ran into a fun little quirk in Azure today. We wanted to allocate a pretty beefy machine, an M32ms. Problem was that for the region we were looking at it wasn’t showing up on our list of VM sizes. We checked and there were certainly VMs of that size available in the region we just couldn’t see them. So we ran the command </p><figure class="highlight dsconfig"><table><tr><td class="code"><pre><span class="line"><span class="string">az </span><span class="string">vm </span><span class="built_in">list-usage</span> <span class="built_in">--location</span> <span class="string">"westus"</span> <span class="built_in">--output</span> <span class="string">table</span></span><br></pre></td></tr></table></figure><p>And that returned a bunch of information about the quota limits we had in place. Sure enough in there we had </p><figure class="highlight pgsql"><table><tr><td class="code"><pre><span class="line"><span class="type">Name</span>                               <span class="keyword">Current</span> <span class="keyword">Value</span>   <span class="keyword">Limit</span></span><br><span class="line">Standard MS <span class="keyword">Family</span> vCPUs           <span class="number">0</span>               <span class="number">0</span></span><br></pre></td></tr></table></figure><p>We opened a support request to increase the quota on that CPU. We also had a weirdly low limit on CPUs in the region </p><figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line">Total Regional vCPUs               <span class="number">0</span>               <span class="number">10</span></span><br></pre></td></tr></table></figure><p>Which support fixed for us too and we were then able to create the VM we were looking for. </p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;Ran into a fun little quirk in Azure today. We wanted to allocate a pretty beefy machine, an M32ms. Problem was that for the region we we
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Querying Across Databases In SQL Azure</title>
+    <link href="http://aspnetmonsters.com/2020/11/2020-11-05-cross-database-queries/"/>
+    <id>http://aspnetmonsters.com/2020/11/2020-11-05-cross-database-queries/</id>
+    <published>2020-11-05T20:00:00.000Z</published>
+    <updated>2021-01-12T14:54:24.999Z</updated>
+    
+    <content type="html"><![CDATA[<p>I seem to be picking up a few projects lately which require migrating data up to Azure SQL from an on premise database. One of the things that people tend to do when they have on premise databases is query across databases or link servers together. It is a really tempting prospect to be able to query the <code>orders</code> database from the <code>customers</code> database. There are, of course, numerous problems with taking this approach not the least of which is making it very difficult to change database schema. We have all heard that it is madness to integrate applications at the database level and that’s one of the reasons. </p><a id="more"></a><p>Unfortunately, whacking developers with a ruler and making them rewrite their business logic to observe proper domain boundaries isn’t always on the cards. This is a problem when migrating them to SQL Azure because querying across databases, even ones on the same server, isn’t permitted. </p><p><img src="https://blog.simontimms.com/images/elasticquery/brokenQuery.png" alt="Broken query across databases"></p><p>This is where the new <a href="https://docs.microsoft.com/en-us/azure/azure-sql/database/elastic-query-overview" target="_blank" rel="noopener">Elastic Query</a> comes in. I should warn at this point that the functionality is still in preview but it’s been in preview for a couple of years so I think it is pretty stable. I feel a little bit disingenuous describing it as “new” now but it is new to me. To use it is pretty easy and doesn’t even need you to use the Azure portal. </p><p>Let’s imagine that you have two databases one of which contains a collection of Products and a second database that contains a list of Orders which contain just the product id. Your mission is to query and get a list of orders and the product name. To start we can set up a couple of databases. I called mine <code>testias</code> and <code>testias2</code> and I had them both on the same instance of SQL Azure but you don’t have to.</p><p><img src="https://blog.simontimms.com/images/elasticquery/setup.png" alt="Two databases on the same server"></p><h2 id="Product-Database"><a href="#Product-Database" class="headerlink" title="Product Database"></a>Product Database</h2><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> Products( </span><br><span class="line"><span class="keyword">id</span> uniqueidentifier primary <span class="keyword">key</span> <span class="keyword">default</span> newid(),</span><br><span class="line"><span class="keyword">name</span> <span class="keyword">nvarchar</span>(<span class="number">50</span>));</span><br><span class="line"></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> Products(<span class="keyword">name</span>) <span class="keyword">values</span>(<span class="string">'socks'</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> Products(<span class="keyword">name</span>) <span class="keyword">values</span>(<span class="string">'hats'</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> Products(<span class="keyword">name</span>) <span class="keyword">values</span>(<span class="string">'gloves'</span>);</span><br></pre></td></tr></table></figure><h2 id="Orders-Database"><a href="#Orders-Database" class="headerlink" title="Orders Database"></a>Orders Database</h2><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> orders(<span class="keyword">id</span> uniqueidentifier primary <span class="keyword">key</span> <span class="keyword">default</span> newid(),</span><br><span class="line"><span class="built_in">date</span> <span class="built_in">date</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> orderLineItems(<span class="keyword">id</span> uniqueidentifier primary <span class="keyword">key</span> <span class="keyword">default</span> newid(),</span><br><span class="line">orderId uniqueidentifier,</span><br><span class="line">productId uniqueidentifier,</span><br><span class="line">quantity <span class="built_in">int</span>,</span><br><span class="line"><span class="keyword">foreign</span> <span class="keyword">key</span> (orderId) <span class="keyword">references</span> orders(<span class="keyword">id</span>));</span><br><span class="line"></span><br><span class="line"><span class="keyword">declare</span> @orderID uniqueidentifier = newid();</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> orders(<span class="keyword">id</span>, <span class="built_in">date</span>)</span><br><span class="line"><span class="keyword">values</span>(@orderID, <span class="string">'2020-11-01'</span>);</span><br><span class="line"> </span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> orderLineItems(orderId, productId, quantity) <span class="keyword">values</span>(@orderID, <span class="string">'3829A43D-FD2A-4B7C-9A09-23DBF030C1DC'</span>, <span class="number">10</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> orderLineItems(orderId, productId, quantity) <span class="keyword">values</span>(@orderID, <span class="string">'233BC430-BA3F-4F5C-B3EA-4B82867FC040'</span>, <span class="number">1</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> orderLineItems(orderId, productId, quantity) <span class="keyword">values</span>(@orderID, <span class="string">'95A20D82-EC26-4769-8840-804B88630A01'</span>, <span class="number">2</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">set</span> @orderId = newid();</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> orders(<span class="keyword">id</span>, <span class="built_in">date</span>)</span><br><span class="line"><span class="keyword">values</span>(@orderID, <span class="string">'2020-11-02'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> orderLineItems(orderId, productId, quantity) <span class="keyword">values</span>(@orderID, <span class="string">'3829A43D-FD2A-4B7C-9A09-23DBF030C1DC'</span>, <span class="number">16</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> orderLineItems(orderId, productId, quantity) <span class="keyword">values</span>(@orderID, <span class="string">'233BC430-BA3F-4F5C-B3EA-4B82867FC040'</span>, <span class="number">99</span>);</span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> orderLineItems(orderId, productId, quantity) <span class="keyword">values</span>(@orderID, <span class="string">'95A20D82-EC26-4769-8840-804B88630A01'</span>, <span class="number">0</span>);</span><br></pre></td></tr></table></figure><p>Now we need to hook up the databases to be able to see each other. We’re actually just going to make products visible from the orders database. It makes more sense to me to run these queries in the database which contains the most data to minimize how much data needs to cross the wire to the other database. </p><p>So first up we need to tell the Orders database about the credentials needed to access the remote database, products. To do this we need to use a SQL account on the products database. Windows accounts and integrated security doesn’t currently work for this. </p><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">master</span> <span class="keyword">key</span> encryption <span class="keyword">by</span> <span class="keyword">password</span> = <span class="string">'monkeyNose!2'</span>;</span><br><span class="line"><span class="keyword">create</span> <span class="keyword">database</span> scoped credential ProductDatabaseCredentials </span><br><span class="line"><span class="keyword">with</span> <span class="keyword">identity</span> = <span class="string">'ProductsDBUser'</span>, </span><br><span class="line">secret = <span class="string">'wouNHk41l9fBBcqadwWiq3ert'</span>;</span><br></pre></td></tr></table></figure><p>Next we set up an external data source for the products</p><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">external</span> <span class="keyword">data</span> <span class="keyword">source</span> ProductsSource <span class="keyword">with</span> </span><br><span class="line">(<span class="keyword">type</span>=RDBMS, location = <span class="string">'testias.database.windows.net'</span>, </span><br><span class="line">database_name = <span class="string">'testias'</span>, credential = ProductDatabaseCredentials);</span><br></pre></td></tr></table></figure><p>Finally we create a table definition in the Orders database that matches the remote table (without any defaults or constraints).</p><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">external</span> <span class="keyword">table</span> Products( <span class="keyword">id</span> uniqueidentifier,</span><br><span class="line"><span class="keyword">name</span> <span class="keyword">nvarchar</span>(<span class="number">50</span>))</span><br><span class="line"><span class="keyword">with</span> ( data_source = ProductsSource)</span><br></pre></td></tr></table></figure><p>We now have a products table in the external tables section in the object explorer</p><p><img src="https://blog.simontimms.com/images/elasticquery/testtableview.png" alt="Tables from both databases"></p><p>We can query the external table and even cross it against the tables in this database</p><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">name</span>, ol.quantity <span class="keyword">from</span> orderLineItems ol <span class="keyword">inner</span> <span class="keyword">join</span> products p <span class="keyword">on</span> ol.productId = p.id</span><br></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">socks   16</span><br><span class="line">socks   10</span><br><span class="line">gloves  1</span><br><span class="line">gloves  99</span><br><span class="line">hats    2</span><br><span class="line">hats    0</span><br></pre></td></tr></table></figure><p>So it is possible to run queries across databases in Azure but it takes a little set up and a little bit of thought about how to best set it up. </p><h1 id="Possible-Gotchas"><a href="#Possible-Gotchas" class="headerlink" title="Possible Gotchas"></a>Possible Gotchas</h1><ul><li>I forgot to set up the database to be able to talk to Azure resources in the firewall so I had to go back and add that</li><li>Inserting to the external table isn’t supported, which is good, make the changes directly in the source database</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;I seem to be picking up a few projects lately which require migrating data up to Azure SQL from an on premise database. One of the things that people tend to do when they have on premise databases is query across databases or link servers together. It is a really tempting prospect to be able to query the &lt;code&gt;orders&lt;/code&gt; database from the &lt;code&gt;customers&lt;/code&gt; database. There are, of course, numerous problems with taking this approach not the least of which is making it very difficult to change database schema. We have all heard that it is madness to integrate applications at the database level and that’s one of the reasons. &lt;/p&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Monsters Weekly 189 -  New Features in Playwright 1.5</title>
+    <link href="http://aspnetmonsters.com/2020/11/monsters-weekly%5Cep189/"/>
+    <id>http://aspnetmonsters.com/2020/11/monsters-weekly\ep189/</id>
+    <published>2020-11-02T14:00:00.000Z</published>
+    <updated>2021-01-12T14:54:25.046Z</updated>
+    
+    <content type="html"><![CDATA[<p>We continue our series on browser automation using Playwright, taking a look at a couple of new features: video recordings and playwright-test.</p><p>Previous Episode:<br>#188: Intercepting Network Requests with Playwright - <a href="https://youtu.be/PiIHeG3vEPs" target="_blank" rel="noopener">https://youtu.be/PiIHeG3vEPs</a><br>#183: Cross Browser Automation with Playwright - <a href="https://youtu.be/75dzhaDkTxs" target="_blank" rel="noopener">https://youtu.be/75dzhaDkTxs</a></p><p>Playwright Video Verification: <a href="https://playwright.dev/#path=docs%2Fverification.md&amp;q=videos" target="_blank" rel="noopener">https://playwright.dev/#path=docs%2Fverification.md&amp;q=videos</a><br>Playwright-test: <a href="https://github.com/microsoft/playwright-test" target="_blank" rel="noopener">https://github.com/microsoft/playwright-test</a></p><iframe width="1084" height="610" src="https://www.youtube.com/embed/UtvgzQ5zP4Y" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;We continue our series on browser automation using Playwright, taking a look at a couple of new features: video recordings and playwright
+      
+    
+    </summary>
+    
+      <category term="Monsters Weekly" scheme="http://aspnetmonsters.com/categories/Monsters-Weekly/"/>
+    
+    
+      <category term="ASP.NET Core" scheme="http://aspnetmonsters.com/tags/ASP-NET-Core/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Monsters Weekly 188 -  Intercepting Network Requests with Playwright</title>
+    <link href="http://aspnetmonsters.com/2020/10/monsters-weekly%5Cep188/"/>
+    <id>http://aspnetmonsters.com/2020/10/monsters-weekly\ep188/</id>
+    <published>2020-10-26T13:00:00.000Z</published>
+    <updated>2021-01-12T14:54:25.046Z</updated>
+    
+    <content type="html"><![CDATA[<p>Browser automation is great for testing your application but sometimes it is difficult to test specific scenarios. For example, testing a scenario when your backend service returns a specific set of data or maybe an error code. Fortunately, Playwright makes this easy by providing a simple mechanism for intercepting network requests.</p><p>Previous Episode:<br>#183: Cross Browser Automation with Playwright - <a href="https://youtu.be/75dzhaDkTxs" target="_blank" rel="noopener">https://youtu.be/75dzhaDkTxs</a></p><p>Playwright Network APIs:  <a href="https://playwright.dev/#version=v1.4.0&amp;path=docs%2Fnetwork.md&amp;q=" target="_blank" rel="noopener">https://playwright.dev/#version=v1.4.0&amp;path=docs%2Fnetwork.md&amp;q=</a></p><iframe width="1084" height="610" src="https://www.youtube.com/embed/PiIHeG3vEPs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;Browser automation is great for testing your application but sometimes it is difficult to test specific scenarios. For example, testing a
+      
+    
+    </summary>
+    
+      <category term="Monsters Weekly" scheme="http://aspnetmonsters.com/categories/Monsters-Weekly/"/>
+    
+    
+      <category term="ASP.NET Core" scheme="http://aspnetmonsters.com/tags/ASP-NET-Core/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Monsters Weekly 187 -  Windows Terminal with Kayla Cinnamon</title>
+    <link href="http://aspnetmonsters.com/2020/10/monsters-weekly%5Cep187/"/>
+    <id>http://aspnetmonsters.com/2020/10/monsters-weekly\ep187/</id>
+    <published>2020-10-19T13:00:00.000Z</published>
+    <updated>2021-01-12T14:54:25.046Z</updated>
+    
+    <content type="html"><![CDATA[<p>In this episode we’re pleased to have Kayla Cinnamon (<a href="https://twitter.com/cinnamon_msft" target="_blank" rel="noopener">https://twitter.com/cinnamon_msft</a>), PM of the Windows Terminal Team on chatting about the multi-shell terminal management tool from Microsoft. It slides easily into your development tool chain and makes it easy to customize your experience for not only which shell you’re using, but also the behaviours and look-and-feel of the shell.</p><p>Install the tooling:<br> choco install powershell-core<br> choco install gh<br> choco install poshgit<br> choco install microsoft-windows-terminal</p><p>Adjust profile settings:<br> <a href="https://docs.microsoft.com/en-us/windows/terminal/customize-settings/profile-settings" target="_blank" rel="noopener">https://docs.microsoft.com/en-us/windows/terminal/customize-settings/profile-settings</a></p><p>Learn and customize bindings:<br> <a href="https://docs.microsoft.com/en-us/windows/terminal/customize-settings/actions" target="_blank" rel="noopener">https://docs.microsoft.com/en-us/windows/terminal/customize-settings/actions</a></p><p>Stay connected with update from Kayla on her blog<br><a href="https://devblogs.microsoft.com/commandline/author/cinnamonmicrosoft-com/" target="_blank" rel="noopener">https://devblogs.microsoft.com/commandline/author/cinnamonmicrosoft-com/</a></p><p>Follow Kayla on Twitter<br><a href="https://twitter.com/cinnamon_msft" target="_blank" rel="noopener">https://twitter.com/cinnamon_msft</a></p><iframe width="1084" height="610" src="https://www.youtube.com/embed/qpxsPKBI0Os" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;In this episode we’re pleased to have Kayla Cinnamon (&lt;a href=&quot;https://twitter.com/cinnamon_msft&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://
+      
+    
+    </summary>
+    
+      <category term="Monsters Weekly" scheme="http://aspnetmonsters.com/categories/Monsters-Weekly/"/>
+    
+    
+      <category term="ASP.NET Core" scheme="http://aspnetmonsters.com/tags/ASP-NET-Core/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Monsters Weekly 186 -  Some Basic Linux Commands</title>
+    <link href="http://aspnetmonsters.com/2020/10/monsters-weekly%5Cep186/"/>
+    <id>http://aspnetmonsters.com/2020/10/monsters-weekly\ep186/</id>
+    <published>2020-10-12T13:00:00.000Z</published>
+    <updated>2021-01-12T14:54:25.046Z</updated>
+    
+    <content type="html"><![CDATA[<p>In this video we go through a few of the most basic Linux commands and touch on the file system layout.</p><iframe width="1084" height="610" src="https://www.youtube.com/embed/0tf51Troz_Y" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;In this video we go through a few of the most basic Linux commands and touch on the file system layout.&lt;/p&gt;
+&lt;iframe width=&quot;1084&quot; height=&quot;
+      
+    
+    </summary>
+    
+      <category term="Monsters Weekly" scheme="http://aspnetmonsters.com/categories/Monsters-Weekly/"/>
+    
+    
+      <category term="ASP.NET Core" scheme="http://aspnetmonsters.com/tags/ASP-NET-Core/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Monsters Weekly 185 -  Azure Static Web Apps</title>
+    <link href="http://aspnetmonsters.com/2020/10/monsters-weekly%5Cep185/"/>
+    <id>http://aspnetmonsters.com/2020/10/monsters-weekly\ep185/</id>
+    <published>2020-10-05T13:00:00.000Z</published>
+    <updated>2021-01-12T14:54:25.046Z</updated>
+    
+    <content type="html"><![CDATA[<p>In this week’s episode, we take a look at the new Static Web Apps service in Azure.<br>     <a href="https://docs.microsoft.com/en-ca/azure/static-web-apps/" target="_blank" rel="noopener">https://docs.microsoft.com/en-ca/azure/static-web-apps/</a></p><iframe width="1084" height="610" src="https://www.youtube.com/embed/ukTAyLImz68" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;In this week’s episode, we take a look at the new Static Web Apps service in Azure.&lt;br&gt;     &lt;a href=&quot;https://docs.microsoft.com/en-ca/azu
+      
+    
+    </summary>
+    
+      <category term="Monsters Weekly" scheme="http://aspnetmonsters.com/categories/Monsters-Weekly/"/>
+    
+    
+      <category term="ASP.NET Core" scheme="http://aspnetmonsters.com/tags/ASP-NET-Core/"/>
+    
+  </entry>
+  
+</feed>

@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Using Vue as a drop-in replacement for Knockout in an ASP.NET MVC project | ASP.NET Monsters</title>  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+    <!-- Main Style -->
+    <link rel="stylesheet" type="text/css" href="/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/base.css">
+    <link rel="stylesheet" type="text/css" href="/css/prettyPhoto.css">
+    <link rel="stylesheet" type="text/css" href="/js/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/bright_cyan.css">
+    <link rel="stylesheet" type="text/css" href="/css/skins.css">
+    <link rel="stylesheet" type="text/css" href="/css/responsive.css">
+    <link rel="stylesheet" type="text/css" href="/css/navbar-fixed-top.css">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/css/highlight.css">
+
+    <!-- Font Style -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+  
+  <meta name="description" content="When maintaining existing ASP.NET applications, we often need to add some client side behaviour. I am a little surprised to see people reaching for Knockout in these scenarios but I think vuejs is a g">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Using Vue as a drop-in replacement for Knockout in an ASP.NET MVC project">
+<meta property="og:url" content="http://aspnetmonsters.com/2019/01/2019-01-21-using-vue-as-a-drop-in-replacement-for-knockout-in-an-MVC-project/index.html">
+<meta property="og:site_name" content="ASP.NET Monsters">
+<meta property="og:description" content="When maintaining existing ASP.NET applications, we often need to add some client side behaviour. I am a little surprised to see people reaching for Knockout in these scenarios but I think vuejs is a g">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://www.davepaquette.com/images/vue/simple-country-dropdown.png">
+<meta property="og:image" content="https://www.davepaquette.com/images/vue/country-province-dropdown.png">
+<meta property="article:published_time" content="2019-01-21T12:57:12.000Z">
+<meta property="article:modified_time" content="2021-01-12T14:54:24.999Z">
+<meta property="article:author" content="The Monsters">
+<meta property="article:tag" content="ASP.NET Core">
+<meta property="article:tag" content="MVC">
+<meta property="article:tag" content="ASP.NET">
+<meta property="article:tag" content="Vue.js">
+<meta property="article:tag" content="Javascript">
+<meta property="article:tag" content="Knockout.js">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.davepaquette.com/images/vue/simple-country-dropdown.png">
+  
+    <link rel="alternative" href="/atom.xml" title="ASP.NET Monsters" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/images/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-58850513-2', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+  <script src="//load.sumome.com/" data-sumo-site-id="4be75cfb88d7cd4bb66a3c505430b09e769afb08367319e92abd1a12f95a2834" async="async"></script>
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+<body>
+    <div id="wrap" class="stripe grid_1200">
+        <div class="wrap-search">
+    <form method="post">
+        <input type="search" name="s" value="Search here ..." onfocus="if(this.value==this.defaultValue)this.value='';" onblur="if(this.value=='')this.value=this.defaultValue;">
+    </form>
+</div>
+<!-- End wrap-search -->
+
+<!-- Fixed navbar -->
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header" style="color:#F4EDED; padding:10px;">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+            aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="logo" href="/"><img src="/images/monsters-little-banner.png" /></a>
+            <a class="navbar-brand" href="/">ASP.NET Monsters</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+
+            <ul class="nav navbar-nav navbar-right">
+            
+                <li><a href="/">Home</a></li>
+             
+                <li><a href="/2016/01/welcome">About</a></li>
+             
+                <li><a href="/2016/01/guests">Special Guests</a></li>
+             
+                <li><a href="/2016/12/aspnetcorebook">Our Book</a></li>
+             
+            </ul>
+
+        </div>
+        <!--/.nav-collapse -->
+    </div>
+</nav>
+        <div class="clearfix"></div>
+        <div class="monster-message"><div class="container"><a id="monstermessagelink" href="https://www.amazon.ca/ASP-NET-Core-Application-Development-application-ebook/dp/B01N9E92QY" target="_blank" rel="noopener"><strong>Buy our book:</strong> ASP.NET Core Application Development <i class="fa fa-external-link"></i></a></div></div>
+        <div class="sections body-section">
+            <div class="row">
+                <div class="col-md-8 main-content">
+                    <div class="post post-2 post-gallery single-post row">
+    <div class="col-md-1">
+        <div class="post-author"><img alt="David Paquette" src="/images/thumb_dave.png"></div>
+    </div>
+    <div class="col-md-11">
+        <div class="post-head">
+            <h3><a href="/2019/01/2019-01-21-using-vue-as-a-drop-in-replacement-for-knockout-in-an-MVC-project/">Using Vue as a drop-in replacement for Knockout in an ASP.NET MVC project</a></h3>
+            <div class="post-meta">
+                <div><i class="fa fa-user"></i>BY : <a href="#">David Paquette</a></div>
+                <div><i class="fa fa-clock-o"></i><time datetime="2019-01-21T12:57:12.000Z" itemprop="datePublished">2019-01-21</time></div>
+                <div><i class="fa fa-comments"></i><a href="http://aspnetmonsters.com/2019/01/2019-01-21-using-vue-as-a-drop-in-replacement-for-knockout-in-an-MVC-project/#disqus_thread" class="article-comment-link">Comments</a></div>
+            </div>
+            <!-- End post-meta -->
+            <div class="clearfix"></div>
+        </div>
+        <!-- End post-head -->
+        <div class="post-wrap">
+                
+            <div class="post-inner">
+                
+                    
+
+<small>Originally posted to: <a href="http://www.davepaquette.com/archive/2019/01/21/using-vue-as-a-drop-in-replacement-for-knockout-in-an-MVC-project.aspx" target="_blank" rel="noopener">http://www.davepaquette.com/archive/2019/01/21/using-vue-as-a-drop-in-replacement-for-knockout-in-an-MVC-project.aspx</a></small>
+
+
+                    <p>So you’re working an existing (brown-field) ASP.NET MVC application. The application’s views are rendered server-side using Razor. Everything is working great and life is good. Suddenly, someone asks for a bit of additional functionality that will require some client side logic. Okay, no big deal. We do this all the time. The question though, is what framework/JavaScript library you will use to implement that client side functionality. </p>
+<p>The default MVC project templates already include jQuery, so you might use that. You’ll probably end up writing a lot of code if you go down that path. Chances are, you will want to use a JavaScript framework that offers two-way data binding between the elements in the DOM to a your model data. </p>
+<p>I seems that for many people, <a href="https://knockoutjs.com/" target="_blank" rel="noopener">Knockout.js</a> is the default library to use in these scenarios. I won’t get into the specifics but I think that Knockout is a little dated and that there are better options these days. If you want to dig into some of the issues with Knockout, you can read <a href="https://westerndevs.com/a-discussion-on-knockout/" target="_blank" rel="noopener">Simon Timms’ rant on the subject</a>.</p>
+<h2 id="Vue-js"><a href="#Vue-js" class="headerlink" title="Vue.js"></a>Vue.js</h2><p>My fellow <a href="https://aspnetmonsters.com">ASP.NET Monster</a> <a href="http://jameschambers.com" target="_blank" rel="noopener">James Chambers</a> recently strongly recommended I take a look at <a href="https://vuejs.org" target="_blank" rel="noopener">Vue.js</a>. I had been meaning to give Vue a try for some time now and I finally had a chance to use it on a recent project. Let me tell you…I love it. </p>
+<p>I love it for a whole bunch of reasons. The <a href="https://vuejs.org/v2/guide/" target="_blank" rel="noopener">documentation</a> is great! It is super easy to get drop in to your existing project and it doesn’t get in the way. For what I needed to do, it just did the job and allowed me to get on with my day. It is also designed to be “incrementally adoptable”, which means you can start out with just using the core view layer, then start pulling in other things like routing and state management if/when you need them. </p>
+<h2 id="A-simple-example"><a href="#A-simple-example" class="headerlink" title="A simple example"></a>A simple example</h2><p>I won’t go into great detail about how to use Vue. If you want a full tutorial, head on over to the <a href="https://vuejs.org/v2/guide/" target="_blank" rel="noopener">Vue docs</a>. What I want to show here is just how simple it is to drop Vue into an existing ASP.NET MVC project and add a bit of client side functionality. </p>
+<p>The simplest example I can think of is a set of cascading dropdowns. Let’s consider a form where a user is asked to enter their Country / Province. When the Country is selected, we would expect the Province dropdown to only display the valid Provinces/States for the selected Country. That probably involves a call to an HTTP endpoint that will return the list of valid values.</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">ProvinceLookupController</span> : <span class="title">Controller</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ActionResult <span class="title">Index</span>(<span class="params"><span class="keyword">string</span> countryCode</span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="keyword">var</span> provinces = ProvinceLookupService.GetProvinces(countryCode);</span><br><span class="line">        <span class="keyword">return</span> Json(provinces, JsonRequestBehavior.AllowGet);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Including-Vue-in-your-Razor-cshtml-view"><a href="#Including-Vue-in-your-Razor-cshtml-view" class="headerlink" title="Including Vue in your Razor (cshtml) view"></a>Including Vue in your Razor (cshtml) view</h3><p>The easiest way to include Vue on a particular Razor view is to link to the <code>vue.js</code> file from a CDN. You can add the following Script tag to your <code>scripts</code> section.</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">@section scripts  &#123;</span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdn.jsdelivr.net/npm/vue@2.5.22/dist/vue.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Be sure to <a href="https://vuejs.org/v2/guide/installation.html" target="_blank" rel="noopener">check the docs</a> to make sure you are referencing the latest version of Vue.</p>
+<h3 id="Binding-data-to-the-our-View"><a href="#Binding-data-to-the-our-View" class="headerlink" title="Binding data to the our View"></a>Binding data to the our View</h3><p>Now that you have included the core Vue library, you can start using Vue to bind DOM elements to model data. </p>
+<p>Start by defining a <code>Vue</code> object in JavaScript. You can add this in a new <code>&lt;script&gt;</code> tag in your <code>scripts</code> section.</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">@section scripts  &#123;</span><br><span class="line">    &lt;script src=<span class="string">"https://cdn.jsdelivr.net/npm/vue@2.5.22/dist/vue.js"</span>&gt;&lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">    &lt;script type="text/</span>javascript<span class="string">"&gt;</span></span><br><span class="line"><span class="string">        var app = new Vue(&#123;</span></span><br><span class="line"><span class="string">            el: '#vueApp',</span></span><br><span class="line"><span class="string">            data: &#123;</span></span><br><span class="line"><span class="string">                selectedCountryCode: null,</span></span><br><span class="line"><span class="string">                countries: [</span></span><br><span class="line"><span class="string">                    &#123; code: 'ca', name: 'Canada' &#125;,</span></span><br><span class="line"><span class="string">                    &#123; code: 'us', name: 'United States' &#125;</span></span><br><span class="line"><span class="string">                ]            </span></span><br><span class="line"><span class="string">            &#125;</span></span><br><span class="line"><span class="string">        &#125;);</span></span><br><span class="line"><span class="string">    &lt;/script&gt;</span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>This <code>Vue</code> object targets the DOM element with id <code>vueApp</code> and contains some simple data. The currently selected country code and the list of countries. </p>
+<p>Now, back in the HTML part of your csthml, wrap the <code>form</code> in a div that has an <code>id=&quot;vueApp&quot;</code>.</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"vueApp"</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- your form --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>Next, bind the <code>&lt;select&gt;</code> element to the data in your <code>Vue</code> object. In Vue, data binding is done using a combination of custom attributes that start with <code>v-</code> and the double curly bracket (aka. Mustache) syntax for text. </p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"form-group"</span>&gt;</span></span><br><span class="line">    @Html.LabelFor(model =&gt; model.CountryCode, new &#123; @class = "control-label col-md-2" &#125;)</span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"col-md-10"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"CountryCode"</span> <span class="attr">name</span>=<span class="string">"CountryCode"</span> <span class="attr">class</span>=<span class="string">"form-control"</span> </span></span><br><span class="line"><span class="tag">                <span class="attr">v-model</span>=<span class="string">"selectedCountryCode"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">option</span> <span class="attr">v-for</span>=<span class="string">"country in countries"</span> <span class="attr">v-bind:value</span>=<span class="string">"country.code"</span>&gt;</span></span><br><span class="line">                &#123;&#123; country.name &#125;&#125;</span><br><span class="line">            <span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>Now, when you run the app, you should see a dropdown containing Canada and United States.</p>
+<p><img src="https://www.davepaquette.com/images/vue/simple-country-dropdown.png" alt="Country Dropdown"></p>
+<h3 id="Adding-functionality"><a href="#Adding-functionality" class="headerlink" title="Adding functionality"></a>Adding functionality</h3><p>Next, you will want to add some client side logic to get the list of valid provinces from the server whenever the selected country changes.</p>
+<p>First, add an empty <code>provinces</code> array and a <code>selectedProvinceCode</code> property to the <code>Vue</code> object’s data.</p>
+<p>Next, add a method called <code>countryChanged</code> to the <code>Vue</code> object. This method will call the <code>ProvinceLookup</code> action method on the server, passing in the <code>selectedCountryCode</code> as a parameter. Assign the response data to the <code>provinces</code> array.</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> app = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">    el: <span class="string">'#vueApp'</span>,</span><br><span class="line">    data: &#123;</span><br><span class="line">        selectedCountryCode: <span class="literal">null</span>,</span><br><span class="line">        countries: [</span><br><span class="line">            &#123; <span class="attr">code</span>: <span class="string">'ca'</span>, <span class="attr">name</span>: <span class="string">'Canada'</span> &#125;,</span><br><span class="line">            &#123; <span class="attr">code</span>: <span class="string">'us'</span>, <span class="attr">name</span>: <span class="string">'United States'</span> &#125;</span><br><span class="line">        ],</span><br><span class="line">        selectedProvinceCode: <span class="literal">null</span>,</span><br><span class="line">        provinces: []</span><br><span class="line">    &#125;,</span><br><span class="line">    methods: &#123;</span><br><span class="line">        countryChanged: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            $.getJSON(<span class="string">'@Url.Action("Index", "ProvinceLookup")?countryCode='</span> + <span class="keyword">this</span>.selectedCountryCode, <span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</span><br><span class="line">                <span class="keyword">this</span>.provinces = data;</span><br><span class="line">            &#125;.bind(<span class="keyword">this</span>));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>Here I used jQuery to make the call to the server. In the Vue community, <a href="https://github.com/axios/axios" target="_blank" rel="noopener">Axios</a> is a popular library for making HTTP requests.</p>
+<p>Back in the HTML, bind the <code>change</code> event from the country select element to the <code>countryChanged</code> method using the <code>v-on:change</code> attribute.</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"CountryCode"</span> <span class="attr">name</span>=<span class="string">"CountryCode"</span> <span class="attr">class</span>=<span class="string">"form-control"</span> </span></span><br><span class="line"><span class="tag">        <span class="attr">v-model</span>=<span class="string">"selectedCountryCode"</span> <span class="attr">v-on:change</span>=<span class="string">"countryChanged"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">option</span> <span class="attr">v-for</span>=<span class="string">"country in countries"</span> <span class="attr">v-bind:value</span>=<span class="string">"country.code"</span>&gt;</span></span><br><span class="line">        &#123;&#123;country.name&#125;&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>Now you can add a select element for the provinces.</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"form-group"</span>&gt;</span></span><br><span class="line">    @Html.LabelFor(model =&gt; model.ProvinceCode, new &#123; @class = "control-label col-md-2" &#125;)</span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"col-md-10"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"ProvinceCode"</span> <span class="attr">name</span>=<span class="string">"ProvinceCode"</span> <span class="attr">class</span>=<span class="string">"form-control"</span></span></span><br><span class="line"><span class="tag">                <span class="attr">v-model</span>=<span class="string">"selectedProvinceCode"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">option</span> <span class="attr">v-for</span>=<span class="string">"province in provinces"</span> <span class="attr">v-bind:value</span>=<span class="string">"province.Code"</span>&gt;</span></span><br><span class="line">                &#123;&#123;province.Name&#125;&#125;</span><br><span class="line">            <span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>Voila! You now have a working set of cascading dropdowns.</p>
+<p><img src="https://www.davepaquette.com/images/vue/country-province-dropdown.png" alt="Country Dropdown"></p>
+<h3 id="One-last-thing"><a href="#One-last-thing" class="headerlink" title="One last thing"></a>One last thing</h3><p>You might want to disable the provinces dropdown whenever a request is being made to get the list of provinces for the selected country. You can do this by adding an <code>isProvincesLoading</code> property to the <code>Vue</code> object’s data, then setting that property in the <code>countryChanged</code> method.</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> app = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">    el: <span class="string">'#vueApp'</span>,</span><br><span class="line">    data: &#123;</span><br><span class="line">        selectedCountryCode: <span class="literal">null</span>,</span><br><span class="line">        countries: [</span><br><span class="line">            &#123; <span class="attr">code</span>: <span class="string">'ca'</span>, <span class="attr">name</span>: <span class="string">'Canada'</span> &#125;,</span><br><span class="line">            &#123; <span class="attr">code</span>: <span class="string">'us'</span>, <span class="attr">name</span>: <span class="string">'United States'</span> &#125;</span><br><span class="line">        ],</span><br><span class="line">        selectedProvinceCode: <span class="literal">null</span>,</span><br><span class="line">        provinces: [],</span><br><span class="line">        isProvincesLoading: <span class="literal">false</span></span><br><span class="line">    &#125;,</span><br><span class="line">    methods: &#123;</span><br><span class="line">        countryChanged: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.isProvincesLoading = <span class="literal">true</span>;</span><br><span class="line">            $.getJSON(<span class="string">'@Url.Action("Index", "ProvinceLookup")?countryCode='</span> + <span class="keyword">this</span>.selectedCountryCode, <span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</span><br><span class="line">                <span class="keyword">this</span>.provinces = data;</span><br><span class="line">                <span class="keyword">this</span>.isProvincesLoading = <span class="literal">false</span>;</span><br><span class="line">            &#125;.bind(<span class="keyword">this</span>));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>In your HTML, bind the <code>disabled</code> attribute to the <code>isProvincesLoading</code> property.</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"form-group"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"ProvinceCode"</span> <span class="attr">name</span>=<span class="string">"ProvinceCode"</span> <span class="attr">class</span>=<span class="string">"form-control"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">v-model</span>=<span class="string">"selectedProvinceCode"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">v-bind:disabled</span>=<span class="string">"isProvincesLoading"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">option</span> <span class="attr">v-for</span>=<span class="string">"province in provinces"</span> <span class="attr">v-bind:value</span>=<span class="string">"province.Code"</span>&gt;</span></span><br><span class="line">        &#123;&#123;province.Name&#125;&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Putting-it-all-together"><a href="#Putting-it-all-together" class="headerlink" title="Putting it all together"></a>Putting it all together</h3><p>Here is the entire cshtml file.</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">@&#123;</span><br><span class="line">    ViewBag.Title = "Location Settings";</span><br><span class="line">&#125;</span><br><span class="line">@model Mvc5VueJsExample.Models.LocationSettingsModel</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">h2</span>&gt;</span>@ViewBag.Title.<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h3</span>&gt;</span>@ViewBag.Message<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"vueApp"</span>&gt;</span></span><br><span class="line">    @using (Html.BeginForm("LocationSettings", "Home", FormMethod.Post, new &#123; @class = "form" &#125;))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"form-group"</span>&gt;</span></span><br><span class="line">            @Html.LabelFor(model =&gt; model.CountryCode, new &#123; @class = "control-label col-md-2" &#125;)</span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"col-md-10"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"CountryCode"</span> <span class="attr">name</span>=<span class="string">"CountryCode"</span> <span class="attr">class</span>=<span class="string">"form-control"</span> </span></span><br><span class="line"><span class="tag">                        <span class="attr">v-model</span>=<span class="string">"selectedCountryCode"</span> <span class="attr">v-on:change</span>=<span class="string">"countryChanged"</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">option</span> <span class="attr">v-for</span>=<span class="string">"country in countries"</span> <span class="attr">v-bind:value</span>=<span class="string">"country.code"</span>&gt;</span></span><br><span class="line">                        &#123;&#123; country.name&#125;&#125;</span><br><span class="line">                    <span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"form-group"</span>&gt;</span></span><br><span class="line">            @Html.LabelFor(model =&gt; model.ProvinceCode, new &#123; @class = "control-label col-md-2" &#125;)</span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"col-md-10"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"ProvinceCode"</span> <span class="attr">name</span>=<span class="string">"ProvinceCode"</span> <span class="attr">class</span>=<span class="string">"form-control"</span></span></span><br><span class="line"><span class="tag">                        <span class="attr">v-model</span>=<span class="string">"selectedProvinceCode"</span></span></span><br><span class="line"><span class="tag">                        <span class="attr">v-bind:disabled</span>=<span class="string">"isProvincesLoading"</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">option</span> <span class="attr">v-for</span>=<span class="string">"province in provinces"</span> <span class="attr">v-bind:value</span>=<span class="string">"province.Code"</span>&gt;</span></span><br><span class="line">                        &#123;&#123;province.Name&#125;&#125;</span><br><span class="line">                    <span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">"btn btn-primary"</span> <span class="attr">type</span>=<span class="string">"submit"</span>&gt;</span>Save<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">@section scripts  &#123;</span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdn.jsdelivr.net/npm/vue@2.5.22/dist/vue.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span></span><br><span class="line"><span class="actionscript">        <span class="keyword">var</span> app = <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="actionscript">            el: <span class="string">'#vueApp'</span>,</span></span><br><span class="line">            data: &#123;</span><br><span class="line"><span class="actionscript">                selectedCountryCode: <span class="literal">null</span>,</span></span><br><span class="line">                countries: [</span><br><span class="line"><span class="actionscript">                    &#123; code: <span class="string">'ca'</span>, name: <span class="string">'Canada'</span> &#125;,</span></span><br><span class="line"><span class="actionscript">                    &#123; code: <span class="string">'us'</span>, name: <span class="string">'United States'</span> &#125;</span></span><br><span class="line">                ],</span><br><span class="line"><span class="actionscript">                selectedProvinceCode: <span class="literal">null</span>,</span></span><br><span class="line">                provinces: [],</span><br><span class="line"><span class="actionscript">                isProvincesLoading: <span class="literal">false</span></span></span><br><span class="line">            &#125;,</span><br><span class="line">            methods: &#123;</span><br><span class="line"><span class="actionscript">                countryChanged: <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>&#123;</span></span><br><span class="line"><span class="actionscript">                    <span class="keyword">this</span>.isProvincesLoading = <span class="literal">true</span>;</span></span><br><span class="line"><span class="javascript">                    $.getJSON(<span class="string">'@Url.Action("Index", "ProvinceLookup")?countryCode='</span> + <span class="keyword">this</span>.selectedCountryCode, <span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</span></span><br><span class="line"><span class="actionscript">                        <span class="keyword">this</span>.provinces = data;</span></span><br><span class="line"><span class="actionscript">                        <span class="keyword">this</span>.isProvincesLoading = <span class="literal">false</span>;</span></span><br><span class="line"><span class="actionscript">                    &#125;.bind(<span class="keyword">this</span>));</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Wrapping-it-up"><a href="#Wrapping-it-up" class="headerlink" title="Wrapping it up"></a>Wrapping it up</h2><p>I hope this gives you a taste for how easy it is to work with Vue. My current thinking is that Vue should be the default choice for client side frameworks in existing ASP.NET MVC apps.</p>
+<p>NOTE: This example uses ASP.NET MVC 5 to illustrate that Vue can be used with brownfield applications. It would be just as easy, if not easier, to use Vue in an ASP.NET Core project.</p>
+
+                
+
+                <div class="clearfix"></div>
+                <div class="post-share-view">
+                    <div class="post-meta">
+                        <div class="post-meta-share">
+                            <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://aspnetmonsters.com/2019/01/2019-01-21-using-vue-as-a-drop-in-replacement-for-knockout-in-an-MVC-project/"><i class="fa fa-facebook"></i> Facebook</a> 
+                        </div>
+                        <div class="post-meta-share">
+                            <a target="_blank" href="https://twitter.com/home?status=Blog%20post%20from%20%40aspnetmonsters%3A%20Using Vue as a drop-in replacement for Knockout in an ASP.NET MVC project%20http://aspnetmonsters.com/2019/01/2019-01-21-using-vue-as-a-drop-in-replacement-for-knockout-in-an-MVC-project/"><i class="fa fa-twitter"></i> Twitter</a>
+                        </div>
+                        <div class="post-meta-share">
+                            <a target="_blank" href="https://plus.google.com/share?url=http://aspnetmonsters.com/2019/01/2019-01-21-using-vue-as-a-drop-in-replacement-for-knockout-in-an-MVC-project/"><i class="fa fa-google-plus"></i> Google+</a>
+                        </div>
+                        
+                    </div>
+                    <!-- End post-meta -->
+                </div>
+                <!-- End post-share-view -->
+                <div class="clearfix"></div>
+            </div>
+            <!-- End post-inner -->
+        </div>
+        <!-- End post-wrap -->
+    </div>
+</div>
+<!-- End post -->
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+                </div>
+                
+                    <div class="col-md-3 sidebar">
+                        <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C/">C#</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Contest/">Contest</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Deployment/">Deployment</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Development/">Development</a><span class="category-list-count">44</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Development/Monsters-Weekly/">Monsters Weekly</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Development/News/">News</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Development/News/Monsters-Weekly/">Monsters Weekly</a><span class="category-list-count">1</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Monster-Guests/">Monster Guests</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Monsters-Weekly/">Monsters Weekly</a><span class="category-list-count">197</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/News/">News</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/docker/">docker</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/json/">json</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/messaging/">messaging</a><span class="category-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/NET/" rel="tag">.NET</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NET-Core/" rel="tag">.NET Core</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/net/" rel="tag">.net</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ASP-NET/" rel="tag">ASP.NET</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ASP-NET-Core/" rel="tag">ASP.NET Core</a><span class="tag-list-count">224</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ASP-NET-Core-MVC/" rel="tag">ASP.NET Core MVC</a><span class="tag-list-count">19</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ASP-NET-MVC/" rel="tag">ASP.NET MVC</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AZ-CLI/" rel="tag">AZ CLI</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Angular/" rel="tag">Angular</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/App-Service/" rel="tag">App Service</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Application-Insights/" rel="tag">Application Insights</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Authentication/" rel="tag">Authentication</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Authorization/" rel="tag">Authorization</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Azure/" rel="tag">Azure</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Azure-Functions/" rel="tag">Azure Functions</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Blazor/" rel="tag">Blazor</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C#</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Configuration/" rel="tag">Configuration</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DNX/" rel="tag">DNX</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dapper/" rel="tag">Dapper</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dependency-Injection/" rel="tag">Dependency Injection</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/" rel="tag">Docker</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Entity-Framework/" rel="tag">Entity Framework</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Entity-Framework-Core/" rel="tag">Entity Framework Core</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/F/" rel="tag">F#</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GenFu/" rel="tag">GenFu</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/" rel="tag">GitHub</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Gulp/" rel="tag">Gulp</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javascript/" rel="tag">Javascript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Knockout-js/" rel="tag">Knockout.js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Logging/" rel="tag">Logging</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MVC/" rel="tag">MVC</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Micro-ORM/" rel="tag">Micro ORM</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Noda-Time/" rel="tag">Noda Time</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Powershell/" rel="tag">Powershell</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Pugzor/" rel="tag">Pugzor</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RabbitMQ/" rel="tag">RabbitMQ</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Razor/" rel="tag">Razor</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tag-Helpers/" rel="tag">Tag Helpers</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Testing/" rel="tag">Testing</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tooling/" rel="tag">Tooling</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/View-Components/" rel="tag">View Components</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Visual-Studio/" rel="tag">Visual Studio</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Visual-Studio-2015/" rel="tag">Visual Studio 2015</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Visual-Studio-2019/" rel="tag">Visual Studio 2019</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue-js/" rel="tag">Vue.js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web-API/" rel="tag">Web API</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web-App/" rel="tag">Web App</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web-Dev/" rel="tag">Web Dev</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/azure/" rel="tag">azure</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/c/" rel="tag">c#</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/deployment/" rel="tag">deployment</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/" rel="tag">docker</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/json-net/" rel="tag">json.net</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/k8s/" rel="tag">k8s</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kestrel/" rel="tag">kestrel</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/masstransit/" rel="tag">masstransit</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/" rel="tag">nginx</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rabbitmq/" rel="tag">rabbitmq</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/reCaptcha/" rel="tag">reCaptcha</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/NET/" style="font-size: 17px;">.NET</a> <a href="/tags/NET-Core/" style="font-size: 18px;">.NET Core</a> <a href="/tags/net/" style="font-size: 11px;">.net</a> <a href="/tags/ASP-NET/" style="font-size: 10px;">ASP.NET</a> <a href="/tags/ASP-NET-Core/" style="font-size: 20px;">ASP.NET Core</a> <a href="/tags/ASP-NET-Core-MVC/" style="font-size: 19px;">ASP.NET Core MVC</a> <a href="/tags/ASP-NET-MVC/" style="font-size: 10px;">ASP.NET MVC</a> <a href="/tags/AZ-CLI/" style="font-size: 11px;">AZ CLI</a> <a href="/tags/Angular/" style="font-size: 10px;">Angular</a> <a href="/tags/App-Service/" style="font-size: 10px;">App Service</a> <a href="/tags/Application-Insights/" style="font-size: 13px;">Application Insights</a> <a href="/tags/Authentication/" style="font-size: 10px;">Authentication</a> <a href="/tags/Authorization/" style="font-size: 11px;">Authorization</a> <a href="/tags/Azure/" style="font-size: 14px;">Azure</a> <a href="/tags/Azure-Functions/" style="font-size: 10px;">Azure Functions</a> <a href="/tags/Blazor/" style="font-size: 10px;">Blazor</a> <a href="/tags/C/" style="font-size: 10px;">C#</a> <a href="/tags/Configuration/" style="font-size: 17px;">Configuration</a> <a href="/tags/DNX/" style="font-size: 12px;">DNX</a> <a href="/tags/Dapper/" style="font-size: 16px;">Dapper</a> <a href="/tags/Dependency-Injection/" style="font-size: 10px;">Dependency Injection</a> <a href="/tags/Docker/" style="font-size: 11px;">Docker</a> <a href="/tags/Entity-Framework/" style="font-size: 10px;">Entity Framework</a> <a href="/tags/Entity-Framework-Core/" style="font-size: 10px;">Entity Framework Core</a> <a href="/tags/F/" style="font-size: 10px;">F#</a> <a href="/tags/GenFu/" style="font-size: 10px;">GenFu</a> <a href="/tags/GitHub/" style="font-size: 11px;">GitHub</a> <a href="/tags/Gulp/" style="font-size: 10px;">Gulp</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Javascript/" style="font-size: 10px;">Javascript</a> <a href="/tags/Knockout-js/" style="font-size: 10px;">Knockout.js</a> <a href="/tags/Logging/" style="font-size: 11px;">Logging</a> <a href="/tags/MVC/" style="font-size: 14px;">MVC</a> <a href="/tags/Micro-ORM/" style="font-size: 16px;">Micro ORM</a> <a href="/tags/Noda-Time/" style="font-size: 11px;">Noda Time</a> <a href="/tags/Powershell/" style="font-size: 10px;">Powershell</a> <a href="/tags/Pugzor/" style="font-size: 10px;">Pugzor</a> <a href="/tags/RabbitMQ/" style="font-size: 10px;">RabbitMQ</a> <a href="/tags/Razor/" style="font-size: 12px;">Razor</a> <a href="/tags/Tag-Helpers/" style="font-size: 15px;">Tag Helpers</a> <a href="/tags/Testing/" style="font-size: 12px;">Testing</a> <a href="/tags/Tooling/" style="font-size: 10px;">Tooling</a> <a href="/tags/View-Components/" style="font-size: 12px;">View Components</a> <a href="/tags/Visual-Studio/" style="font-size: 10px;">Visual Studio</a> <a href="/tags/Visual-Studio-2015/" style="font-size: 15px;">Visual Studio 2015</a> <a href="/tags/Visual-Studio-2019/" style="font-size: 10px;">Visual Studio 2019</a> <a href="/tags/Vue-js/" style="font-size: 10px;">Vue.js</a> <a href="/tags/Web-API/" style="font-size: 12px;">Web API</a> <a href="/tags/Web-App/" style="font-size: 10px;">Web App</a> <a href="/tags/Web-Dev/" style="font-size: 11px;">Web Dev</a> <a href="/tags/azure/" style="font-size: 11px;">azure</a> <a href="/tags/c/" style="font-size: 10px;">c#</a> <a href="/tags/deployment/" style="font-size: 11px;">deployment</a> <a href="/tags/docker/" style="font-size: 12px;">docker</a> <a href="/tags/json-net/" style="font-size: 10px;">json.net</a> <a href="/tags/k8s/" style="font-size: 10px;">k8s</a> <a href="/tags/kestrel/" style="font-size: 11px;">kestrel</a> <a href="/tags/masstransit/" style="font-size: 11px;">masstransit</a> <a href="/tags/nginx/" style="font-size: 11px;">nginx</a> <a href="/tags/rabbitmq/" style="font-size: 11px;">rabbitmq</a> <a href="/tags/reCaptcha/" style="font-size: 10px;">reCaptcha</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/01/monsters-weekly%5Cep200d/">Monsters Weekly 200d -  Conversations with Nik Molar</a>
+          </li>
+        
+          <li>
+            <a href="/2021/01/monsters-weekly%5Cep200c/">Monsters Weekly 200c -  Conversations with Andrew Stanton-Nurse</a>
+          </li>
+        
+          <li>
+            <a href="/2020/12/monsters-weekly%5Cep195/">Monsters Weekly 195 -  Playwright with Arjun Attam</a>
+          </li>
+        
+          <li>
+            <a href="/2020/12/monsters-weekly%5Cep200b/">Monsters Weekly 200b -  Conversations with Julie Lerman</a>
+          </li>
+        
+          <li>
+            <a href="/2020/12/monsters-weekly%5Cep200a/">Monsters Weekly 200a -  Conversations with Jon Galloway</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+                    </div>
+                
+            </div>       
+       </div>
+       <div class="clearfix"></div>
+    </div>
+        <footer id="footer">
+        <div class="container">
+            <div class="copyrights">Copyright 2015-2016 | Crafted By The Monsters | <a href="http://simontimms.com" target="_blank">Simon Timms</a> | <a href="http://davepaquette.com" target="_blank">Dave Paquette</a> | <a href="http://jameschambers.com" target="_blank">James Chambers</a></div> 
+            <div class="social-ul">
+                <ul>
+                    <li class="social-twitter"><a href="https://twitter.com/AspNetMonsters" target="_blank" rel="noopener"><i class="fa fa-twitter"></i></a></li>
+                    <li class="social-google"><a href="https://plus.google.com/100446024681292990445" target="_blank" rel="noopener"><i class="fa fa-google-plus"></i></a></li>
+                    <li class="social-youtube"><a href="https://www.youtube.com/channel/UCBkoKZ_tgy_yPnN0sD3KeRg" target="_blank" rel="noopener"><i class="fa fa-youtube-play"></i></a></li>
+                    <li class="social-rss"><a href="/atom.xml"><i class="fa fa-rss"></i></a></li>
+                </ul>
+            </div>
+            <!-- End social-ul -->
+        </div>
+        <!-- End container -->
+    </footer>
+    <!-- End footer -->    
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/2016/01/welcome" class="mobile-nav-link">About</a>
+  
+    <a href="/2016/01/guests" class="mobile-nav-link">Special Guests</a>
+  
+    <a href="/2016/12/aspnetcorebook" class="mobile-nav-link">Our Book</a>
+  
+</nav>
+    
+<script>
+  var disqus_shortname = 'aspnetmonsters';
+   
+  
+  var disqus_url = 'http://aspnetmonsters.com/2019/01/2019-01-21-using-vue-as-a-drop-in-replacement-for-knockout-in-an-MVC-project/';  
+  
+  
+  disqus_url = 'http://www.davepaquette.com/archive/2019/01/21/using-vue-as-a-drop-in-replacement-for-knockout-in-an-MVC-project.aspx';  
+  
+
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+    <!-- js -->
+       <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+        <script src="/js/html5.js"></script>
+        <script src="/js/modernizr.js"></script>
+        <script src="/js/tabs.js"></script>
+        <script src="/js/jquery.prettyPhoto.js"></script>
+        <script src="/js/jquery.bxslider.min.js"></script>
+        <script src="/js/custom.js"></script>
+       <script src="/js/bootstrap.min.js"></script>
+    <!-- End js --> 
+  
+    <script type="text/javascript">
+        function ready(fn) {
+        if (document.readyState != 'loading'){
+            fn();
+        } else {
+            document.addEventListener('DOMContentLoaded', fn);
+        }
+        }
+
+        ready(function() {
+            // min inclusive, max exclusive
+            function getRandomInt(min, max) {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min)) + min;
+            }
+
+            var referalLinks = 
+            [
+            "https://www.amazon.ca/ASP-NET-Core-Application-Development-application-ebook/dp/B01N9E92QY" 
+            ];
+
+            var buynowlink = document.getElementById('monstermessagelink');
+            buynowlink.href = referalLinks[getRandomInt(0,referalLinks.length)];
+        });
+    </script>
+</body>
+</html>

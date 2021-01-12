@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Authorize Tag Helper for ASP.NET Core | ASP.NET Monsters</title>  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+    <!-- Main Style -->
+    <link rel="stylesheet" type="text/css" href="/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/base.css">
+    <link rel="stylesheet" type="text/css" href="/css/prettyPhoto.css">
+    <link rel="stylesheet" type="text/css" href="/js/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/bright_cyan.css">
+    <link rel="stylesheet" type="text/css" href="/css/skins.css">
+    <link rel="stylesheet" type="text/css" href="/css/responsive.css">
+    <link rel="stylesheet" type="text/css" href="/css/navbar-fixed-top.css">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/css/highlight.css">
+
+    <!-- Font Style -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+  
+  <meta name="description" content="In ASP.NET Core, it&#39;s easy to control access to Controllers and Action Methods using the Authorize attribute. This attribute provides a simple way to ensure only authorized users are able to access ce">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Authorize Tag Helper for ASP.NET Core">
+<meta property="og:url" content="http://aspnetmonsters.com/2017/11/2017-11-05-authorize-tag-helper/index.html">
+<meta property="og:site_name" content="ASP.NET Monsters">
+<meta property="og:description" content="In ASP.NET Core, it&#39;s easy to control access to Controllers and Action Methods using the Authorize attribute. This attribute provides a simple way to ensure only authorized users are able to access ce">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2017-11-05T20:38:30.000Z">
+<meta property="article:modified_time" content="2021-01-12T14:54:24.983Z">
+<meta property="article:author" content="The Monsters">
+<meta property="article:tag" content="ASP.NET Core">
+<meta property="article:tag" content="Tag Helpers">
+<meta property="article:tag" content="MVC">
+<meta property="article:tag" content="Authorization">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternative" href="/atom.xml" title="ASP.NET Monsters" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/images/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-58850513-2', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+  <script src="//load.sumome.com/" data-sumo-site-id="4be75cfb88d7cd4bb66a3c505430b09e769afb08367319e92abd1a12f95a2834" async="async"></script>
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+<body>
+    <div id="wrap" class="stripe grid_1200">
+        <div class="wrap-search">
+    <form method="post">
+        <input type="search" name="s" value="Search here ..." onfocus="if(this.value==this.defaultValue)this.value='';" onblur="if(this.value=='')this.value=this.defaultValue;">
+    </form>
+</div>
+<!-- End wrap-search -->
+
+<!-- Fixed navbar -->
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header" style="color:#F4EDED; padding:10px;">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+            aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="logo" href="/"><img src="/images/monsters-little-banner.png" /></a>
+            <a class="navbar-brand" href="/">ASP.NET Monsters</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+
+            <ul class="nav navbar-nav navbar-right">
+            
+                <li><a href="/">Home</a></li>
+             
+                <li><a href="/2016/01/welcome">About</a></li>
+             
+                <li><a href="/2016/01/guests">Special Guests</a></li>
+             
+                <li><a href="/2016/12/aspnetcorebook">Our Book</a></li>
+             
+            </ul>
+
+        </div>
+        <!--/.nav-collapse -->
+    </div>
+</nav>
+        <div class="clearfix"></div>
+        <div class="monster-message"><div class="container"><a id="monstermessagelink" href="https://www.amazon.ca/ASP-NET-Core-Application-Development-application-ebook/dp/B01N9E92QY" target="_blank" rel="noopener"><strong>Buy our book:</strong> ASP.NET Core Application Development <i class="fa fa-external-link"></i></a></div></div>
+        <div class="sections body-section">
+            <div class="row">
+                <div class="col-md-8 main-content">
+                    <div class="post post-2 post-gallery single-post row">
+    <div class="col-md-1">
+        <div class="post-author"><img alt="David Paquette" src="/images/thumb_dave.png"></div>
+    </div>
+    <div class="col-md-11">
+        <div class="post-head">
+            <h3><a href="/2017/11/2017-11-05-authorize-tag-helper/">Authorize Tag Helper for ASP.NET Core</a></h3>
+            <div class="post-meta">
+                <div><i class="fa fa-user"></i>BY : <a href="#">David Paquette</a></div>
+                <div><i class="fa fa-clock-o"></i><time datetime="2017-11-05T20:38:30.000Z" itemprop="datePublished">2017-11-05</time></div>
+                <div><i class="fa fa-comments"></i><a href="http://aspnetmonsters.com/2017/11/2017-11-05-authorize-tag-helper/#disqus_thread" class="article-comment-link">Comments</a></div>
+            </div>
+            <!-- End post-meta -->
+            <div class="clearfix"></div>
+        </div>
+        <!-- End post-head -->
+        <div class="post-wrap">
+                
+            <div class="post-inner">
+                
+                    
+
+<small>Originally posted to: <a href="http://www.davepaquette.com/archive/2017/11/05/authorize-tag-helper.aspx" target="_blank" rel="noopener">http://www.davepaquette.com/archive/2017/11/05/authorize-tag-helper.aspx</a></small>
+
+
+                    <p>In ASP.NET Core, it’s easy to control access to Controllers and Action Methods using the <code>[Authorize]</code> attribute. This attribute provides a simple way to ensure only authorized users are able to access certain parts of your application. While the <code>[Authorize]</code> attribute makes it easy to control authorization for an entire page, the mechanism for controlling access to a section of a page is <a href="https://docs.microsoft.com/en-us/aspnet/core/security/authorization/views?tabs=aspnetcore2x" target="_blank" rel="noopener">a little clumsy</a>, involving the use of a the <code>IAuthorizationService</code> and writing C# based <code>if</code> blocks in your Razor code.</p>
+<p>In this blog post, we build an Authorize tag helper that makes it easy to control access to any block HTML in a Razor view.</p>
+<h1 id="Authorize-Tag-Helper"><a href="#Authorize-Tag-Helper" class="headerlink" title="Authorize Tag Helper"></a>Authorize Tag Helper</h1><p>The basic idea of this tag helper is to provide similar functionality to the <code>[Authorize]</code> attribute and it’s associated action filter in ASP.NET Core MVC. The authorize tag helper will provide the same options as the <code>[Authorize]</code> attribute and the implementation will be based on the authorize filter. In the MVC framework, the <code>[Authorize]</code> attribute provides data such as the names of roles and policies while the authorize filter contains the logic to check for roles and policies as part of the request pipeline. Let’s walk through the most common scenarios.</p>
+<h2 id="Simple-Authorization"><a href="#Simple-Authorization" class="headerlink" title="Simple Authorization"></a>Simple Authorization</h2><p>In it’s <a href="https://docs.microsoft.com/en-us/aspnet/core/security/authorization/simple" target="_blank" rel="noopener">simplest form</a>, adding the <code>[Authorize]</code> attribute to a controller or action method will limit access to that controller or action method to users who are authenticated. That is, only users who are logged in will be able to access those controllers or action methods.</p>
+<p>With the Authorize tag helper, we will implement a similar behaviour. Adding the <code>asp-authorize</code> attribute to any HTML element will ensure that only authenticated users can see that that block of HTML. </p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">asp-authorize</span> <span class="attr">class</span>=<span class="string">"panel panel-default"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"panel-heading"</span>&gt;</span>Welcome !!<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"panel-body"</span>&gt;</span></span><br><span class="line">        If you're logged in, you can see this section</span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>If a user is not authenticated, the tag helper will suppress the output of that entire block of HTML. That section of HTML will not be sent to the browser.</p>
+<h2 id="Role-Based-Authorization"><a href="#Role-Based-Authorization" class="headerlink" title="Role Based Authorization"></a>Role Based Authorization</h2><p>The <code>[Authorize]</code> attribute provides an option to specify the role that a user must belong to in order to access a controller or action method. For example, if a user must belong to the <em>Admin</em> role, we would add the <code>[Authorize]</code> attribute and specify the <code>Roles</code> property as follows:</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">[<span class="meta">Authorize(Roles = <span class="meta-string">"Admin"</span>)</span>]</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">AdminController</span> : <span class="title">Controller</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="comment">//Action methods here</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>The equivalent using the Authorize tag helper would be to add the <code>asp-authorize</code> attribute to an HTML element and then also add the <code>asp-roles</code> attribute specifying the require role.</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">asp-authorize</span> <span class="attr">asp-roles</span>=<span class="string">"Admin"</span> <span class="attr">class</span>=<span class="string">"panel panel-default"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"panel-heading"</span>&gt;</span>Admin Section<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"panel-body"</span>&gt;</span></span><br><span class="line">        Only admin users can see this section. Top secret admin things go here.</span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>You can also specify a comma separated list of roles, in which case the HTML would be rendered if the user was a member of any of the roles specified.</p>
+<h2 id="Policy-Based-Authorization"><a href="#Policy-Based-Authorization" class="headerlink" title="Policy Based Authorization"></a>Policy Based Authorization</h2><p>The <code>[Authorize]</code> attribe also provides an option to authorize users based on the requirements specified in a Policy. You can learn more about the specifics of this approach by reading the offical docs on <a href="https://docs.microsoft.com/en-us/aspnet/core/security/authorization/claims" target="_blank" rel="noopener">Claims-Based Authorization</a> and <a href="https://docs.microsoft.com/en-us/aspnet/core/security/authorization/policies" target="_blank" rel="noopener">Custom-Policy Based Authorization</a>. Policy based authorization is applied by specifying <code>Policy</code> property for the <code>[Authorize]</code> attribute as follows:</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">[<span class="meta">Authorize(Policy = <span class="meta-string">"Seniors"</span>)</span>]</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">AdminController</span> : <span class="title">Controller</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="comment">//action methods here</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>This assumes a policy named <em>Seniors</em> was defined at startup. For example:</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">services.AddAuthorization(o =&gt;</span><br><span class="line">    &#123;</span><br><span class="line">        o.AddPolicy(<span class="string">"Seniors"</span>, p =&gt;</span><br><span class="line">        &#123;</span><br><span class="line">            p.RequireAssertion(context =&gt;</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">return</span> context.User.Claims</span><br><span class="line">                      .Any(c =&gt; c.Type == <span class="string">"Age"</span> &amp;&amp; Int32.Parse(c.Value) &gt;= <span class="number">65</span>);</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>The equivalent using the Authorize tag helper would be to add the <code>asp-authorize</code> attribute to an HTML element and then also add the <code>asp-policy</code> attribute specifying the policy name.</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">asp-authorize</span> <span class="attr">asp-policy</span>=<span class="string">"Seniors"</span> <span class="attr">class</span>=<span class="string">"panel panel-default"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"panel-heading"</span>&gt;</span>Seniors Only<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"panel-body"</span>&gt;</span></span><br><span class="line">        Only users age 65 or older can see this section. Early bird dinner coupons go here. </span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Combining-Role-and-Policy-Based-Authorization"><a href="#Combining-Role-and-Policy-Based-Authorization" class="headerlink" title="Combining Role and Policy Based Authorization"></a>Combining Role and Policy Based Authorization</h2><p>You can combine the role based and policy based approaches by specifying both the <code>asp-roles</code> and <code>asp-policy</code> attributes. This has the effect of requiring that the user meets the requiremnts for both the role and the policy. For example, the following would require that the usere were both a member of the Admin role and meets the requirements defined in the Seniors policy.</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">asp-authorize</span> <span class="attr">asp-roles</span>=<span class="string">"Admin"</span> <span class="attr">asp-policy</span>=<span class="string">"Seniors"</span> <span class="attr">class</span>=<span class="string">"panel panel-default"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"panel-heading"</span>&gt;</span>Admin Seniors Only<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"panel-body"</span>&gt;</span></span><br><span class="line">        Only users who have both the Admin role AND are age 65 or older can see this section.</span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Implementation-Details"><a href="#Implementation-Details" class="headerlink" title="Implementation Details"></a>Implementation Details</h2><p>The Authorize tag helper itself is fairly simple. The implementation will likely evolve after this blog post so you can check out the latest version <a href="https://github.com/dpaquette/TagHelperSamples/blob/master/TagHelperSamples/src/TagHelperSamples.Authorization/AuthorizeTagHelper.cs" target="_blank" rel="noopener">here</a>.</p>
+<p>The tag helper implements the <code>IAuthorizeData</code> interface. This is the interface implemented by the <a href="https://github.com/aspnet/Security/blob/dev/src/Microsoft.AspNetCore.Authorization/AuthorizeAttribute.cs" target="_blank" rel="noopener">Authorize</a> attribute in ASP.NET Core. In the <code>ProcessAsync</code> method, the properties of <code>IAuthorizeData</code> are used to create an effective policy that is then evaluated against the current <code>HttpContext</code>. If the policy does not succeed, then the output of the tag helper is supressed. Remember that supressing the output of a tag helper means that the HTML for that element, including it’s children, will be NOT sent to the client.</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">[<span class="meta">HtmlTargetElement(Attributes = <span class="meta-string">"asp-authorize"</span>)</span>]</span><br><span class="line">[<span class="meta">HtmlTargetElement(Attributes = <span class="meta-string">"asp-authorize,asp-policy"</span>)</span>]</span><br><span class="line">[<span class="meta">HtmlTargetElement(Attributes = <span class="meta-string">"asp-authorize,asp-roles"</span>)</span>]</span><br><span class="line">[<span class="meta">HtmlTargetElement(Attributes = <span class="meta-string">"asp-authorize,asp-authentication-schemes"</span>)</span>]</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">AuthorizationPolicyTagHelper</span> : <span class="title">TagHelper</span>, <span class="title">IAuthorizeData</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">readonly</span> IAuthorizationPolicyProvider _policyProvider;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">readonly</span> IPolicyEvaluator _policyEvaluator;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">readonly</span> IHttpContextAccessor _httpContextAccessor;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">AuthorizationPolicyTagHelper</span>(<span class="params">IHttpContextAccessor httpContextAccessor, IAuthorizationPolicyProvider policyProvider, IPolicyEvaluator policyEvaluator</span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        _httpContextAccessor = httpContextAccessor;</span><br><span class="line">        _policyProvider = policyProvider;</span><br><span class="line">        _policyEvaluator = policyEvaluator;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> Gets or sets the policy name that determines access to the HTML block.</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    [<span class="meta">HtmlAttributeName(<span class="meta-string">"asp-policy"</span>)</span>]</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">string</span> Policy &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> Gets or sets a comma delimited list of roles that are allowed to access the HTML  block.</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    [<span class="meta">HtmlAttributeName(<span class="meta-string">"asp-roles"</span>)</span>]</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">string</span> Roles &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> Gets or sets a comma delimited list of schemes from which user information is constructed.</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    [<span class="meta">HtmlAttributeName(<span class="meta-string">"asp-authentication-schemes"</span>)</span>]</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">string</span> AuthenticationSchemes &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">override</span> <span class="keyword">async</span> Task <span class="title">ProcessAsync</span>(<span class="params">TagHelperContext context, TagHelperOutput output</span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="keyword">var</span> policy = <span class="keyword">await</span> AuthorizationPolicy.CombineAsync(_policyProvider, <span class="keyword">new</span>[] &#123; <span class="keyword">this</span> &#125;);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">var</span> authenticateResult = <span class="keyword">await</span> _policyEvaluator.AuthenticateAsync(policy, _httpContextAccessor.HttpContext);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">var</span> authorizeResult = <span class="keyword">await</span> _policyEvaluator.AuthorizeAsync(policy, authenticateResult, _httpContextAccessor.HttpContext, <span class="literal">null</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (!authorizeResult.Succeeded)</span><br><span class="line">        &#123;</span><br><span class="line">            output.SuppressOutput();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure> 
+
+<p>The code in the <code>ProcessAsync</code> method is based on the <a href="https://github.com/aspnet/Mvc/blob/dev/src/Microsoft.AspNetCore.Mvc.Core/Authorization/AuthorizeFilter.cs" target="_blank" rel="noopener">AuthorizeFilter</a> from ASP.NET Core MVC.</p>
+<h1 id="Try-it-out"><a href="#Try-it-out" class="headerlink" title="Try it out"></a>Try it out</h1><p>You can see the Authorize tag helper in action on my tag helper samples site <a href="http://taghelpersamples.azurewebsites.net/Samples/Authorize" target="_blank" rel="noopener">here</a>. The sample site contains the examples listed in this blog post and also provides a way to log in as different users to test different scenarios.</p>
+<p>The Authorize tag helper is also available on <a href="https://www.nuget.org/packages/TagHelperSamples.Authorization/" target="_blank" rel="noopener">NuGet</a> so you can use it in your own ASP.NET Core application.</p>
+<figure class="highlight ada"><table><tr><td class="code"><pre><span class="line">dotnet add <span class="keyword">package</span> <span class="title">TagHelperSamples.Authorization</span></span><br></pre></td></tr></table></figure>
+
+<p>Let me know what you think. Would you like to see this tag helper included in the next release of ASP.NET Core?</p>
+<h1 id="What’s-Next"><a href="#What’s-Next" class="headerlink" title="What’s Next?"></a>What’s Next?</h1><p>If you choose to use the Authorize tag helper in your application, you should remember that hiding a section of HTML is not enough to fully secure your application. You also need to make sure that authorization is applied to any related controllers and action methods. The Authorize tag helper is meant to be used in conjugtion with the <code>[Authorize]</code> attribute, not as a replacement for it.</p>
+<p>There are a couple more scenarios I would like to go through and I will address those in a future post. One of those is supporting different Authorization Schemes and the other resource based authorization. Of course, this project is all open source so feel free to jump in on <a href="https://github.com/dpaquette/TagHelperSamples" target="_blank" rel="noopener">GitHub</a>.</p>
+
+                
+
+                <div class="clearfix"></div>
+                <div class="post-share-view">
+                    <div class="post-meta">
+                        <div class="post-meta-share">
+                            <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://aspnetmonsters.com/2017/11/2017-11-05-authorize-tag-helper/"><i class="fa fa-facebook"></i> Facebook</a> 
+                        </div>
+                        <div class="post-meta-share">
+                            <a target="_blank" href="https://twitter.com/home?status=Blog%20post%20from%20%40aspnetmonsters%3A%20Authorize Tag Helper for ASP.NET Core%20http://aspnetmonsters.com/2017/11/2017-11-05-authorize-tag-helper/"><i class="fa fa-twitter"></i> Twitter</a>
+                        </div>
+                        <div class="post-meta-share">
+                            <a target="_blank" href="https://plus.google.com/share?url=http://aspnetmonsters.com/2017/11/2017-11-05-authorize-tag-helper/"><i class="fa fa-google-plus"></i> Google+</a>
+                        </div>
+                        
+                    </div>
+                    <!-- End post-meta -->
+                </div>
+                <!-- End post-share-view -->
+                <div class="clearfix"></div>
+            </div>
+            <!-- End post-inner -->
+        </div>
+        <!-- End post-wrap -->
+    </div>
+</div>
+<!-- End post -->
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+                </div>
+                
+                    <div class="col-md-3 sidebar">
+                        <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C/">C#</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Contest/">Contest</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Deployment/">Deployment</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Development/">Development</a><span class="category-list-count">44</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Development/Monsters-Weekly/">Monsters Weekly</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Development/News/">News</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Development/News/Monsters-Weekly/">Monsters Weekly</a><span class="category-list-count">1</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Monster-Guests/">Monster Guests</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Monsters-Weekly/">Monsters Weekly</a><span class="category-list-count">197</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/News/">News</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/docker/">docker</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/json/">json</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/messaging/">messaging</a><span class="category-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/NET/" rel="tag">.NET</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NET-Core/" rel="tag">.NET Core</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/net/" rel="tag">.net</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ASP-NET/" rel="tag">ASP.NET</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ASP-NET-Core/" rel="tag">ASP.NET Core</a><span class="tag-list-count">224</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ASP-NET-Core-MVC/" rel="tag">ASP.NET Core MVC</a><span class="tag-list-count">19</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ASP-NET-MVC/" rel="tag">ASP.NET MVC</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AZ-CLI/" rel="tag">AZ CLI</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Angular/" rel="tag">Angular</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/App-Service/" rel="tag">App Service</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Application-Insights/" rel="tag">Application Insights</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Authentication/" rel="tag">Authentication</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Authorization/" rel="tag">Authorization</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Azure/" rel="tag">Azure</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Azure-Functions/" rel="tag">Azure Functions</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Blazor/" rel="tag">Blazor</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C#</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Configuration/" rel="tag">Configuration</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DNX/" rel="tag">DNX</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dapper/" rel="tag">Dapper</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dependency-Injection/" rel="tag">Dependency Injection</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/" rel="tag">Docker</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Entity-Framework/" rel="tag">Entity Framework</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Entity-Framework-Core/" rel="tag">Entity Framework Core</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/F/" rel="tag">F#</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GenFu/" rel="tag">GenFu</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/" rel="tag">GitHub</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Gulp/" rel="tag">Gulp</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javascript/" rel="tag">Javascript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Knockout-js/" rel="tag">Knockout.js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Logging/" rel="tag">Logging</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MVC/" rel="tag">MVC</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Micro-ORM/" rel="tag">Micro ORM</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Noda-Time/" rel="tag">Noda Time</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Powershell/" rel="tag">Powershell</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Pugzor/" rel="tag">Pugzor</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RabbitMQ/" rel="tag">RabbitMQ</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Razor/" rel="tag">Razor</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tag-Helpers/" rel="tag">Tag Helpers</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Testing/" rel="tag">Testing</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tooling/" rel="tag">Tooling</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/View-Components/" rel="tag">View Components</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Visual-Studio/" rel="tag">Visual Studio</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Visual-Studio-2015/" rel="tag">Visual Studio 2015</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Visual-Studio-2019/" rel="tag">Visual Studio 2019</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue-js/" rel="tag">Vue.js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web-API/" rel="tag">Web API</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web-App/" rel="tag">Web App</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web-Dev/" rel="tag">Web Dev</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/azure/" rel="tag">azure</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/c/" rel="tag">c#</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/deployment/" rel="tag">deployment</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/" rel="tag">docker</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/json-net/" rel="tag">json.net</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/k8s/" rel="tag">k8s</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kestrel/" rel="tag">kestrel</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/masstransit/" rel="tag">masstransit</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/" rel="tag">nginx</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rabbitmq/" rel="tag">rabbitmq</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/reCaptcha/" rel="tag">reCaptcha</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/NET/" style="font-size: 17px;">.NET</a> <a href="/tags/NET-Core/" style="font-size: 18px;">.NET Core</a> <a href="/tags/net/" style="font-size: 11px;">.net</a> <a href="/tags/ASP-NET/" style="font-size: 10px;">ASP.NET</a> <a href="/tags/ASP-NET-Core/" style="font-size: 20px;">ASP.NET Core</a> <a href="/tags/ASP-NET-Core-MVC/" style="font-size: 19px;">ASP.NET Core MVC</a> <a href="/tags/ASP-NET-MVC/" style="font-size: 10px;">ASP.NET MVC</a> <a href="/tags/AZ-CLI/" style="font-size: 11px;">AZ CLI</a> <a href="/tags/Angular/" style="font-size: 10px;">Angular</a> <a href="/tags/App-Service/" style="font-size: 10px;">App Service</a> <a href="/tags/Application-Insights/" style="font-size: 13px;">Application Insights</a> <a href="/tags/Authentication/" style="font-size: 10px;">Authentication</a> <a href="/tags/Authorization/" style="font-size: 11px;">Authorization</a> <a href="/tags/Azure/" style="font-size: 14px;">Azure</a> <a href="/tags/Azure-Functions/" style="font-size: 10px;">Azure Functions</a> <a href="/tags/Blazor/" style="font-size: 10px;">Blazor</a> <a href="/tags/C/" style="font-size: 10px;">C#</a> <a href="/tags/Configuration/" style="font-size: 17px;">Configuration</a> <a href="/tags/DNX/" style="font-size: 12px;">DNX</a> <a href="/tags/Dapper/" style="font-size: 16px;">Dapper</a> <a href="/tags/Dependency-Injection/" style="font-size: 10px;">Dependency Injection</a> <a href="/tags/Docker/" style="font-size: 11px;">Docker</a> <a href="/tags/Entity-Framework/" style="font-size: 10px;">Entity Framework</a> <a href="/tags/Entity-Framework-Core/" style="font-size: 10px;">Entity Framework Core</a> <a href="/tags/F/" style="font-size: 10px;">F#</a> <a href="/tags/GenFu/" style="font-size: 10px;">GenFu</a> <a href="/tags/GitHub/" style="font-size: 11px;">GitHub</a> <a href="/tags/Gulp/" style="font-size: 10px;">Gulp</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Javascript/" style="font-size: 10px;">Javascript</a> <a href="/tags/Knockout-js/" style="font-size: 10px;">Knockout.js</a> <a href="/tags/Logging/" style="font-size: 11px;">Logging</a> <a href="/tags/MVC/" style="font-size: 14px;">MVC</a> <a href="/tags/Micro-ORM/" style="font-size: 16px;">Micro ORM</a> <a href="/tags/Noda-Time/" style="font-size: 11px;">Noda Time</a> <a href="/tags/Powershell/" style="font-size: 10px;">Powershell</a> <a href="/tags/Pugzor/" style="font-size: 10px;">Pugzor</a> <a href="/tags/RabbitMQ/" style="font-size: 10px;">RabbitMQ</a> <a href="/tags/Razor/" style="font-size: 12px;">Razor</a> <a href="/tags/Tag-Helpers/" style="font-size: 15px;">Tag Helpers</a> <a href="/tags/Testing/" style="font-size: 12px;">Testing</a> <a href="/tags/Tooling/" style="font-size: 10px;">Tooling</a> <a href="/tags/View-Components/" style="font-size: 12px;">View Components</a> <a href="/tags/Visual-Studio/" style="font-size: 10px;">Visual Studio</a> <a href="/tags/Visual-Studio-2015/" style="font-size: 15px;">Visual Studio 2015</a> <a href="/tags/Visual-Studio-2019/" style="font-size: 10px;">Visual Studio 2019</a> <a href="/tags/Vue-js/" style="font-size: 10px;">Vue.js</a> <a href="/tags/Web-API/" style="font-size: 12px;">Web API</a> <a href="/tags/Web-App/" style="font-size: 10px;">Web App</a> <a href="/tags/Web-Dev/" style="font-size: 11px;">Web Dev</a> <a href="/tags/azure/" style="font-size: 11px;">azure</a> <a href="/tags/c/" style="font-size: 10px;">c#</a> <a href="/tags/deployment/" style="font-size: 11px;">deployment</a> <a href="/tags/docker/" style="font-size: 12px;">docker</a> <a href="/tags/json-net/" style="font-size: 10px;">json.net</a> <a href="/tags/k8s/" style="font-size: 10px;">k8s</a> <a href="/tags/kestrel/" style="font-size: 11px;">kestrel</a> <a href="/tags/masstransit/" style="font-size: 11px;">masstransit</a> <a href="/tags/nginx/" style="font-size: 11px;">nginx</a> <a href="/tags/rabbitmq/" style="font-size: 11px;">rabbitmq</a> <a href="/tags/reCaptcha/" style="font-size: 10px;">reCaptcha</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/01/monsters-weekly%5Cep200d/">Monsters Weekly 200d -  Conversations with Nik Molar</a>
+          </li>
+        
+          <li>
+            <a href="/2021/01/monsters-weekly%5Cep200c/">Monsters Weekly 200c -  Conversations with Andrew Stanton-Nurse</a>
+          </li>
+        
+          <li>
+            <a href="/2020/12/monsters-weekly%5Cep195/">Monsters Weekly 195 -  Playwright with Arjun Attam</a>
+          </li>
+        
+          <li>
+            <a href="/2020/12/monsters-weekly%5Cep200b/">Monsters Weekly 200b -  Conversations with Julie Lerman</a>
+          </li>
+        
+          <li>
+            <a href="/2020/12/monsters-weekly%5Cep200a/">Monsters Weekly 200a -  Conversations with Jon Galloway</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+                    </div>
+                
+            </div>       
+       </div>
+       <div class="clearfix"></div>
+    </div>
+        <footer id="footer">
+        <div class="container">
+            <div class="copyrights">Copyright 2015-2016 | Crafted By The Monsters | <a href="http://simontimms.com" target="_blank">Simon Timms</a> | <a href="http://davepaquette.com" target="_blank">Dave Paquette</a> | <a href="http://jameschambers.com" target="_blank">James Chambers</a></div> 
+            <div class="social-ul">
+                <ul>
+                    <li class="social-twitter"><a href="https://twitter.com/AspNetMonsters" target="_blank" rel="noopener"><i class="fa fa-twitter"></i></a></li>
+                    <li class="social-google"><a href="https://plus.google.com/100446024681292990445" target="_blank" rel="noopener"><i class="fa fa-google-plus"></i></a></li>
+                    <li class="social-youtube"><a href="https://www.youtube.com/channel/UCBkoKZ_tgy_yPnN0sD3KeRg" target="_blank" rel="noopener"><i class="fa fa-youtube-play"></i></a></li>
+                    <li class="social-rss"><a href="/atom.xml"><i class="fa fa-rss"></i></a></li>
+                </ul>
+            </div>
+            <!-- End social-ul -->
+        </div>
+        <!-- End container -->
+    </footer>
+    <!-- End footer -->    
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/2016/01/welcome" class="mobile-nav-link">About</a>
+  
+    <a href="/2016/01/guests" class="mobile-nav-link">Special Guests</a>
+  
+    <a href="/2016/12/aspnetcorebook" class="mobile-nav-link">Our Book</a>
+  
+</nav>
+    
+<script>
+  var disqus_shortname = 'aspnetmonsters';
+   
+  
+  var disqus_url = 'http://aspnetmonsters.com/2017/11/2017-11-05-authorize-tag-helper/';  
+  
+  
+  disqus_url = 'http://www.davepaquette.com/archive/2017/11/05/authorize-tag-helper.aspx';  
+  
+
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+    <!-- js -->
+       <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+        <script src="/js/html5.js"></script>
+        <script src="/js/modernizr.js"></script>
+        <script src="/js/tabs.js"></script>
+        <script src="/js/jquery.prettyPhoto.js"></script>
+        <script src="/js/jquery.bxslider.min.js"></script>
+        <script src="/js/custom.js"></script>
+       <script src="/js/bootstrap.min.js"></script>
+    <!-- End js --> 
+  
+    <script type="text/javascript">
+        function ready(fn) {
+        if (document.readyState != 'loading'){
+            fn();
+        } else {
+            document.addEventListener('DOMContentLoaded', fn);
+        }
+        }
+
+        ready(function() {
+            // min inclusive, max exclusive
+            function getRandomInt(min, max) {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min)) + min;
+            }
+
+            var referalLinks = 
+            [
+            "https://www.amazon.ca/ASP-NET-Core-Application-Development-application-ebook/dp/B01N9E92QY" 
+            ];
+
+            var buynowlink = document.getElementById('monstermessagelink');
+            buynowlink.href = referalLinks[getRandomInt(0,referalLinks.length)];
+        });
+    </script>
+</body>
+</html>

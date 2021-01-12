@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Getting Nginix up and running on an Ubuntu Box with SSL and HTTP2 | ASP.NET Monsters</title>  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+    <!-- Main Style -->
+    <link rel="stylesheet" type="text/css" href="/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/base.css">
+    <link rel="stylesheet" type="text/css" href="/css/prettyPhoto.css">
+    <link rel="stylesheet" type="text/css" href="/js/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/bright_cyan.css">
+    <link rel="stylesheet" type="text/css" href="/css/skins.css">
+    <link rel="stylesheet" type="text/css" href="/css/responsive.css">
+    <link rel="stylesheet" type="text/css" href="/css/navbar-fixed-top.css">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/css/highlight.css">
+
+    <!-- Font Style -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+  
+  <meta name="description" content="Kestrel + Nginx are awesome together. Let&#39;s try serving up our Kestrel site over SSL with HTTP2">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Getting Nginix up and running on an Ubuntu Box with SSL and HTTP2">
+<meta property="og:url" content="http://aspnetmonsters.com/2016/08/2016-08-07-nginx2/index.html">
+<meta property="og:site_name" content="ASP.NET Monsters">
+<meta property="og:description" content="Kestrel + Nginx are awesome together. Let&#39;s try serving up our Kestrel site over SSL with HTTP2">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://i.imgur.com/jU4n6mF.jpg">
+<meta property="og:image" content="http://i.imgur.com/zJx6TV9.jpg">
+<meta property="og:image" content="http://i.imgur.com/qM5lAjs.jpg">
+<meta property="article:published_time" content="2016-08-09T22:36:36.000Z">
+<meta property="article:modified_time" content="2021-01-12T14:54:24.983Z">
+<meta property="article:author" content="The Monsters">
+<meta property="article:tag" content="nginx">
+<meta property="article:tag" content="kestrel">
+<meta property="article:tag" content="deployment">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://i.imgur.com/jU4n6mF.jpg">
+  
+    <link rel="alternative" href="/atom.xml" title="ASP.NET Monsters" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/images/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-58850513-2', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+  <script src="//load.sumome.com/" data-sumo-site-id="4be75cfb88d7cd4bb66a3c505430b09e769afb08367319e92abd1a12f95a2834" async="async"></script>
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+<body>
+    <div id="wrap" class="stripe grid_1200">
+        <div class="wrap-search">
+    <form method="post">
+        <input type="search" name="s" value="Search here ..." onfocus="if(this.value==this.defaultValue)this.value='';" onblur="if(this.value=='')this.value=this.defaultValue;">
+    </form>
+</div>
+<!-- End wrap-search -->
+
+<!-- Fixed navbar -->
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header" style="color:#F4EDED; padding:10px;">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+            aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="logo" href="/"><img src="/images/monsters-little-banner.png" /></a>
+            <a class="navbar-brand" href="/">ASP.NET Monsters</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+
+            <ul class="nav navbar-nav navbar-right">
+            
+                <li><a href="/">Home</a></li>
+             
+                <li><a href="/2016/01/welcome">About</a></li>
+             
+                <li><a href="/2016/01/guests">Special Guests</a></li>
+             
+                <li><a href="/2016/12/aspnetcorebook">Our Book</a></li>
+             
+            </ul>
+
+        </div>
+        <!--/.nav-collapse -->
+    </div>
+</nav>
+        <div class="clearfix"></div>
+        <div class="monster-message"><div class="container"><a id="monstermessagelink" href="https://www.amazon.ca/ASP-NET-Core-Application-Development-application-ebook/dp/B01N9E92QY" target="_blank" rel="noopener"><strong>Buy our book:</strong> ASP.NET Core Application Development <i class="fa fa-external-link"></i></a></div></div>
+        <div class="sections body-section">
+            <div class="row">
+                <div class="col-md-8 main-content">
+                    <div class="post post-2 post-gallery single-post row">
+    <div class="col-md-1">
+        <div class="post-author"><img alt="Simon Timms" src="/images/thumb_simon.png"></div>
+    </div>
+    <div class="col-md-11">
+        <div class="post-head">
+            <h3><a href="/2016/08/2016-08-07-nginx2/">Getting Nginix up and running on an Ubuntu Box with SSL and HTTP2</a></h3>
+            <div class="post-meta">
+                <div><i class="fa fa-user"></i>BY : <a href="#">Simon Timms</a></div>
+                <div><i class="fa fa-clock-o"></i><time datetime="2016-08-09T22:36:36.000Z" itemprop="datePublished">2016-08-09</time></div>
+                <div><i class="fa fa-comments"></i><a href="http://aspnetmonsters.com/2016/08/2016-08-07-nginx2/#disqus_thread" class="article-comment-link">Comments</a></div>
+            </div>
+            <!-- End post-meta -->
+            <div class="clearfix"></div>
+        </div>
+        <!-- End post-head -->
+        <div class="post-wrap">
+                
+            <div class="post-inner">
+                
+                    
+                    <p>Welcome, welcome in today’s post we’re going to set up a bunch of stuff inside Nginx. If you’re a frequent reader you’ll remember that we talked about Nginx as a front end for the Kestrel webserver in a <a href="http://aspnetmonsters.com/2016/07/2016-07-17-nginx/">previous installment</a> and, of course, we recorded an <a href="https://channel9.msdn.com/Series/aspnetmonsters/ASPNET-Monsters-Episode-51-An-Intro-to-Nginx-for-Kestrel" target="_blank" rel="noopener">episode</a> about it. In that episode we mentioned that Kestrel is a lightweight server which doesn’t have support for things like http2 or even SSL. In order to enable them you need another web server in front of it. We’re going to do that with Nginx on Ubuntu. </p>
+<p>The first step was to get an Ubuntu server up and running. I could have done it locally with a virtual machine but in order to get a free SSL certificate from <a href="https://letsencrypt.org/" target="_blank" rel="noopener">https://letsencrypt.org/</a> you need a public facing web server to do the verification. I created a server on Azure using the new resource group based virtual machines.</p>
+<p>I hadn’t used the resource group based virtual machines before and it is super cool. Right off the bat you get a collection of components. </p>
+<p><img src="http://i.imgur.com/jU4n6mF.jpg" alt="Resource group"> </p>
+<p>In there you can see a virtual machine, a network interface which maps an external address to an internal one, a network security group which acts like a firewall and some storage accounts. </p>
+<p>I started by setting up some rules to forward ports 8080, 80 and 443 to the virtual machine. </p>
+<p><img src="http://i.imgur.com/zJx6TV9.jpg" alt="Rules"></p>
+<p>Port 8080 is the current port I have in my nginx config file so I want that there as an initial test. Port 80 is required to set up a non-SSL server for the initial work with let’s encrypt. Finally port 443 will be our port for SSL connections. The existing port, 22, is for SSH. I also pointed <code>monster.simontimms.com</code> to a CNAME I added to the external IP address, in this case <code>monster.simontimms.com</code> points to <code>grrrrmonsters.westus.cloudapp.azure.com</code>. You can do your DNS directly in Azure, personally I throw a couple of bucks to DNSimple.com every month to handle DNS for me. </p>
+<p>With the ports set up we can start plugging away inside the VM. I started with installing some tools to help compile Nginx. As the time of writing Nginx’s HTTP2 support in the mainline is flakey so you should use the 1.11 branch. So building from source, like we’re in 2003, is the way to go. </p>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">sudo apt-<span class="builtin-name">get</span> install make</span><br><span class="line">sudo apt-<span class="builtin-name">get</span> install libssl-dev</span><br><span class="line">sudo apt-<span class="builtin-name">get</span> install clang</span><br><span class="line">sudo apt-<span class="builtin-name">get</span> install libpcre3 libpcre3-dev</span><br></pre></td></tr></table></figure>
+
+<p>With the build tools in place we can grab Nginx and build it. I enabled a couple of flags during the configuration to get http2 and SSL support.</p>
+<figure class="highlight jboss-cli"><table><tr><td class="code"><pre><span class="line">wget http:<span class="string">//nginx.org/download/nginx-1.11.3.tar.gz</span></span><br><span class="line">tar -xvf nginx-1.11.3.tar.gz</span><br><span class="line"><span class="keyword">cd</span> nginx-1.11.3</span><br><span class="line"><span class="string">./configure</span> <span class="params">--with-http_v2_module</span> <span class="params">--with-http_ssl_module</span> <span class="params">--prefix=/tmp/nginx</span></span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
+<p>You might also notice that I threw mine in /tmp but you’ll certaily want to install Nginx in another directory. </p>
+<p>Now it’s time to pull down dotnet. For this I just followed the instructions from <a href="http://dot.net" target="_blank" rel="noopener">http://dot.net</a>.</p>
+<figure class="highlight lsl"><table><tr><td class="code"><pre><span class="line">sudo sh -c 'echo <span class="string">"deb [arch=amd64] https://apt-mo.trafficmanager.net/repos/dotnet-release/ xenial main"</span> &gt; /etc/apt/sources.<span class="type">list</span>.d/dotnetdev.<span class="type">list</span>'</span><br><span class="line">sudo apt-<span class="type">key</span> adv --keyserver apt-mo.trafficmanager.net --recv-keys <span class="number">417</span>A0893</span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install dotnet-dev<span class="number">-1.0</span><span class="number">.0</span>-preview2<span class="number">-003121</span></span><br></pre></td></tr></table></figure>
+
+<p>We can not try out Nginx. If you grab the config file from <a href="https://github.com/AspNetMonsters/Nginx/blob/4055dc3257f54c063898c7204eb5051f15c84a55/nginx.conf" target="_blank" rel="noopener">github</a> it has an Nginx configuration file which is configured to use nginx on port 8080.</p>
+<figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">git clone <span class="string">https:</span><span class="comment">//github.com/AspNetMonsters/Nginx.git</span></span><br><span class="line">cd Nginx/nginx</span><br><span class="line">git checkout no_ssl</span><br><span class="line"><span class="regexp">/tmp/</span>nginx<span class="regexp">/sbin/</span>nginx -c <span class="regexp">/home/</span>stimms<span class="regexp">/Nginx/</span>nginx.conf</span><br><span class="line">dotnet restore &amp;&amp; dotnet run</span><br></pre></td></tr></table></figure>
+
+<p>You should now be able to visit the external DNS name of the server and see the site running. Next we need to set up SSL.</p>
+<h1 id="SSL"><a href="#SSL" class="headerlink" title="SSL"></a>SSL</h1><p>Let’s Encrypt is a super tool for generating free SSL certificates. For most applications the certificates it generates are sufficient. If you’re going to be running a high end e-commerce site you might want to spend the money to get an EV certificate. Maybe. Personally I’m not convinced that anybody actually looks beyond the padlock. </p>
+<p>To start we can install the letsencrypt tool. This is a command line tool which we’ll use to get our initial certificate and can again be used to generate new certificate when one expires. The Let’s Encrypt certificates expire after 90 days so you do need to chuck a cronjob on the machine to regenerate the certificate.</p>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">sudo apt-<span class="builtin-name">get</span> install letsencrypt</span><br></pre></td></tr></table></figure>
+
+<p>With the tool installed we can generate the certificate. Part of the verification process for Let’s Encrypt is to write files to your web server root in a special directory and then read them from a remote machine. This ensures that you actually do own the domain.</p>
+<p>The trick here is that the directory in the root of your server to which the files are written is <code>.well-known</code>. This starts with a <code>.</code> which, as it turns out is a HUGE pain because files starting with a <code>.</code> are not served by default to prevent leaking <code>.</code> files like <code>.htaccess</code>.</p>
+<p>You need a special rule in your Nginx config file to serve them. I ended up using </p>
+<figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="attribute">location</span><span class="regexp"> ^~</span> /.well-known/ &#123;</span><br><span class="line">           <span class="attribute">allow</span> all;</span><br><span class="line">           <span class="attribute">root</span> /tmp/;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+
+<p>Then I was able to run the letsencrypt command:</p>
+<figure class="highlight jboss-cli"><table><tr><td class="code"><pre><span class="line">sudo letsencrypt certonly <span class="params">--webroot</span> -w <span class="string">/tmp</span> -d  monster.simontimms.com</span><br></pre></td></tr></table></figure>
+<p>In this command I tell letsencrypt to just generate certificates using the <code>/tmp</code> web root. You can tell letsencrypt to install the certificate directly to the server but let’s do that manually.</p>
+<p>On the first run of letsencrypt it will prompt you for an e-mail address then it will write a batch of certificates to your <code>/etc/letsencrypt</code> directory. In my case it was to <code>/etc/letsencrypt/live/monster.simontimms.com/</code>. You can then update your nginx.conf file to use SSL and HTTP2 </p>
+<pre><code>server {
+        #listen over http on port 8080 on localhost
+        listen       443 ssl http2;
+        server_name  localhost;
+        ssl_certificate /etc/letsencrypt/live/monster.simontimms.com/fullchain.pem;
+        ssl_certificate_key /etc/letsencrypt/live/monster.simontimms.com/privkey.pem;
+    ...
+}</code></pre><p>With that done you should now have a functioning Nginx with SSL and HTTP2. </p>
+<p><img src="http://i.imgur.com/qM5lAjs.jpg" alt="HTTP2"></p>
+<p>My full nginx.conf file is located in github <a href="https://github.com/AspNetMonsters/Nginx/blob/master/nginx.conf" target="_blank" rel="noopener">https://github.com/AspNetMonsters/Nginx/blob/master/nginx.conf</a></p>
+
+                
+
+                <div class="clearfix"></div>
+                <div class="post-share-view">
+                    <div class="post-meta">
+                        <div class="post-meta-share">
+                            <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://aspnetmonsters.com/2016/08/2016-08-07-nginx2/"><i class="fa fa-facebook"></i> Facebook</a> 
+                        </div>
+                        <div class="post-meta-share">
+                            <a target="_blank" href="https://twitter.com/home?status=Blog%20post%20from%20%40aspnetmonsters%3A%20Getting Nginix up and running on an Ubuntu Box with SSL and HTTP2%20http://aspnetmonsters.com/2016/08/2016-08-07-nginx2/"><i class="fa fa-twitter"></i> Twitter</a>
+                        </div>
+                        <div class="post-meta-share">
+                            <a target="_blank" href="https://plus.google.com/share?url=http://aspnetmonsters.com/2016/08/2016-08-07-nginx2/"><i class="fa fa-google-plus"></i> Google+</a>
+                        </div>
+                        
+                    </div>
+                    <!-- End post-meta -->
+                </div>
+                <!-- End post-share-view -->
+                <div class="clearfix"></div>
+            </div>
+            <!-- End post-inner -->
+        </div>
+        <!-- End post-wrap -->
+    </div>
+</div>
+<!-- End post -->
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+                </div>
+                
+                    <div class="col-md-3 sidebar">
+                        <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C/">C#</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Contest/">Contest</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Deployment/">Deployment</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Development/">Development</a><span class="category-list-count">44</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Development/Monsters-Weekly/">Monsters Weekly</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Development/News/">News</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Development/News/Monsters-Weekly/">Monsters Weekly</a><span class="category-list-count">1</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Monster-Guests/">Monster Guests</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Monsters-Weekly/">Monsters Weekly</a><span class="category-list-count">197</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/News/">News</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/docker/">docker</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/json/">json</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/messaging/">messaging</a><span class="category-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/NET/" rel="tag">.NET</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NET-Core/" rel="tag">.NET Core</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/net/" rel="tag">.net</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ASP-NET/" rel="tag">ASP.NET</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ASP-NET-Core/" rel="tag">ASP.NET Core</a><span class="tag-list-count">224</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ASP-NET-Core-MVC/" rel="tag">ASP.NET Core MVC</a><span class="tag-list-count">19</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ASP-NET-MVC/" rel="tag">ASP.NET MVC</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AZ-CLI/" rel="tag">AZ CLI</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Angular/" rel="tag">Angular</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/App-Service/" rel="tag">App Service</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Application-Insights/" rel="tag">Application Insights</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Authentication/" rel="tag">Authentication</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Authorization/" rel="tag">Authorization</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Azure/" rel="tag">Azure</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Azure-Functions/" rel="tag">Azure Functions</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Blazor/" rel="tag">Blazor</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C#</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Configuration/" rel="tag">Configuration</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DNX/" rel="tag">DNX</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dapper/" rel="tag">Dapper</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dependency-Injection/" rel="tag">Dependency Injection</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/" rel="tag">Docker</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Entity-Framework/" rel="tag">Entity Framework</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Entity-Framework-Core/" rel="tag">Entity Framework Core</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/F/" rel="tag">F#</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GenFu/" rel="tag">GenFu</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/" rel="tag">GitHub</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Gulp/" rel="tag">Gulp</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javascript/" rel="tag">Javascript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Knockout-js/" rel="tag">Knockout.js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Logging/" rel="tag">Logging</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MVC/" rel="tag">MVC</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Micro-ORM/" rel="tag">Micro ORM</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Noda-Time/" rel="tag">Noda Time</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Powershell/" rel="tag">Powershell</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Pugzor/" rel="tag">Pugzor</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RabbitMQ/" rel="tag">RabbitMQ</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Razor/" rel="tag">Razor</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tag-Helpers/" rel="tag">Tag Helpers</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Testing/" rel="tag">Testing</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tooling/" rel="tag">Tooling</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/View-Components/" rel="tag">View Components</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Visual-Studio/" rel="tag">Visual Studio</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Visual-Studio-2015/" rel="tag">Visual Studio 2015</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Visual-Studio-2019/" rel="tag">Visual Studio 2019</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue-js/" rel="tag">Vue.js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web-API/" rel="tag">Web API</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web-App/" rel="tag">Web App</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web-Dev/" rel="tag">Web Dev</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/azure/" rel="tag">azure</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/c/" rel="tag">c#</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/deployment/" rel="tag">deployment</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/" rel="tag">docker</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/json-net/" rel="tag">json.net</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/k8s/" rel="tag">k8s</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kestrel/" rel="tag">kestrel</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/masstransit/" rel="tag">masstransit</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/" rel="tag">nginx</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rabbitmq/" rel="tag">rabbitmq</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/reCaptcha/" rel="tag">reCaptcha</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/NET/" style="font-size: 17px;">.NET</a> <a href="/tags/NET-Core/" style="font-size: 18px;">.NET Core</a> <a href="/tags/net/" style="font-size: 11px;">.net</a> <a href="/tags/ASP-NET/" style="font-size: 10px;">ASP.NET</a> <a href="/tags/ASP-NET-Core/" style="font-size: 20px;">ASP.NET Core</a> <a href="/tags/ASP-NET-Core-MVC/" style="font-size: 19px;">ASP.NET Core MVC</a> <a href="/tags/ASP-NET-MVC/" style="font-size: 10px;">ASP.NET MVC</a> <a href="/tags/AZ-CLI/" style="font-size: 11px;">AZ CLI</a> <a href="/tags/Angular/" style="font-size: 10px;">Angular</a> <a href="/tags/App-Service/" style="font-size: 10px;">App Service</a> <a href="/tags/Application-Insights/" style="font-size: 13px;">Application Insights</a> <a href="/tags/Authentication/" style="font-size: 10px;">Authentication</a> <a href="/tags/Authorization/" style="font-size: 11px;">Authorization</a> <a href="/tags/Azure/" style="font-size: 14px;">Azure</a> <a href="/tags/Azure-Functions/" style="font-size: 10px;">Azure Functions</a> <a href="/tags/Blazor/" style="font-size: 10px;">Blazor</a> <a href="/tags/C/" style="font-size: 10px;">C#</a> <a href="/tags/Configuration/" style="font-size: 17px;">Configuration</a> <a href="/tags/DNX/" style="font-size: 12px;">DNX</a> <a href="/tags/Dapper/" style="font-size: 16px;">Dapper</a> <a href="/tags/Dependency-Injection/" style="font-size: 10px;">Dependency Injection</a> <a href="/tags/Docker/" style="font-size: 11px;">Docker</a> <a href="/tags/Entity-Framework/" style="font-size: 10px;">Entity Framework</a> <a href="/tags/Entity-Framework-Core/" style="font-size: 10px;">Entity Framework Core</a> <a href="/tags/F/" style="font-size: 10px;">F#</a> <a href="/tags/GenFu/" style="font-size: 10px;">GenFu</a> <a href="/tags/GitHub/" style="font-size: 11px;">GitHub</a> <a href="/tags/Gulp/" style="font-size: 10px;">Gulp</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Javascript/" style="font-size: 10px;">Javascript</a> <a href="/tags/Knockout-js/" style="font-size: 10px;">Knockout.js</a> <a href="/tags/Logging/" style="font-size: 11px;">Logging</a> <a href="/tags/MVC/" style="font-size: 14px;">MVC</a> <a href="/tags/Micro-ORM/" style="font-size: 16px;">Micro ORM</a> <a href="/tags/Noda-Time/" style="font-size: 11px;">Noda Time</a> <a href="/tags/Powershell/" style="font-size: 10px;">Powershell</a> <a href="/tags/Pugzor/" style="font-size: 10px;">Pugzor</a> <a href="/tags/RabbitMQ/" style="font-size: 10px;">RabbitMQ</a> <a href="/tags/Razor/" style="font-size: 12px;">Razor</a> <a href="/tags/Tag-Helpers/" style="font-size: 15px;">Tag Helpers</a> <a href="/tags/Testing/" style="font-size: 12px;">Testing</a> <a href="/tags/Tooling/" style="font-size: 10px;">Tooling</a> <a href="/tags/View-Components/" style="font-size: 12px;">View Components</a> <a href="/tags/Visual-Studio/" style="font-size: 10px;">Visual Studio</a> <a href="/tags/Visual-Studio-2015/" style="font-size: 15px;">Visual Studio 2015</a> <a href="/tags/Visual-Studio-2019/" style="font-size: 10px;">Visual Studio 2019</a> <a href="/tags/Vue-js/" style="font-size: 10px;">Vue.js</a> <a href="/tags/Web-API/" style="font-size: 12px;">Web API</a> <a href="/tags/Web-App/" style="font-size: 10px;">Web App</a> <a href="/tags/Web-Dev/" style="font-size: 11px;">Web Dev</a> <a href="/tags/azure/" style="font-size: 11px;">azure</a> <a href="/tags/c/" style="font-size: 10px;">c#</a> <a href="/tags/deployment/" style="font-size: 11px;">deployment</a> <a href="/tags/docker/" style="font-size: 12px;">docker</a> <a href="/tags/json-net/" style="font-size: 10px;">json.net</a> <a href="/tags/k8s/" style="font-size: 10px;">k8s</a> <a href="/tags/kestrel/" style="font-size: 11px;">kestrel</a> <a href="/tags/masstransit/" style="font-size: 11px;">masstransit</a> <a href="/tags/nginx/" style="font-size: 11px;">nginx</a> <a href="/tags/rabbitmq/" style="font-size: 11px;">rabbitmq</a> <a href="/tags/reCaptcha/" style="font-size: 10px;">reCaptcha</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/01/monsters-weekly%5Cep200d/">Monsters Weekly 200d -  Conversations with Nik Molar</a>
+          </li>
+        
+          <li>
+            <a href="/2021/01/monsters-weekly%5Cep200c/">Monsters Weekly 200c -  Conversations with Andrew Stanton-Nurse</a>
+          </li>
+        
+          <li>
+            <a href="/2020/12/monsters-weekly%5Cep195/">Monsters Weekly 195 -  Playwright with Arjun Attam</a>
+          </li>
+        
+          <li>
+            <a href="/2020/12/monsters-weekly%5Cep200b/">Monsters Weekly 200b -  Conversations with Julie Lerman</a>
+          </li>
+        
+          <li>
+            <a href="/2020/12/monsters-weekly%5Cep200a/">Monsters Weekly 200a -  Conversations with Jon Galloway</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+                    </div>
+                
+            </div>       
+       </div>
+       <div class="clearfix"></div>
+    </div>
+        <footer id="footer">
+        <div class="container">
+            <div class="copyrights">Copyright 2015-2016 | Crafted By The Monsters | <a href="http://simontimms.com" target="_blank">Simon Timms</a> | <a href="http://davepaquette.com" target="_blank">Dave Paquette</a> | <a href="http://jameschambers.com" target="_blank">James Chambers</a></div> 
+            <div class="social-ul">
+                <ul>
+                    <li class="social-twitter"><a href="https://twitter.com/AspNetMonsters" target="_blank" rel="noopener"><i class="fa fa-twitter"></i></a></li>
+                    <li class="social-google"><a href="https://plus.google.com/100446024681292990445" target="_blank" rel="noopener"><i class="fa fa-google-plus"></i></a></li>
+                    <li class="social-youtube"><a href="https://www.youtube.com/channel/UCBkoKZ_tgy_yPnN0sD3KeRg" target="_blank" rel="noopener"><i class="fa fa-youtube-play"></i></a></li>
+                    <li class="social-rss"><a href="/atom.xml"><i class="fa fa-rss"></i></a></li>
+                </ul>
+            </div>
+            <!-- End social-ul -->
+        </div>
+        <!-- End container -->
+    </footer>
+    <!-- End footer -->    
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/2016/01/welcome" class="mobile-nav-link">About</a>
+  
+    <a href="/2016/01/guests" class="mobile-nav-link">Special Guests</a>
+  
+    <a href="/2016/12/aspnetcorebook" class="mobile-nav-link">Our Book</a>
+  
+</nav>
+    
+<script>
+  var disqus_shortname = 'aspnetmonsters';
+   
+  
+  var disqus_url = 'http://aspnetmonsters.com/2016/08/2016-08-07-nginx2/';  
+  
+  
+
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+    <!-- js -->
+       <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+        <script src="/js/html5.js"></script>
+        <script src="/js/modernizr.js"></script>
+        <script src="/js/tabs.js"></script>
+        <script src="/js/jquery.prettyPhoto.js"></script>
+        <script src="/js/jquery.bxslider.min.js"></script>
+        <script src="/js/custom.js"></script>
+       <script src="/js/bootstrap.min.js"></script>
+    <!-- End js --> 
+  
+    <script type="text/javascript">
+        function ready(fn) {
+        if (document.readyState != 'loading'){
+            fn();
+        } else {
+            document.addEventListener('DOMContentLoaded', fn);
+        }
+        }
+
+        ready(function() {
+            // min inclusive, max exclusive
+            function getRandomInt(min, max) {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min)) + min;
+            }
+
+            var referalLinks = 
+            [
+            "https://www.amazon.ca/ASP-NET-Core-Application-Development-application-ebook/dp/B01N9E92QY" 
+            ];
+
+            var buynowlink = document.getElementById('monstermessagelink');
+            buynowlink.href = referalLinks[getRandomInt(0,referalLinks.length)];
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>GitHub Authentication with ASP.NET Core | ASP.NET Monsters</title>  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+    <!-- Main Style -->
+    <link rel="stylesheet" type="text/css" href="/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/base.css">
+    <link rel="stylesheet" type="text/css" href="/css/prettyPhoto.css">
+    <link rel="stylesheet" type="text/css" href="/js/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/bright_cyan.css">
+    <link rel="stylesheet" type="text/css" href="/css/skins.css">
+    <link rel="stylesheet" type="text/css" href="/css/responsive.css">
+    <link rel="stylesheet" type="text/css" href="/css/navbar-fixed-top.css">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/css/highlight.css">
+
+    <!-- Font Style -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+  
+  <meta name="description" content="Authentication has changed over the years, and my take on it has surely shifted. No longer is it the scary, intimidating beastie that must be overcome on our projects. Today, we can let external provi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GitHub Authentication with ASP.NET Core">
+<meta property="og:url" content="http://aspnetmonsters.com/2016/04/github-authentication-asp-net-core/index.html">
+<meta property="og:site_name" content="ASP.NET Monsters">
+<meta property="og:description" content="Authentication has changed over the years, and my take on it has surely shifted. No longer is it the scary, intimidating beastie that must be overcome on our projects. Today, we can let external provi">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://jcblogimages.blob.core.windows.net/img/2016/04/github-auth.png">
+<meta property="og:image" content="https://jcblogimages.blob.core.windows.net/img/2016/04/github-app.png">
+<meta property="article:published_time" content="2016-04-26T12:12:54.000Z">
+<meta property="article:modified_time" content="2021-01-12T14:54:25.092Z">
+<meta property="article:author" content="The Monsters">
+<meta property="article:tag" content="Visual Studio 2015">
+<meta property="article:tag" content="Authentication">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://jcblogimages.blob.core.windows.net/img/2016/04/github-auth.png">
+  
+    <link rel="alternative" href="/atom.xml" title="ASP.NET Monsters" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/images/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-58850513-2', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+  <script src="//load.sumome.com/" data-sumo-site-id="4be75cfb88d7cd4bb66a3c505430b09e769afb08367319e92abd1a12f95a2834" async="async"></script>
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+<body>
+    <div id="wrap" class="stripe grid_1200">
+        <div class="wrap-search">
+    <form method="post">
+        <input type="search" name="s" value="Search here ..." onfocus="if(this.value==this.defaultValue)this.value='';" onblur="if(this.value=='')this.value=this.defaultValue;">
+    </form>
+</div>
+<!-- End wrap-search -->
+
+<!-- Fixed navbar -->
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header" style="color:#F4EDED; padding:10px;">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+            aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="logo" href="/"><img src="/images/monsters-little-banner.png" /></a>
+            <a class="navbar-brand" href="/">ASP.NET Monsters</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+
+            <ul class="nav navbar-nav navbar-right">
+            
+                <li><a href="/">Home</a></li>
+             
+                <li><a href="/2016/01/welcome">About</a></li>
+             
+                <li><a href="/2016/01/guests">Special Guests</a></li>
+             
+                <li><a href="/2016/12/aspnetcorebook">Our Book</a></li>
+             
+            </ul>
+
+        </div>
+        <!--/.nav-collapse -->
+    </div>
+</nav>
+        <div class="clearfix"></div>
+        <div class="monster-message"><div class="container"><a id="monstermessagelink" href="https://www.amazon.ca/ASP-NET-Core-Application-Development-application-ebook/dp/B01N9E92QY" target="_blank" rel="noopener"><strong>Buy our book:</strong> ASP.NET Core Application Development <i class="fa fa-external-link"></i></a></div></div>
+        <div class="sections body-section">
+            <div class="row">
+                <div class="col-md-8 main-content">
+                    <div class="post post-2 post-gallery single-post row">
+    <div class="col-md-1">
+        <div class="post-author"><img alt="James Chambers" src="/images/thumb_james.png"></div>
+    </div>
+    <div class="col-md-11">
+        <div class="post-head">
+            <h3><a href="/2016/04/github-authentication-asp-net-core/">GitHub Authentication with ASP.NET Core</a></h3>
+            <div class="post-meta">
+                <div><i class="fa fa-user"></i>BY : <a href="#">James Chambers</a></div>
+                <div><i class="fa fa-clock-o"></i><time datetime="2016-04-26T12:12:54.000Z" itemprop="datePublished">2016-04-26</time></div>
+                <div><i class="fa fa-comments"></i><a href="http://aspnetmonsters.com/2016/04/github-authentication-asp-net-core/#disqus_thread" class="article-comment-link">Comments</a></div>
+            </div>
+            <!-- End post-meta -->
+            <div class="clearfix"></div>
+        </div>
+        <!-- End post-head -->
+        <div class="post-wrap">
+                
+            <div class="post-inner">
+                
+                    
+                    <p>Authentication has changed over the years, and my take on it has surely shifted. No longer is it the scary, intimidating beastie that must be overcome on our projects. Today, we can let external providers provide the authentication mechanisms, giving the user with a streamlined experience that can give them access to our application with previuosly defined credentials.</p>
+<p><img src="https://jcblogimages.blob.core.windows.net/img/2016/04/github-auth.png" alt="GitHub Authentication in ASP.NET Core"></p>
+<p>Let’s have a look at what it takes to allow users to authenticate in our application using GitHub as the login source, and you can check out the Monsters video take of this on <a href="https://channel9.msdn.com/Series/aspnetmonsters/Episode-26-GitHub-Authentication-in-ASPNET-Core" target="_blank" rel="noopener">Channel 9</a>.</p>
+<a id="more"></a>
+
+<h2 id="Background-and-Overview"><a href="#Background-and-Overview" class="headerlink" title="Background and Overview"></a>Background and Overview</h2><p>OAuth has been known as a complicated spec to adhere to, and this is further perpetuated by the fact that while much of the mechanics are the same among authentication providers, the implementation of how one retrieves information about the logged in user is different from source-to-source.</p>
+<p>The security repo for ASP.NET gives us some pretty good options for the big, wider market plays like Facebook and Twitter, but there is aren’t - nor can or should there be - packages for every provider. GitHub is appealing as a source when we target other developers, and while it lacks a package of its own, we can leverage the raw OAuth provider and implement the user profile loading details on our own. </p>
+<p>In short, the steps are as follows:</p>
+<ol>
+<li>Install the <code>Microsoft.AspNet.Authentication.OAuth</code> package</li>
+<li>Register you application in GitHub</li>
+<li>Configurate the OAuth parameters in your application</li>
+<li>Enable the OAuth middleware</li>
+<li>Retrieve the claims for the user</li>
+</ol>
+<p>Okay, now let’s dive into the nitty gritty of it.</p>
+<h2 id="Install-the-Package"><a href="#Install-the-Package" class="headerlink" title="Install the Package"></a>Install the Package</h2><p>First step is a gimme.  Just head into your <code>project.json</code> and add the package to the list of dependencies in your application.</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">"<span class="selector-tag">Microsoft</span><span class="selector-class">.AspNet</span><span class="selector-class">.Authentication</span><span class="selector-class">.OAuth</span>": "1<span class="selector-class">.0</span><span class="selector-class">.0-rc1-final</span>",</span><br></pre></td></tr></table></figure>
+
+<p>You can see here that I am on RC1, so assume there may still be some changes to the naming and, obviously, the version of the package you’ll want to use.</p>
+<h2 id="Create-the-App-in-GitHub"><a href="#Create-the-App-in-GitHub" class="headerlink" title="Create the App in GitHub"></a>Create the App in GitHub</h2><p>Pull down the user account menu from your avatar in the top-right corner of GitHub, then select Settings. Next, go to the OAuth Applications section and create a new application. This is pretty straightforward, but it’s worth pointing out a few things.</p>
+<p><img src="https://jcblogimages.blob.core.windows.net:443/img/2016/04/github-app.png" alt="Creating an OAuth app in GitHub"></p>
+<p>First, you’ll need to note your client ID and secret, or minimally, you’ll want to leave the browser window open. </p>
+<p>Second you’ll see that I have a authorization callback setup in the app as follows:</p>
+<p><code>https://localhost:44363/signin-github</code></p>
+<p>This is important for two reasons: </p>
+<ol>
+<li>This will only work locally on your machine</li>
+<li>The <code>signin-github</code> bit will need to be configured in our middleware</li>
+</ol>
+<p>If you want better control over how that is configured in your application, you can incorporate the appropriate settings into your configuration files, but you’ll also need to update your GitHub app. This process is still relevant - you’ll likely want something to test with locallying without having to deploy to test your application.</p>
+<h2 id="Configure-Your-Client-ID-and-Secret"><a href="#Configure-Your-Client-ID-and-Secret" class="headerlink" title="Configure Your Client ID and Secret"></a>Configure Your Client ID and Secret</h2><p>  For production applications you’ll be fine to set environment variables or configure application settings in Azure (which are loaded as env vars), but locally you’ll want access to the config as well. You can setup <a href="https://channel9.msdn.com/Series/aspnetmonsters/Episode-23-Working-With-Sensitive-Data-User-Secrets" target="_blank" rel="noopener">user secrets via the command line</a>, or you can just right-click on your project in Visual Studio 2015 and select “Manage User Secrets”. From there, you set it up like so:</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"GitHub:ClientId"</span>: <span class="string">"your_id"</span>,</span><br><span class="line">  <span class="attr">"GitHub:ClientSecret"</span>: <span class="string">"your_secret"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Enable-OAuth-Middleware"><a href="#Enable-OAuth-Middleware" class="headerlink" title="Enable OAuth Middleware"></a>Enable OAuth Middleware</h2><p>In the above code we also wired up some code to fire during the <code>OnCreatingTicket</code> event, so let’s implement that next.  To do this, we’ll add the middleare to the <code>Configure</code> method in our startup class, and add a property to the class to expose our desired settings.</p>
+<p>The middleware call is like so:<br><code>app.UseOAuthAuthentication(GitHubOptions);</code></p>
+<p>And we create the property as such:</p>
+<script src="https://gist.github.com/MisterJames/746331337329ca50556cbff19a0ba176.js"></script>
+
+<p>Remember that callback path that we setup on GitHub, you’ll see it again in our settings above. You’ll also note that we’re retrieving our client ID and secret from our configuration, and that we’re setting up a handler when the auth ticket is created so that we can go fetch additional details about the authenticating party.</p>
+<h2 id="Retrieve-the-User’s-Claims"><a href="#Retrieve-the-User’s-Claims" class="headerlink" title="Retrieve the User’s Claims"></a>Retrieve the User’s Claims</h2><p>We’ll have to call back out to GitHub to get the user’s details, they don’t come back with the base calls for authentication. This is the part that is different for each provider, and thus you’ll need to write this part for yourself if you wish to use an alternate source for authentication.</p>
+<p>We will add two parts to this; the first will call out to get the information about the user, the second will parse the result to extract the claims. Both of these can live in your <code>startup.cs</code> class.</p>
+<script src="https://gist.github.com/MisterJames/6a2ee9918afa9019aa3c1891f216102a.js"></script>
+
+<script src="https://gist.github.com/MisterJames/c818ad44950d1c7312e2d36b93041407.js"></script>
+
+<p>Unfortunately the base implementation of the OAuth provider does not support allowing us to request additional fields for the user; I’ll take a look at that in a future post. All you’re going to get are the basics with the above - so none of the account details beyond the email addres, nor ability to work with their repos/issues/PRs.</p>
+<h2 id="Next-Steps"><a href="#Next-Steps" class="headerlink" title="Next Steps"></a>Next Steps</h2><p>There you have it. All the chops you need to start exercising your OAuth muscle, and a basic implementation that you can leverage as a starting point. Trying this out will take you about 15 minutes, start to finish, provided you already have a GitHub account.</p>
+<ol>
+<li><a href="https://get.asp.net/" target="_blank" rel="noopener">Get the latest VS 2015 and ASP.NET Core bits</a></li>
+<li><a href="https://github.com/aspnet/security" target="_blank" rel="noopener">Explore the ASP.NET security repo on GitHub</a></li>
+<li>Run through the samples above.</li>
+</ol>
+<p>Finally, check out the Monsters’ video on Channel 9 where I code this live.</p>
+<iframe src="https://channel9.msdn.com/Series/aspnetmonsters/Episode-26-GitHub-Authentication-in-ASPNET-Core/player" width="640" height="360" allowFullScreen frameBorder="0"></iframe>
+
+<p>Happy Coding!</p>
+
+                
+
+                <div class="clearfix"></div>
+                <div class="post-share-view">
+                    <div class="post-meta">
+                        <div class="post-meta-share">
+                            <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://aspnetmonsters.com/2016/04/github-authentication-asp-net-core/"><i class="fa fa-facebook"></i> Facebook</a> 
+                        </div>
+                        <div class="post-meta-share">
+                            <a target="_blank" href="https://twitter.com/home?status=Blog%20post%20from%20%40aspnetmonsters%3A%20GitHub Authentication with ASP.NET Core%20http://aspnetmonsters.com/2016/04/github-authentication-asp-net-core/"><i class="fa fa-twitter"></i> Twitter</a>
+                        </div>
+                        <div class="post-meta-share">
+                            <a target="_blank" href="https://plus.google.com/share?url=http://aspnetmonsters.com/2016/04/github-authentication-asp-net-core/"><i class="fa fa-google-plus"></i> Google+</a>
+                        </div>
+                        
+                    </div>
+                    <!-- End post-meta -->
+                </div>
+                <!-- End post-share-view -->
+                <div class="clearfix"></div>
+            </div>
+            <!-- End post-inner -->
+        </div>
+        <!-- End post-wrap -->
+    </div>
+</div>
+<!-- End post -->
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+                </div>
+                
+                    <div class="col-md-3 sidebar">
+                        <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C/">C#</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Contest/">Contest</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Deployment/">Deployment</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Development/">Development</a><span class="category-list-count">44</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Development/Monsters-Weekly/">Monsters Weekly</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Development/News/">News</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Development/News/Monsters-Weekly/">Monsters Weekly</a><span class="category-list-count">1</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Monster-Guests/">Monster Guests</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Monsters-Weekly/">Monsters Weekly</a><span class="category-list-count">197</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/News/">News</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/docker/">docker</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/json/">json</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/messaging/">messaging</a><span class="category-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/NET/" rel="tag">.NET</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NET-Core/" rel="tag">.NET Core</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/net/" rel="tag">.net</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ASP-NET/" rel="tag">ASP.NET</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ASP-NET-Core/" rel="tag">ASP.NET Core</a><span class="tag-list-count">224</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ASP-NET-Core-MVC/" rel="tag">ASP.NET Core MVC</a><span class="tag-list-count">19</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ASP-NET-MVC/" rel="tag">ASP.NET MVC</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AZ-CLI/" rel="tag">AZ CLI</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Angular/" rel="tag">Angular</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/App-Service/" rel="tag">App Service</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Application-Insights/" rel="tag">Application Insights</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Authentication/" rel="tag">Authentication</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Authorization/" rel="tag">Authorization</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Azure/" rel="tag">Azure</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Azure-Functions/" rel="tag">Azure Functions</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Blazor/" rel="tag">Blazor</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C#</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Configuration/" rel="tag">Configuration</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DNX/" rel="tag">DNX</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dapper/" rel="tag">Dapper</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dependency-Injection/" rel="tag">Dependency Injection</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/" rel="tag">Docker</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Entity-Framework/" rel="tag">Entity Framework</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Entity-Framework-Core/" rel="tag">Entity Framework Core</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/F/" rel="tag">F#</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GenFu/" rel="tag">GenFu</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/" rel="tag">GitHub</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Gulp/" rel="tag">Gulp</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javascript/" rel="tag">Javascript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Knockout-js/" rel="tag">Knockout.js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Logging/" rel="tag">Logging</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MVC/" rel="tag">MVC</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Micro-ORM/" rel="tag">Micro ORM</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Noda-Time/" rel="tag">Noda Time</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Powershell/" rel="tag">Powershell</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Pugzor/" rel="tag">Pugzor</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RabbitMQ/" rel="tag">RabbitMQ</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Razor/" rel="tag">Razor</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tag-Helpers/" rel="tag">Tag Helpers</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Testing/" rel="tag">Testing</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tooling/" rel="tag">Tooling</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/View-Components/" rel="tag">View Components</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Visual-Studio/" rel="tag">Visual Studio</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Visual-Studio-2015/" rel="tag">Visual Studio 2015</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Visual-Studio-2019/" rel="tag">Visual Studio 2019</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue-js/" rel="tag">Vue.js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web-API/" rel="tag">Web API</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web-App/" rel="tag">Web App</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web-Dev/" rel="tag">Web Dev</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/azure/" rel="tag">azure</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/c/" rel="tag">c#</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/deployment/" rel="tag">deployment</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/" rel="tag">docker</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/json-net/" rel="tag">json.net</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/k8s/" rel="tag">k8s</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kestrel/" rel="tag">kestrel</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/masstransit/" rel="tag">masstransit</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/" rel="tag">nginx</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rabbitmq/" rel="tag">rabbitmq</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/reCaptcha/" rel="tag">reCaptcha</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/NET/" style="font-size: 17px;">.NET</a> <a href="/tags/NET-Core/" style="font-size: 18px;">.NET Core</a> <a href="/tags/net/" style="font-size: 11px;">.net</a> <a href="/tags/ASP-NET/" style="font-size: 10px;">ASP.NET</a> <a href="/tags/ASP-NET-Core/" style="font-size: 20px;">ASP.NET Core</a> <a href="/tags/ASP-NET-Core-MVC/" style="font-size: 19px;">ASP.NET Core MVC</a> <a href="/tags/ASP-NET-MVC/" style="font-size: 10px;">ASP.NET MVC</a> <a href="/tags/AZ-CLI/" style="font-size: 11px;">AZ CLI</a> <a href="/tags/Angular/" style="font-size: 10px;">Angular</a> <a href="/tags/App-Service/" style="font-size: 10px;">App Service</a> <a href="/tags/Application-Insights/" style="font-size: 13px;">Application Insights</a> <a href="/tags/Authentication/" style="font-size: 10px;">Authentication</a> <a href="/tags/Authorization/" style="font-size: 11px;">Authorization</a> <a href="/tags/Azure/" style="font-size: 14px;">Azure</a> <a href="/tags/Azure-Functions/" style="font-size: 10px;">Azure Functions</a> <a href="/tags/Blazor/" style="font-size: 10px;">Blazor</a> <a href="/tags/C/" style="font-size: 10px;">C#</a> <a href="/tags/Configuration/" style="font-size: 17px;">Configuration</a> <a href="/tags/DNX/" style="font-size: 12px;">DNX</a> <a href="/tags/Dapper/" style="font-size: 16px;">Dapper</a> <a href="/tags/Dependency-Injection/" style="font-size: 10px;">Dependency Injection</a> <a href="/tags/Docker/" style="font-size: 11px;">Docker</a> <a href="/tags/Entity-Framework/" style="font-size: 10px;">Entity Framework</a> <a href="/tags/Entity-Framework-Core/" style="font-size: 10px;">Entity Framework Core</a> <a href="/tags/F/" style="font-size: 10px;">F#</a> <a href="/tags/GenFu/" style="font-size: 10px;">GenFu</a> <a href="/tags/GitHub/" style="font-size: 11px;">GitHub</a> <a href="/tags/Gulp/" style="font-size: 10px;">Gulp</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Javascript/" style="font-size: 10px;">Javascript</a> <a href="/tags/Knockout-js/" style="font-size: 10px;">Knockout.js</a> <a href="/tags/Logging/" style="font-size: 11px;">Logging</a> <a href="/tags/MVC/" style="font-size: 14px;">MVC</a> <a href="/tags/Micro-ORM/" style="font-size: 16px;">Micro ORM</a> <a href="/tags/Noda-Time/" style="font-size: 11px;">Noda Time</a> <a href="/tags/Powershell/" style="font-size: 10px;">Powershell</a> <a href="/tags/Pugzor/" style="font-size: 10px;">Pugzor</a> <a href="/tags/RabbitMQ/" style="font-size: 10px;">RabbitMQ</a> <a href="/tags/Razor/" style="font-size: 12px;">Razor</a> <a href="/tags/Tag-Helpers/" style="font-size: 15px;">Tag Helpers</a> <a href="/tags/Testing/" style="font-size: 12px;">Testing</a> <a href="/tags/Tooling/" style="font-size: 10px;">Tooling</a> <a href="/tags/View-Components/" style="font-size: 12px;">View Components</a> <a href="/tags/Visual-Studio/" style="font-size: 10px;">Visual Studio</a> <a href="/tags/Visual-Studio-2015/" style="font-size: 15px;">Visual Studio 2015</a> <a href="/tags/Visual-Studio-2019/" style="font-size: 10px;">Visual Studio 2019</a> <a href="/tags/Vue-js/" style="font-size: 10px;">Vue.js</a> <a href="/tags/Web-API/" style="font-size: 12px;">Web API</a> <a href="/tags/Web-App/" style="font-size: 10px;">Web App</a> <a href="/tags/Web-Dev/" style="font-size: 11px;">Web Dev</a> <a href="/tags/azure/" style="font-size: 11px;">azure</a> <a href="/tags/c/" style="font-size: 10px;">c#</a> <a href="/tags/deployment/" style="font-size: 11px;">deployment</a> <a href="/tags/docker/" style="font-size: 12px;">docker</a> <a href="/tags/json-net/" style="font-size: 10px;">json.net</a> <a href="/tags/k8s/" style="font-size: 10px;">k8s</a> <a href="/tags/kestrel/" style="font-size: 11px;">kestrel</a> <a href="/tags/masstransit/" style="font-size: 11px;">masstransit</a> <a href="/tags/nginx/" style="font-size: 11px;">nginx</a> <a href="/tags/rabbitmq/" style="font-size: 11px;">rabbitmq</a> <a href="/tags/reCaptcha/" style="font-size: 10px;">reCaptcha</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/01/monsters-weekly%5Cep200d/">Monsters Weekly 200d -  Conversations with Nik Molar</a>
+          </li>
+        
+          <li>
+            <a href="/2021/01/monsters-weekly%5Cep200c/">Monsters Weekly 200c -  Conversations with Andrew Stanton-Nurse</a>
+          </li>
+        
+          <li>
+            <a href="/2020/12/monsters-weekly%5Cep195/">Monsters Weekly 195 -  Playwright with Arjun Attam</a>
+          </li>
+        
+          <li>
+            <a href="/2020/12/monsters-weekly%5Cep200b/">Monsters Weekly 200b -  Conversations with Julie Lerman</a>
+          </li>
+        
+          <li>
+            <a href="/2020/12/monsters-weekly%5Cep200a/">Monsters Weekly 200a -  Conversations with Jon Galloway</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+                    </div>
+                
+            </div>       
+       </div>
+       <div class="clearfix"></div>
+    </div>
+        <footer id="footer">
+        <div class="container">
+            <div class="copyrights">Copyright 2015-2016 | Crafted By The Monsters | <a href="http://simontimms.com" target="_blank">Simon Timms</a> | <a href="http://davepaquette.com" target="_blank">Dave Paquette</a> | <a href="http://jameschambers.com" target="_blank">James Chambers</a></div> 
+            <div class="social-ul">
+                <ul>
+                    <li class="social-twitter"><a href="https://twitter.com/AspNetMonsters" target="_blank" rel="noopener"><i class="fa fa-twitter"></i></a></li>
+                    <li class="social-google"><a href="https://plus.google.com/100446024681292990445" target="_blank" rel="noopener"><i class="fa fa-google-plus"></i></a></li>
+                    <li class="social-youtube"><a href="https://www.youtube.com/channel/UCBkoKZ_tgy_yPnN0sD3KeRg" target="_blank" rel="noopener"><i class="fa fa-youtube-play"></i></a></li>
+                    <li class="social-rss"><a href="/atom.xml"><i class="fa fa-rss"></i></a></li>
+                </ul>
+            </div>
+            <!-- End social-ul -->
+        </div>
+        <!-- End container -->
+    </footer>
+    <!-- End footer -->    
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/2016/01/welcome" class="mobile-nav-link">About</a>
+  
+    <a href="/2016/01/guests" class="mobile-nav-link">Special Guests</a>
+  
+    <a href="/2016/12/aspnetcorebook" class="mobile-nav-link">Our Book</a>
+  
+</nav>
+    
+<script>
+  var disqus_shortname = 'aspnetmonsters';
+   
+  
+  var disqus_url = 'http://aspnetmonsters.com/2016/04/github-authentication-asp-net-core/';  
+  
+  
+
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+    <!-- js -->
+       <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+        <script src="/js/html5.js"></script>
+        <script src="/js/modernizr.js"></script>
+        <script src="/js/tabs.js"></script>
+        <script src="/js/jquery.prettyPhoto.js"></script>
+        <script src="/js/jquery.bxslider.min.js"></script>
+        <script src="/js/custom.js"></script>
+       <script src="/js/bootstrap.min.js"></script>
+    <!-- End js --> 
+  
+    <script type="text/javascript">
+        function ready(fn) {
+        if (document.readyState != 'loading'){
+            fn();
+        } else {
+            document.addEventListener('DOMContentLoaded', fn);
+        }
+        }
+
+        ready(function() {
+            // min inclusive, max exclusive
+            function getRandomInt(min, max) {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min)) + min;
+            }
+
+            var referalLinks = 
+            [
+            "https://www.amazon.ca/ASP-NET-Core-Application-Development-application-ebook/dp/B01N9E92QY" 
+            ];
+
+            var buynowlink = document.getElementById('monstermessagelink');
+            buynowlink.href = referalLinks[getRandomInt(0,referalLinks.length)];
+        });
+    </script>
+</body>
+</html>

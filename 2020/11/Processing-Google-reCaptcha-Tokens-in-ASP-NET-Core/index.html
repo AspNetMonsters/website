@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Processing Google reCaptcha Tokens in ASP.NET Core | ASP.NET Monsters</title>  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+    <!-- Main Style -->
+    <link rel="stylesheet" type="text/css" href="/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/base.css">
+    <link rel="stylesheet" type="text/css" href="/css/prettyPhoto.css">
+    <link rel="stylesheet" type="text/css" href="/js/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/bright_cyan.css">
+    <link rel="stylesheet" type="text/css" href="/css/skins.css">
+    <link rel="stylesheet" type="text/css" href="/css/responsive.css">
+    <link rel="stylesheet" type="text/css" href="/css/navbar-fixed-top.css">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/css/highlight.css">
+
+    <!-- Font Style -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+  
+  <meta name="description" content="Integrating a simple test to help prevent malignant input on your site is as simple as integrating a few lines of code into your website. Now, if I could I’d pinch myself to make sure I’m not a robot,">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Processing Google reCaptcha Tokens in ASP.NET Core">
+<meta property="og:url" content="http://aspnetmonsters.com/2020/11/Processing-Google-reCaptcha-Tokens-in-ASP-NET-Core/index.html">
+<meta property="og:site_name" content="ASP.NET Monsters">
+<meta property="og:description" content="Integrating a simple test to help prevent malignant input on your site is as simple as integrating a few lines of code into your website. Now, if I could I’d pinch myself to make sure I’m not a robot,">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-11-29T14:26:04.000Z">
+<meta property="article:modified_time" content="2021-01-12T14:54:25.077Z">
+<meta property="article:author" content="The Monsters">
+<meta property="article:tag" content="ASP.NET Core">
+<meta property="article:tag" content="Visual Studio 2019">
+<meta property="article:tag" content="reCaptcha">
+<meta property="article:tag" content="Web API">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternative" href="/atom.xml" title="ASP.NET Monsters" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/images/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-58850513-2', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+  <script src="//load.sumome.com/" data-sumo-site-id="4be75cfb88d7cd4bb66a3c505430b09e769afb08367319e92abd1a12f95a2834" async="async"></script>
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+<body>
+    <div id="wrap" class="stripe grid_1200">
+        <div class="wrap-search">
+    <form method="post">
+        <input type="search" name="s" value="Search here ..." onfocus="if(this.value==this.defaultValue)this.value='';" onblur="if(this.value=='')this.value=this.defaultValue;">
+    </form>
+</div>
+<!-- End wrap-search -->
+
+<!-- Fixed navbar -->
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header" style="color:#F4EDED; padding:10px;">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+            aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="logo" href="/"><img src="/images/monsters-little-banner.png" /></a>
+            <a class="navbar-brand" href="/">ASP.NET Monsters</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+
+            <ul class="nav navbar-nav navbar-right">
+            
+                <li><a href="/">Home</a></li>
+             
+                <li><a href="/2016/01/welcome">About</a></li>
+             
+                <li><a href="/2016/01/guests">Special Guests</a></li>
+             
+                <li><a href="/2016/12/aspnetcorebook">Our Book</a></li>
+             
+            </ul>
+
+        </div>
+        <!--/.nav-collapse -->
+    </div>
+</nav>
+        <div class="clearfix"></div>
+        <div class="monster-message"><div class="container"><a id="monstermessagelink" href="https://www.amazon.ca/ASP-NET-Core-Application-Development-application-ebook/dp/B01N9E92QY" target="_blank" rel="noopener"><strong>Buy our book:</strong> ASP.NET Core Application Development <i class="fa fa-external-link"></i></a></div></div>
+        <div class="sections body-section">
+            <div class="row">
+                <div class="col-md-8 main-content">
+                    <div class="post post-2 post-gallery single-post row">
+    <div class="col-md-1">
+        <div class="post-author"><img alt="James Chambers" src="/images/thumb_james.png"></div>
+    </div>
+    <div class="col-md-11">
+        <div class="post-head">
+            <h3><a href="/2020/11/Processing-Google-reCaptcha-Tokens-in-ASP-NET-Core/">Processing Google reCaptcha Tokens in ASP.NET Core</a></h3>
+            <div class="post-meta">
+                <div><i class="fa fa-user"></i>BY : <a href="#">James Chambers</a></div>
+                <div><i class="fa fa-clock-o"></i><time datetime="2020-11-29T14:26:04.000Z" itemprop="datePublished">2020-11-29</time></div>
+                <div><i class="fa fa-comments"></i><a href="http://aspnetmonsters.com/2020/11/Processing-Google-reCaptcha-Tokens-in-ASP-NET-Core/#disqus_thread" class="article-comment-link">Comments</a></div>
+            </div>
+            <!-- End post-meta -->
+            <div class="clearfix"></div>
+        </div>
+        <!-- End post-head -->
+        <div class="post-wrap">
+                                  
+                <div class="post-img">
+                    <a href="#"><img alt="" src="/images/logo_579.png"></a>
+                </div>              
+                
+            <div class="post-inner">
+                
+                    
+                    <p>Integrating a simple test to help prevent malignant input on your site is as simple as integrating a few lines of code into your website.</p>
+<p>Now, if I could I’d pinch myself to make sure I’m not a robot, but I know very well that if I’m smart enough to think of that, they must have also programmed a sense of touch and pain into me as well. So testing to see if a website user is going to be even more daunting, because we can’t even pinch <em>them</em>. </p>
+<p>Thankfully, the <a href="https://www.google.com/recaptcha/about/" target="_blank" rel="noopener">reCaptcha service</a> offered by Google is free add-on to your site that will help to avoid bad data getting into your site, prevent malicious users from gaining access to your resources, and helping you to avoid unwanted side effects of bots that pile up junk data through your forms.</p>
+<p>Read on to see how to get this all wired up in a Razor Pages application in ASP.NET Core. Heck, if you are in an MVC app or are building a Web API (or Azure Function) this would all still serve useful!</p>
+<a id="more"></a>
+
+<h2 id="The-Way-it-Works"><a href="#The-Way-it-Works" class="headerlink" title="The Way it Works"></a>The Way it Works</h2><p>Here’s how it works: actually, we don’t know. Google holds their cards pretty close. The thing is, the more anyone knows about the service, the easier it is for the bad peeps to figure out a way to bypass it. So, as far as the actual “non-robot” side of things goes, we’re going to leave that part to the perfectly capable engineers at Google.</p>
+<p><strong>However</strong>, we can certainly use the service without having to know it’s technical innards. The important part is that some client side code will help us to generate a token through the reCaptcha service using a client secret that is only valid for the domains we specify. Then, we can  use that token to verify that it was approved by reCaptcha on our server with a different, private key, that we and only we know and can use to validate the token.</p>
+<p>And those are the key principles: a client-side token and a back-end verification of said token.</p>
+<h2 id="How-to-Use-It"><a href="#How-to-Use-It" class="headerlink" title="How to Use It"></a>How to Use It</h2><p>First, pop over to <a href="https://www.google.com/recaptcha/about/" target="_blank" rel="noopener">reCaptcha</a>, sign in and go to the Admin Console. From there you can create or manage sites. I chose the “invisible” implementation because it’s fairly non-invasive but it is still able to provide a great level of protection to my site.</p>
+<p>There are actually pretty good docs once you generate your keys, namely:</p>
+<ul>
+<li><a href="https://developers.google.com/recaptcha/docs/invisible" target="_blank" rel="noopener">Client Side Integration</a></li>
+<li><a href="https://developers.google.com/recaptcha/docs/verify" target="_blank" rel="noopener">Server Side Integration</a></li>
+</ul>
+<p>But those docs are implementation agnostic, so we’ll have a look at how to get things going in a Razor Pages application. What we need to do in the Razor Pages and ASP.NET space is something like this:</p>
+<ol>
+<li>Add user secrets</li>
+<li>Create a service that can be injected into our view</li>
+<li>Update our startup to read the config and use the service</li>
+<li>Update our view to include the script and configuration</li>
+<li>Update our page code to setup the client key as well as to process the token</li>
+</ol>
+<h3 id="Add-User-Secrets-and-Update-Application-Config"><a href="#Add-User-Secrets-and-Update-Application-Config" class="headerlink" title="Add User Secrets and Update Application Config"></a>Add User Secrets and Update Application Config</h3><p>We don’t want to put our secrets into source control lest the directory be public or otherwise exposed. I like to create a placeholder in my <code>appsettings.json</code> file for the data like so:</p>
+<figure class="highlight 1c"><table><tr><td class="code"><pre><span class="line"><span class="string">"Captcha"</span>: &#123;</span><br><span class="line">  <span class="string">"ClientKey"</span>: <span class="string">""</span>,</span><br><span class="line">  <span class="string">"ServerKey"</span>: <span class="string">""</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Now, whenever someone on my team (or me, on a different computer) pulls down the source code it’s easy to copy and paste the configuration section into my user secrets, which are never added to the repo.</p>
+<p>Now, right-click on your project in Visual Studio and choose “Manage User Secrets”, then copy and paste the above into the root of the JSON document. Fill in the keys with the secrets from your Google configuration. </p>
+<p>It’s also a good idea at this time to update your staging and production environments, or any build automation steps or key stores where you would need these settings. Remember that the end result is a key-value pair, so the JSON nesting should be removed before you set a key somewhere and the key should be the composite of all property names in the path assembled with colon. What I mean by that is that our settings above will be <code>Captcha:ClientKey</code> and <code>Captcha:ServerKey</code> when you add them to your other environments. </p>
+<p>The second side of the configuration is the ability to work with the data in a POCO. We create a class for this so that we can take advantage of the <a href="https://docs.microsoft.com/en-us/aspnet/core/fundamentals/configuration/options?view=aspnetcore-5.0" target="_blank" rel="noopener">options pattern</a>. The class looks like this:</p>
+<figure class="highlight arduino"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CaptchaSettings</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">string</span> ClientKey &#123; <span class="built_in">get</span>; <span class="built_in">set</span>; &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">string</span> ServerKey &#123; <span class="built_in">get</span>; <span class="built_in">set</span>; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Two simple properties in a class. Easy-peasy.</p>
+<h3 id="A-CaptchaVerificationService-Service"><a href="#A-CaptchaVerificationService-Service" class="headerlink" title="A CaptchaVerificationService Service"></a>A <code>CaptchaVerificationService</code> Service</h3><p>Here is the complete listing of the service I’ve created to handle the verifications. I have chosen to have a <code>false</code> result by default in the event of a service verification failure or other communication exception, but you can choose a default that best suits your needs.</p>
+<figure class="highlight cs"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">CaptchaVerificationService</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">private</span> CaptchaSettings captchaSettings;</span><br><span class="line">    <span class="keyword">private</span> ILogger&lt;CaptchaVerificationService&gt; logger;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">string</span> ClientKey =&gt; captchaSettings.ClientKey;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">CaptchaVerificationService</span>(<span class="params">IOptions&lt;CaptchaSettings&gt; captchaSettings, ILogger&lt;CaptchaVerificationService&gt; logger</span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="keyword">this</span>.captchaSettings = captchaSettings.Value;</span><br><span class="line">        <span class="keyword">this</span>.logger = logger;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">async</span> Task&lt;<span class="keyword">bool</span>&gt; <span class="title">IsCaptchaValid</span>(<span class="params"><span class="keyword">string</span> token</span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="keyword">var</span> result = <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">var</span> googleVerificationUrl = <span class="string">"https://www.google.com/recaptcha/api/siteverify"</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">using</span> <span class="keyword">var</span> client = <span class="keyword">new</span> HttpClient();</span><br><span class="line"></span><br><span class="line">            <span class="keyword">var</span> response = <span class="keyword">await</span> client.PostAsync(<span class="string">$"<span class="subst">&#123;googleVerificationUrl&#125;</span>?secret=<span class="subst">&#123;captchaSettings.ServerKey&#125;</span>&amp;response=<span class="subst">&#123;token&#125;</span>"</span>, <span class="literal">null</span>);</span><br><span class="line">            <span class="keyword">var</span> jsonString = <span class="keyword">await</span> response.Content.ReadAsStringAsync();</span><br><span class="line">            <span class="keyword">var</span> captchaVerfication = JsonConvert.DeserializeObject&lt;CaptchaVerificationResponse&gt;(jsonString);</span><br><span class="line"></span><br><span class="line">            result = captchaVerfication.success;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">catch</span> (Exception e)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">// fail gracefully, but log</span></span><br><span class="line">            logger.LogError(<span class="string">"Failed to process captcha validation"</span>, e);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Wiring-up-the-Configuration-and-Services"><a href="#Wiring-up-the-Configuration-and-Services" class="headerlink" title="Wiring up the Configuration and Services"></a>Wiring up the Configuration and Services</h3><p>Next up, head over to your <code>Startup</code> class and pop into your <code>ConfigureServices</code> method to add these two lines:</p>
+<figure class="highlight abnf"><table><tr><td class="code"><pre><span class="line">services.AddOptions&lt;CaptchaSettings&gt;().BindConfiguration(<span class="string">"Captcha"</span>)<span class="comment">;</span></span><br><span class="line">services.AddTransient&lt;CaptchaVerificationService&gt;()<span class="comment">;</span></span><br></pre></td></tr></table></figure>
+
+<p>The first line pulls the configuration from your key store, configuration file or user secrets, depending on your environment. The second just makes our little verification class available for dependency injection.</p>
+<h3 id="Add-Assets-and-Configuration-to-our-View"><a href="#Add-Assets-and-Configuration-to-our-View" class="headerlink" title="Add Assets and Configuration to our View"></a>Add Assets and Configuration to our View</h3><p>Our view will have to be updated to integrate some code from the sample on the reCaptcha site. We’ll include the script from Google, and add a callback that submits our form. This code is in my <code>cshtml</code> view containing a form where I want the captcha to appear.</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://www.google.com/recaptcha/api.js"</span> <span class="attr">async</span> <span class="attr">defer</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="actionscript">       <span class="function"><span class="keyword">function</span> <span class="title">onSubmit</span><span class="params">(token)</span> </span>&#123;</span></span><br><span class="line"><span class="javascript">           <span class="built_in">document</span>.getElementById(<span class="string">"email-form"</span>).submit();</span></span><br><span class="line">       &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>Next, we update the submit button in the view to include a few properties that help the script understand what kind of captcha we’re generating and to specify the callback.</p>
+<figure class="highlight armasm"><table><tr><td class="code"><pre><span class="line">&lt;<span class="keyword">button </span>class=<span class="string">"g-recaptcha"</span> <span class="meta">data</span>-sitekey=<span class="string">"@Model.CaptchaClientKey"</span> <span class="meta">data</span>-callback=<span class="string">'onSubmit'</span>&gt;<span class="meta">Keep</span> me posted!&lt;/<span class="keyword">button&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>You’ll notice in there the client key…this is why we took advantage of the <code>IOptions</code> bits and exposed it through the service. It’s part of the page model for simplicity, and we just load it up on the <code>get</code> request in the next step.</p>
+<h3 id="Checking-the-Final-Boxes"><a href="#Checking-the-Final-Boxes" class="headerlink" title="Checking the Final Boxes"></a>Checking the Final Boxes</h3><p>That was a captcha pun, in case you missed it.</p>
+<p>Anyway, the last step is to add a bit of code to our page’s <code>.cs</code> file. Let’s start with the class-level field for the service reference and the property we expose through our page model.</p>
+<figure class="highlight cs"><table><tr><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">readonly</span> CaptchaVerificationService verificationService;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">string</span> CaptchaClientKey &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br></pre></td></tr></table></figure>
+
+<p>As well we’re going to need to capture the token from our form on the way back from the view to the server. The field is named in a non-CLR way, so we use the <code>Name</code> property on our binding to tie it to the way Google names the token in the client script.</p>
+<figure class="highlight cs"><table><tr><td class="code"><pre><span class="line">[<span class="meta">BindProperty(Name = <span class="meta-string">"g-recaptcha-response"</span>)</span>]</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">string</span> CaptchaResponse &#123;<span class="keyword">get</span>;<span class="keyword">set</span>;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Our constructor also needs some massaging. My page is called <code>Index</code> so appropriately my class is called <code>IndexModel</code>. </p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">IndexModel</span><span class="params">(CaptchaVerificationService verificationService)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.verificationService = verificationService;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>And, finally, our <code>OnPost</code> method needs to include the service check before proceeding with any data processing.</p>
+<figure class="highlight cs"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">async</span> Task <span class="title">OnPost</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// validate input</span></span><br><span class="line">    <span class="keyword">var</span> requestIsValid = <span class="keyword">await</span> <span class="keyword">this</span>.verificationService.IsCaptchaValid(CaptchaResponse);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (requestIsValid)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// do your processing...</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Ship-it"><a href="#Ship-it" class="headerlink" title="Ship it!"></a>Ship it!</h2><p>Stitching together all of the parts takes a bit of work on the first pass, but once the config and service are in place, it literally only takes a couple of minutes to wire up your views (pages, controllers, etc.). reCaptcha is a pretty slick addition to your site that can help prevent script kiddies, bots and purveyors of evil from fluffing with your data. Because no one likes getting their data fluffed.</p>
+<p>Happy coding!</p>
+
+                
+
+                <div class="clearfix"></div>
+                <div class="post-share-view">
+                    <div class="post-meta">
+                        <div class="post-meta-share">
+                            <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://aspnetmonsters.com/2020/11/Processing-Google-reCaptcha-Tokens-in-ASP-NET-Core/"><i class="fa fa-facebook"></i> Facebook</a> 
+                        </div>
+                        <div class="post-meta-share">
+                            <a target="_blank" href="https://twitter.com/home?status=Blog%20post%20from%20%40aspnetmonsters%3A%20Processing Google reCaptcha Tokens in ASP.NET Core%20http://aspnetmonsters.com/2020/11/Processing-Google-reCaptcha-Tokens-in-ASP-NET-Core/"><i class="fa fa-twitter"></i> Twitter</a>
+                        </div>
+                        <div class="post-meta-share">
+                            <a target="_blank" href="https://plus.google.com/share?url=http://aspnetmonsters.com/2020/11/Processing-Google-reCaptcha-Tokens-in-ASP-NET-Core/"><i class="fa fa-google-plus"></i> Google+</a>
+                        </div>
+                        
+                    </div>
+                    <!-- End post-meta -->
+                </div>
+                <!-- End post-share-view -->
+                <div class="clearfix"></div>
+            </div>
+            <!-- End post-inner -->
+        </div>
+        <!-- End post-wrap -->
+    </div>
+</div>
+<!-- End post -->
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+                </div>
+                
+                    <div class="col-md-3 sidebar">
+                        <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C/">C#</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Contest/">Contest</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Deployment/">Deployment</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Development/">Development</a><span class="category-list-count">44</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Development/Monsters-Weekly/">Monsters Weekly</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Development/News/">News</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Development/News/Monsters-Weekly/">Monsters Weekly</a><span class="category-list-count">1</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Monster-Guests/">Monster Guests</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Monsters-Weekly/">Monsters Weekly</a><span class="category-list-count">197</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/News/">News</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/docker/">docker</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/json/">json</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/messaging/">messaging</a><span class="category-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/NET/" rel="tag">.NET</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NET-Core/" rel="tag">.NET Core</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/net/" rel="tag">.net</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ASP-NET/" rel="tag">ASP.NET</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ASP-NET-Core/" rel="tag">ASP.NET Core</a><span class="tag-list-count">224</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ASP-NET-Core-MVC/" rel="tag">ASP.NET Core MVC</a><span class="tag-list-count">19</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ASP-NET-MVC/" rel="tag">ASP.NET MVC</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AZ-CLI/" rel="tag">AZ CLI</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Angular/" rel="tag">Angular</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/App-Service/" rel="tag">App Service</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Application-Insights/" rel="tag">Application Insights</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Authentication/" rel="tag">Authentication</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Authorization/" rel="tag">Authorization</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Azure/" rel="tag">Azure</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Azure-Functions/" rel="tag">Azure Functions</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Blazor/" rel="tag">Blazor</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C#</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Configuration/" rel="tag">Configuration</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DNX/" rel="tag">DNX</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dapper/" rel="tag">Dapper</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dependency-Injection/" rel="tag">Dependency Injection</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/" rel="tag">Docker</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Entity-Framework/" rel="tag">Entity Framework</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Entity-Framework-Core/" rel="tag">Entity Framework Core</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/F/" rel="tag">F#</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GenFu/" rel="tag">GenFu</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/" rel="tag">GitHub</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Gulp/" rel="tag">Gulp</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javascript/" rel="tag">Javascript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Knockout-js/" rel="tag">Knockout.js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Logging/" rel="tag">Logging</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MVC/" rel="tag">MVC</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Micro-ORM/" rel="tag">Micro ORM</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Noda-Time/" rel="tag">Noda Time</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Powershell/" rel="tag">Powershell</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Pugzor/" rel="tag">Pugzor</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RabbitMQ/" rel="tag">RabbitMQ</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Razor/" rel="tag">Razor</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tag-Helpers/" rel="tag">Tag Helpers</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Testing/" rel="tag">Testing</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tooling/" rel="tag">Tooling</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/View-Components/" rel="tag">View Components</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Visual-Studio/" rel="tag">Visual Studio</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Visual-Studio-2015/" rel="tag">Visual Studio 2015</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Visual-Studio-2019/" rel="tag">Visual Studio 2019</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue-js/" rel="tag">Vue.js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web-API/" rel="tag">Web API</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web-App/" rel="tag">Web App</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web-Dev/" rel="tag">Web Dev</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/azure/" rel="tag">azure</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/c/" rel="tag">c#</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/deployment/" rel="tag">deployment</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/" rel="tag">docker</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/json-net/" rel="tag">json.net</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/k8s/" rel="tag">k8s</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kestrel/" rel="tag">kestrel</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/masstransit/" rel="tag">masstransit</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/" rel="tag">nginx</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rabbitmq/" rel="tag">rabbitmq</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/reCaptcha/" rel="tag">reCaptcha</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/NET/" style="font-size: 17px;">.NET</a> <a href="/tags/NET-Core/" style="font-size: 18px;">.NET Core</a> <a href="/tags/net/" style="font-size: 11px;">.net</a> <a href="/tags/ASP-NET/" style="font-size: 10px;">ASP.NET</a> <a href="/tags/ASP-NET-Core/" style="font-size: 20px;">ASP.NET Core</a> <a href="/tags/ASP-NET-Core-MVC/" style="font-size: 19px;">ASP.NET Core MVC</a> <a href="/tags/ASP-NET-MVC/" style="font-size: 10px;">ASP.NET MVC</a> <a href="/tags/AZ-CLI/" style="font-size: 11px;">AZ CLI</a> <a href="/tags/Angular/" style="font-size: 10px;">Angular</a> <a href="/tags/App-Service/" style="font-size: 10px;">App Service</a> <a href="/tags/Application-Insights/" style="font-size: 13px;">Application Insights</a> <a href="/tags/Authentication/" style="font-size: 10px;">Authentication</a> <a href="/tags/Authorization/" style="font-size: 11px;">Authorization</a> <a href="/tags/Azure/" style="font-size: 14px;">Azure</a> <a href="/tags/Azure-Functions/" style="font-size: 10px;">Azure Functions</a> <a href="/tags/Blazor/" style="font-size: 10px;">Blazor</a> <a href="/tags/C/" style="font-size: 10px;">C#</a> <a href="/tags/Configuration/" style="font-size: 17px;">Configuration</a> <a href="/tags/DNX/" style="font-size: 12px;">DNX</a> <a href="/tags/Dapper/" style="font-size: 16px;">Dapper</a> <a href="/tags/Dependency-Injection/" style="font-size: 10px;">Dependency Injection</a> <a href="/tags/Docker/" style="font-size: 11px;">Docker</a> <a href="/tags/Entity-Framework/" style="font-size: 10px;">Entity Framework</a> <a href="/tags/Entity-Framework-Core/" style="font-size: 10px;">Entity Framework Core</a> <a href="/tags/F/" style="font-size: 10px;">F#</a> <a href="/tags/GenFu/" style="font-size: 10px;">GenFu</a> <a href="/tags/GitHub/" style="font-size: 11px;">GitHub</a> <a href="/tags/Gulp/" style="font-size: 10px;">Gulp</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Javascript/" style="font-size: 10px;">Javascript</a> <a href="/tags/Knockout-js/" style="font-size: 10px;">Knockout.js</a> <a href="/tags/Logging/" style="font-size: 11px;">Logging</a> <a href="/tags/MVC/" style="font-size: 14px;">MVC</a> <a href="/tags/Micro-ORM/" style="font-size: 16px;">Micro ORM</a> <a href="/tags/Noda-Time/" style="font-size: 11px;">Noda Time</a> <a href="/tags/Powershell/" style="font-size: 10px;">Powershell</a> <a href="/tags/Pugzor/" style="font-size: 10px;">Pugzor</a> <a href="/tags/RabbitMQ/" style="font-size: 10px;">RabbitMQ</a> <a href="/tags/Razor/" style="font-size: 12px;">Razor</a> <a href="/tags/Tag-Helpers/" style="font-size: 15px;">Tag Helpers</a> <a href="/tags/Testing/" style="font-size: 12px;">Testing</a> <a href="/tags/Tooling/" style="font-size: 10px;">Tooling</a> <a href="/tags/View-Components/" style="font-size: 12px;">View Components</a> <a href="/tags/Visual-Studio/" style="font-size: 10px;">Visual Studio</a> <a href="/tags/Visual-Studio-2015/" style="font-size: 15px;">Visual Studio 2015</a> <a href="/tags/Visual-Studio-2019/" style="font-size: 10px;">Visual Studio 2019</a> <a href="/tags/Vue-js/" style="font-size: 10px;">Vue.js</a> <a href="/tags/Web-API/" style="font-size: 12px;">Web API</a> <a href="/tags/Web-App/" style="font-size: 10px;">Web App</a> <a href="/tags/Web-Dev/" style="font-size: 11px;">Web Dev</a> <a href="/tags/azure/" style="font-size: 11px;">azure</a> <a href="/tags/c/" style="font-size: 10px;">c#</a> <a href="/tags/deployment/" style="font-size: 11px;">deployment</a> <a href="/tags/docker/" style="font-size: 12px;">docker</a> <a href="/tags/json-net/" style="font-size: 10px;">json.net</a> <a href="/tags/k8s/" style="font-size: 10px;">k8s</a> <a href="/tags/kestrel/" style="font-size: 11px;">kestrel</a> <a href="/tags/masstransit/" style="font-size: 11px;">masstransit</a> <a href="/tags/nginx/" style="font-size: 11px;">nginx</a> <a href="/tags/rabbitmq/" style="font-size: 11px;">rabbitmq</a> <a href="/tags/reCaptcha/" style="font-size: 10px;">reCaptcha</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/01/monsters-weekly%5Cep200d/">Monsters Weekly 200d -  Conversations with Nik Molar</a>
+          </li>
+        
+          <li>
+            <a href="/2021/01/monsters-weekly%5Cep200c/">Monsters Weekly 200c -  Conversations with Andrew Stanton-Nurse</a>
+          </li>
+        
+          <li>
+            <a href="/2020/12/monsters-weekly%5Cep195/">Monsters Weekly 195 -  Playwright with Arjun Attam</a>
+          </li>
+        
+          <li>
+            <a href="/2020/12/monsters-weekly%5Cep200b/">Monsters Weekly 200b -  Conversations with Julie Lerman</a>
+          </li>
+        
+          <li>
+            <a href="/2020/12/monsters-weekly%5Cep200a/">Monsters Weekly 200a -  Conversations with Jon Galloway</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+                    </div>
+                
+            </div>       
+       </div>
+       <div class="clearfix"></div>
+    </div>
+        <footer id="footer">
+        <div class="container">
+            <div class="copyrights">Copyright 2015-2016 | Crafted By The Monsters | <a href="http://simontimms.com" target="_blank">Simon Timms</a> | <a href="http://davepaquette.com" target="_blank">Dave Paquette</a> | <a href="http://jameschambers.com" target="_blank">James Chambers</a></div> 
+            <div class="social-ul">
+                <ul>
+                    <li class="social-twitter"><a href="https://twitter.com/AspNetMonsters" target="_blank" rel="noopener"><i class="fa fa-twitter"></i></a></li>
+                    <li class="social-google"><a href="https://plus.google.com/100446024681292990445" target="_blank" rel="noopener"><i class="fa fa-google-plus"></i></a></li>
+                    <li class="social-youtube"><a href="https://www.youtube.com/channel/UCBkoKZ_tgy_yPnN0sD3KeRg" target="_blank" rel="noopener"><i class="fa fa-youtube-play"></i></a></li>
+                    <li class="social-rss"><a href="/atom.xml"><i class="fa fa-rss"></i></a></li>
+                </ul>
+            </div>
+            <!-- End social-ul -->
+        </div>
+        <!-- End container -->
+    </footer>
+    <!-- End footer -->    
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/2016/01/welcome" class="mobile-nav-link">About</a>
+  
+    <a href="/2016/01/guests" class="mobile-nav-link">Special Guests</a>
+  
+    <a href="/2016/12/aspnetcorebook" class="mobile-nav-link">Our Book</a>
+  
+</nav>
+    
+<script>
+  var disqus_shortname = 'aspnetmonsters';
+   
+  
+  var disqus_url = 'http://aspnetmonsters.com/2020/11/Processing-Google-reCaptcha-Tokens-in-ASP-NET-Core/';  
+  
+  
+
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+    <!-- js -->
+       <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+        <script src="/js/html5.js"></script>
+        <script src="/js/modernizr.js"></script>
+        <script src="/js/tabs.js"></script>
+        <script src="/js/jquery.prettyPhoto.js"></script>
+        <script src="/js/jquery.bxslider.min.js"></script>
+        <script src="/js/custom.js"></script>
+       <script src="/js/bootstrap.min.js"></script>
+    <!-- End js --> 
+  
+    <script type="text/javascript">
+        function ready(fn) {
+        if (document.readyState != 'loading'){
+            fn();
+        } else {
+            document.addEventListener('DOMContentLoaded', fn);
+        }
+        }
+
+        ready(function() {
+            // min inclusive, max exclusive
+            function getRandomInt(min, max) {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min)) + min;
+            }
+
+            var referalLinks = 
+            [
+            "https://www.amazon.ca/ASP-NET-Core-Application-Development-application-ebook/dp/B01N9E92QY" 
+            ];
+
+            var buynowlink = document.getElementById('monstermessagelink');
+            buynowlink.href = referalLinks[getRandomInt(0,referalLinks.length)];
+        });
+    </script>
+</body>
+</html>

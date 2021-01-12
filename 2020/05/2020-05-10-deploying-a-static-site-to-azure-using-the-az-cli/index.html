@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Deploying a Static Site to Azure Using the az CLI | ASP.NET Monsters</title>  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+    <!-- Main Style -->
+    <link rel="stylesheet" type="text/css" href="/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/base.css">
+    <link rel="stylesheet" type="text/css" href="/css/prettyPhoto.css">
+    <link rel="stylesheet" type="text/css" href="/js/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/bright_cyan.css">
+    <link rel="stylesheet" type="text/css" href="/css/skins.css">
+    <link rel="stylesheet" type="text/css" href="/css/responsive.css">
+    <link rel="stylesheet" type="text/css" href="/css/navbar-fixed-top.css">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/css/highlight.css">
+
+    <!-- Font Style -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+  
+  <meta name="description" content="The az command line interface (cli) is a powerful tool for creating, modifying and deploying to Azure resources. Since it&#39;s a cli AND cross platform, it&#39;s also a great tool for automating your deploym">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Deploying a Static Site to Azure Using the az CLI">
+<meta property="og:url" content="http://aspnetmonsters.com/2020/05/2020-05-10-deploying-a-static-site-to-azure-using-the-az-cli/index.html">
+<meta property="og:site_name" content="ASP.NET Monsters">
+<meta property="og:description" content="The az command line interface (cli) is a powerful tool for creating, modifying and deploying to Azure resources. Since it&#39;s a cli AND cross platform, it&#39;s also a great tool for automating your deploym">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-05-10T23:30:00.000Z">
+<meta property="article:modified_time" content="2021-01-12T14:54:24.999Z">
+<meta property="article:author" content="The Monsters">
+<meta property="article:tag" content="Azure">
+<meta property="article:tag" content="Web Dev">
+<meta property="article:tag" content="AZ CLI">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternative" href="/atom.xml" title="ASP.NET Monsters" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/images/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-58850513-2', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+  
+  <script src="//load.sumome.com/" data-sumo-site-id="4be75cfb88d7cd4bb66a3c505430b09e769afb08367319e92abd1a12f95a2834" async="async"></script>
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+<body>
+    <div id="wrap" class="stripe grid_1200">
+        <div class="wrap-search">
+    <form method="post">
+        <input type="search" name="s" value="Search here ..." onfocus="if(this.value==this.defaultValue)this.value='';" onblur="if(this.value=='')this.value=this.defaultValue;">
+    </form>
+</div>
+<!-- End wrap-search -->
+
+<!-- Fixed navbar -->
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header" style="color:#F4EDED; padding:10px;">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+            aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="logo" href="/"><img src="/images/monsters-little-banner.png" /></a>
+            <a class="navbar-brand" href="/">ASP.NET Monsters</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+
+            <ul class="nav navbar-nav navbar-right">
+            
+                <li><a href="/">Home</a></li>
+             
+                <li><a href="/2016/01/welcome">About</a></li>
+             
+                <li><a href="/2016/01/guests">Special Guests</a></li>
+             
+                <li><a href="/2016/12/aspnetcorebook">Our Book</a></li>
+             
+            </ul>
+
+        </div>
+        <!--/.nav-collapse -->
+    </div>
+</nav>
+        <div class="clearfix"></div>
+        <div class="monster-message"><div class="container"><a id="monstermessagelink" href="https://www.amazon.ca/ASP-NET-Core-Application-Development-application-ebook/dp/B01N9E92QY" target="_blank" rel="noopener"><strong>Buy our book:</strong> ASP.NET Core Application Development <i class="fa fa-external-link"></i></a></div></div>
+        <div class="sections body-section">
+            <div class="row">
+                <div class="col-md-8 main-content">
+                    <div class="post post-2 post-gallery single-post row">
+    <div class="col-md-1">
+        <div class="post-author"><img alt="David Paquette" src="/images/thumb_dave.png"></div>
+    </div>
+    <div class="col-md-11">
+        <div class="post-head">
+            <h3><a href="/2020/05/2020-05-10-deploying-a-static-site-to-azure-using-the-az-cli/">Deploying a Static Site to Azure Using the az CLI</a></h3>
+            <div class="post-meta">
+                <div><i class="fa fa-user"></i>BY : <a href="#">David Paquette</a></div>
+                <div><i class="fa fa-clock-o"></i><time datetime="2020-05-10T23:30:00.000Z" itemprop="datePublished">2020-05-10</time></div>
+                <div><i class="fa fa-comments"></i><a href="http://aspnetmonsters.com/2020/05/2020-05-10-deploying-a-static-site-to-azure-using-the-az-cli/#disqus_thread" class="article-comment-link">Comments</a></div>
+            </div>
+            <!-- End post-meta -->
+            <div class="clearfix"></div>
+        </div>
+        <!-- End post-head -->
+        <div class="post-wrap">
+                
+            <div class="post-inner">
+                
+                    
+
+<small>Originally posted to: <a href="https://www.davepaquette.com/archive/2020/05/10/deploying-a-static-site-to-azure-using-the-az-cli.aspx" target="_blank" rel="noopener">https://www.davepaquette.com/archive/2020/05/10/deploying-a-static-site-to-azure-using-the-az-cli.aspx</a></small>
+
+
+                    <p>I was recently working on a project where the frontend was built in React. The project was hosted on Azure and we wanted to use Azure CDN to host the React app. I have been looking at the az cli recently and decided to use it on this project to script the setup of resources and deployments to Azure.</p>
+<h2 id="Setting-up-the-AZ-CLI"><a href="#Setting-up-the-AZ-CLI" class="headerlink" title="Setting up the AZ CLI"></a>Setting up the AZ CLI</h2><p>First up, <a href="https://docs.microsoft.com/en-us/cli/azure/?view=azure-cli-latest" target="_blank" rel="noopener">install the az cli</a>.</p>
+<p>Once installed, you’ll need to login to your Azure Subscription.</p>
+<figure class="highlight ebnf"><table><tr><td class="code"><pre><span class="line"><span class="attribute">az login</span></span><br></pre></td></tr></table></figure>
+
+<p>A browser window will popup, prompting you to log in to your Azure account. Once you’ve logged in, the browser window will close and the az cli will display a list of subscriptions available in your account. If you have more than one subscription, make sure you select the one you want to use.</p>
+<figure class="highlight applescript"><table><tr><td class="code"><pre><span class="line">az account <span class="keyword">set</span> <span class="comment">--subscription YourSubscriptionId</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Create-a-Resource-Group"><a href="#Create-a-Resource-Group" class="headerlink" title="Create a Resource Group"></a>Create a Resource Group</h2><p>You will need a resource group for your Storage and CDN resources. If you don’t already have one, create it here.</p>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">az<span class="built_in"> group </span>create --name DavesFancyApp --location SouthCentralUs</span><br></pre></td></tr></table></figure>
+
+<p>Most commands will require you to pass in a <code>--resource-group</code> and <code>--location</code> parameters. These parameters are <code>-g</code> and <code>-l</code> for short, but you can save yourself even more keystrokes by setting defaults for <code>az</code>.</p>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">az configure -d <span class="attribute">group</span>=DavesFancyApp</span><br><span class="line">az configure -d <span class="attribute">location</span>=SouthCentralUs</span><br></pre></td></tr></table></figure>
+
+<h2 id="Create-a-Storage-Account-for-Static-Hosting"><a href="#Create-a-Storage-Account-for-Static-Hosting" class="headerlink" title="Create a Storage Account for Static Hosting"></a>Create a Storage Account for Static Hosting</h2><p>First, create a storage account:</p>
+<figure class="highlight pgsql"><table><tr><td class="code"><pre><span class="line">az <span class="keyword">storage</span> account <span class="keyword">create</span> <span class="comment">--name davefancyapp123</span></span><br></pre></td></tr></table></figure>
+
+<p>Then, enable static site hosting for this account.</p>
+<figure class="highlight brainfuck"><table><tr><td class="code"><pre><span class="line"><span class="comment">az</span> <span class="comment">storage</span> <span class="comment">blob</span> <span class="comment">service</span><span class="literal">-</span><span class="comment">properties</span> <span class="comment">update</span> --<span class="comment">account</span><span class="literal">-</span><span class="comment">name</span> <span class="comment">davefancyapp123</span> --<span class="comment">static</span><span class="literal">-</span><span class="comment">website</span> --<span class="comment">404</span><span class="literal">-</span><span class="comment">document</span> <span class="comment">404</span><span class="string">.</span><span class="comment">html</span> --<span class="comment">index</span><span class="literal">-</span><span class="comment">document</span> <span class="comment">index</span><span class="string">.</span><span class="comment">html</span></span><br></pre></td></tr></table></figure>
+
+<p>Your storage account will now have a blob container named <code>$web</code>. That contents of that container will be available on the URL <em>accountname</em>.z21.web.core.windows.net/. For example, <code>https://davefancyapp123.z21.web.core.windows.net/</code>.</p>
+<h2 id="Deploying-your-app"><a href="#Deploying-your-app" class="headerlink" title="Deploying your app"></a>Deploying your app</h2><p>To deploy your app to the site, all you need to do is copy your app’s static files to the <code>$web</code> container in the storage account you created above. For my react app, that means running <code>npm run build</code> and copying the build output to the <code>$web</code> container. </p>
+<figure class="highlight armasm"><table><tr><td class="code"><pre><span class="line"><span class="symbol">az</span> storage <span class="keyword">blob </span>upload-<span class="keyword">batch </span>--account-name davefancyapp123 -s ./<span class="keyword">build </span>-d <span class="string">'$web'</span></span><br></pre></td></tr></table></figure>
+<p>Now your site should be available via the static hosting URL above. That was easy!</p>
+<h2 id="Create-a-CDN-Profile-and-Endpoint"><a href="#Create-a-CDN-Profile-and-Endpoint" class="headerlink" title="Create a CDN Profile and Endpoint"></a>Create a CDN Profile and Endpoint</h2><p>Next up, we are going to put a Content Delivery Network (CDN) endpoint in front of the blob storage account. We want to use a CDN for a couple reasons. First, it’s going to provide much better performance overall. CDNs are optimized for delivering web content to user’s devices and we should take advantage of that as much as possible. The second reason is that a CDN will allow us to configure SSL on a custom domain name.</p>
+<p>First, we will need to create a CDN Profile. There are a few different of CDNs offerings available in Azure. You can read about them <a href="https://docs.microsoft.com/azure/cdn/cdn-features" target="_blank" rel="noopener">here</a>. In this example, we will us the Standard Microsoft CDN.</p>
+<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">az cdn<span class="built_in"> profile </span>create -n davefancyapp123cdn --sku Standard_Microsoft</span><br></pre></td></tr></table></figure>
+
+<p>Next, we will create the CDN endpoint. Here we need to set the origin to the static hosting URL from the previous step. Note that we don’t include the protocol portion of the URL.</p>
+<figure class="highlight stylus"><table><tr><td class="code"><pre><span class="line">az cdn endpoint create -n davefancyapp123cdnendpoint --profile-name davefancyapp123cdn --origin davefancyapp123<span class="selector-class">.z21</span><span class="selector-class">.web</span><span class="selector-class">.core</span><span class="selector-class">.windows</span><span class="selector-class">.net</span> --origin-host-<span class="selector-tag">header</span> davefancyapp123<span class="selector-class">.z21</span><span class="selector-class">.web</span><span class="selector-class">.core</span><span class="selector-class">.windows</span><span class="selector-class">.net</span> --enable-compression</span><br></pre></td></tr></table></figure>
+
+<p>Note: See the <a href="https://docs.microsoft.com/en-us/cli/azure/cdn/endpoint?view=azure-cli-latest#az-cdn-endpoint-create" target="_blank" rel="noopener">az cli docs</a> for more information on the options available when creating a CDN endpoint.</p>
+<p>Now your site should be available from <em>endpointname</em>.azureedge.net. In my case <code>https://davefancyapp123cdnendpoint.azureedge.net/</code>. Note that the endpoint is created quickly but it can take some time for the actual content to propagate through the CDN. You might initially get a 404 when you visit the URL.</p>
+<h3 id="Create-CDN-Endpoint-Rules"><a href="#Create-CDN-Endpoint-Rules" class="headerlink" title="Create CDN Endpoint Rules"></a>Create CDN Endpoint Rules</h3><p>These 2 steps are optional. The first one is highly recommended. The second is optional depending on the type of app your deploying. </p>
+<p>First, create URL Redirect rule to redirect any HTTP requests to HTTPS.</p>
+<figure class="highlight dsconfig"><table><tr><td class="code"><pre><span class="line"><span class="string">az </span><span class="string">cdn </span><span class="string">endpoint </span><span class="string">rule </span><span class="string">add </span>-n <span class="string">davefancyapp123cdnendpoint </span><span class="built_in">--profile-name</span> <span class="string">davefancyapp123cdn </span><span class="built_in">--rule-name</span> <span class="string">enforcehttps </span><span class="built_in">--order</span> 1 <span class="built_in">--action-name</span> <span class="string">"UrlRedirect"</span>  <span class="built_in">--redirect-type</span> <span class="string">Found </span><span class="built_in">--redirect-protocol</span> <span class="string">HTTPS </span><span class="built_in">--match-variable</span> <span class="string">RequestScheme </span><span class="built_in">--operator</span> <span class="string">Equal </span><span class="built_in">--match-value</span> <span class="string">HTTP</span></span><br></pre></td></tr></table></figure>
+
+<p>Next, if you’re deploying a Single Page Application (SPA) built in your favourite JavaScript framework (e.g. Vue, React, Angular), you will want a URL Rewrite rule that returns the app’s root <code>index.html</code> file for any request to a path that isn’t an actual file. There are many variations on how to write this rule. I found this to be the simplest one that worked for me. Basically if the request path is not for a specific file with a file extension, rewrite to <code>index.html</code>. This allows users to directly navigate to a route in my SPA and still have the CDN serve the <code>index.html</code> that bootstraps the application.</p>
+<figure class="highlight jboss-cli"><table><tr><td class="code"><pre><span class="line">az cdn endpoint rule add -n davefancyapp123cdnendpoint <span class="params">--profile-name</span> davefancyapp123cdn <span class="params">--rule-name</span> sparewrite <span class="params">--order</span> 2 <span class="params">--action-name</span> <span class="string">"UrlRewrite"</span> <span class="params">--source-pattern</span> '/' <span class="params">--destination</span> <span class="string">/index.html</span> <span class="params">--preserve-unmatched-path</span> <span class="literal">false</span> <span class="params">--match-variable</span> UrlFileExtension <span class="params">--operator</span> LessThan <span class="params">--match-value</span> 1</span><br></pre></td></tr></table></figure>
+
+<h3 id="Configuring-a-domain-with-an-Azure-Managed-Certificate"><a href="#Configuring-a-domain-with-an-Azure-Managed-Certificate" class="headerlink" title="Configuring a domain with an Azure Managed Certificate"></a>Configuring a domain with an Azure Managed Certificate</h3><p>The final step in configuring the CDN Endpoint is to configure a custom domain and enable HTTPS on that custom domain.</p>
+<p>You will need access to update DNS records for the custom domain. Add a CNAME record for your subdomain that points to the CDN endpoint URL. For example, I created a CNAME record on my davepaquette.com domain:</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">CNAME</span>    <span class="selector-tag">fancyapp</span>   <span class="selector-tag">davefancyapp123cdnendpoint</span><span class="selector-class">.azureedge</span><span class="selector-class">.net</span></span><br></pre></td></tr></table></figure>
+
+<p>Once the CNAME record has been created, create a custom domain for your endpoint. </p>
+<figure class="highlight brainfuck"><table><tr><td class="code"><pre><span class="line"><span class="comment">az</span> <span class="comment">cdn</span> <span class="comment">custom</span><span class="literal">-</span><span class="comment">domain</span> <span class="comment">create</span> --<span class="comment">endpoint</span><span class="literal">-</span><span class="comment">name</span> <span class="comment">davefancyapp123cdnendpoint</span> --<span class="comment">profile</span><span class="literal">-</span><span class="comment">name</span> <span class="comment">davefancyapp123cdn</span> <span class="literal">-</span><span class="comment">n</span> <span class="comment">fancyapp</span><span class="literal">-</span><span class="comment">domain</span> --<span class="comment">hostname</span> <span class="comment">fancyapp</span><span class="string">.</span><span class="comment">davepaquette</span><span class="string">.</span><span class="comment">com</span></span><br></pre></td></tr></table></figure>
+
+<p>And finally, enable HTTPs. Unfortunately, this step fails due to a <a href="https://github.com/Azure/azure-cli/issues/12152" target="_blank" rel="noopener">bug</a> in the AZ CLI. There’s <a href="https://github.com/Azure/azure-cli/pull/12648" target="_blank" rel="noopener">a fix</a> on it’s way for this but it hasn’t been merged into the CLI tool yet.</p>
+<figure class="highlight brainfuck"><table><tr><td class="code"><pre><span class="line"><span class="comment">az</span> <span class="comment">cdn</span> <span class="comment">custom</span><span class="literal">-</span><span class="comment">domain</span> <span class="comment">enable</span><span class="literal">-</span><span class="comment">https</span> --<span class="comment">endpoint</span><span class="literal">-</span><span class="comment">name</span> <span class="comment">davefancyapp123cdnendpoint</span> --<span class="comment">profile</span><span class="literal">-</span><span class="comment">name</span> <span class="comment">davefancyapp123cdn</span> --<span class="comment">name</span> <span class="comment">fancyapp</span><span class="literal">-</span><span class="comment">domain</span></span><br></pre></td></tr></table></figure>
+
+<p>Due to the bug, this command returns <code>InvalidResource - The resource format is invalid</code>.  For now, you can <a href="https://docs.microsoft.com/en-us/azure/cdn/cdn-custom-ssl?tabs=option-1-default-enable-https-with-a-cdn-managed-certificate" target="_blank" rel="noopener">do this step manually</a> in the Azure Portal. When using CDN Managed Certificates, the process is full automated. Azure will verify your domain using the CNAME record above, provision a certificate and configure the CDN endpoint to use that certificate. Certificates are fully managed by Azure. That includes generating new certificates so you don’t need to worry about your certificate expiring.</p>
+<h4 id="CDN-Managed-Certificates-for-Root-Domain"><a href="#CDN-Managed-Certificates-for-Root-Domain" class="headerlink" title="CDN Managed Certificates for Root Domain"></a>CDN Managed Certificates for Root Domain</h4><p>My biggest frustration with Azure CDN Endpoints is that CDN managed certificates are not supported for the apex/root domain. You can still use HTTPS but you need to bring your own certificate. </p>
+<p>The same limitation exists for managed certificates on App Service. If you share my frustration, <a href="https://feedback.azure.com/forums/169385-web-apps/suggestions/38981932-add-naked-domain-support-to-app-service-managed-ce" target="_blank" rel="noopener">please upvote here</a>.</p>
+<h2 id="Deploying-updates-to-your-application"><a href="#Deploying-updates-to-your-application" class="headerlink" title="Deploying updates to your application"></a>Deploying updates to your application</h2><p>The CDN will cache your files. That’s great for performance but can be a royal pain when trying to deploy updates to your application. For SPA apps, I have found that simply telling the CDN to purge <code>index.html</code> is enough to ensure updates are available very shortly after deploying a new version. This works because most JavaScript frameworks today use WebPack which does a good job of cache-busting your JavaScript and CSS assets. You just need to make sure the browser is able to get the latest version of <code>index.html</code> and updates flow through nicely.</p>
+<p>When you upload your latest files to blob storage, follow it with a purge command for <code>index.html</code> on the CDN endpoint.</p>
+<figure class="highlight dsconfig"><table><tr><td class="code"><pre><span class="line"><span class="string">az </span><span class="string">storage </span><span class="string">blob </span><span class="string">upload-batch </span><span class="built_in">--account-name</span> <span class="string">davefancyapp123 </span>-s ./<span class="string">build </span>-d <span class="string">'$web'</span></span><br><span class="line"><span class="string">az </span><span class="string">cdn </span><span class="string">endpoint </span><span class="string">purge </span>-n <span class="string">davefancyapp123cdnendpoint </span><span class="built_in">--profile-name</span> <span class="string">davefancyapp123cdn </span><span class="built_in">--no-wait</span> <span class="built_in">--content-paths</span> <span class="string">'/'</span> <span class="string">'/index.html'</span></span><br></pre></td></tr></table></figure>
+
+<p>The purge command can take a while to complete. We pass the <code>--no-wait</code> option so the command returns immediately. </p>
+<h2 id="My-thoughts-on-az"><a href="#My-thoughts-on-az" class="headerlink" title="My thoughts on az"></a>My thoughts on az</h2><p>Aside from the bug I ran in to with enabling HTTPS on the CDN endpoint, I’ve really enjoyed my experience with the <code>az</code> cli. I was able to fully automate resource creation and deployments using the <a href="https://github.com/marketplace/actions/azure-cli-action" target="_blank" rel="noopener">GitHub Actions az cli action</a>. I can see <code>az</code> becoming my preferred method of managing Azure resources.</p>
+
+                
+
+                <div class="clearfix"></div>
+                <div class="post-share-view">
+                    <div class="post-meta">
+                        <div class="post-meta-share">
+                            <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://aspnetmonsters.com/2020/05/2020-05-10-deploying-a-static-site-to-azure-using-the-az-cli/"><i class="fa fa-facebook"></i> Facebook</a> 
+                        </div>
+                        <div class="post-meta-share">
+                            <a target="_blank" href="https://twitter.com/home?status=Blog%20post%20from%20%40aspnetmonsters%3A%20Deploying a Static Site to Azure Using the az CLI%20http://aspnetmonsters.com/2020/05/2020-05-10-deploying-a-static-site-to-azure-using-the-az-cli/"><i class="fa fa-twitter"></i> Twitter</a>
+                        </div>
+                        <div class="post-meta-share">
+                            <a target="_blank" href="https://plus.google.com/share?url=http://aspnetmonsters.com/2020/05/2020-05-10-deploying-a-static-site-to-azure-using-the-az-cli/"><i class="fa fa-google-plus"></i> Google+</a>
+                        </div>
+                        
+                    </div>
+                    <!-- End post-meta -->
+                </div>
+                <!-- End post-share-view -->
+                <div class="clearfix"></div>
+            </div>
+            <!-- End post-inner -->
+        </div>
+        <!-- End post-wrap -->
+    </div>
+</div>
+<!-- End post -->
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+                </div>
+                
+                    <div class="col-md-3 sidebar">
+                        <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C/">C#</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Contest/">Contest</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Deployment/">Deployment</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Development/">Development</a><span class="category-list-count">44</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Development/Monsters-Weekly/">Monsters Weekly</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Development/News/">News</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Development/News/Monsters-Weekly/">Monsters Weekly</a><span class="category-list-count">1</span></li></ul></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Monster-Guests/">Monster Guests</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Monsters-Weekly/">Monsters Weekly</a><span class="category-list-count">197</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/News/">News</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/docker/">docker</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/json/">json</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/messaging/">messaging</a><span class="category-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/NET/" rel="tag">.NET</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NET-Core/" rel="tag">.NET Core</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/net/" rel="tag">.net</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ASP-NET/" rel="tag">ASP.NET</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ASP-NET-Core/" rel="tag">ASP.NET Core</a><span class="tag-list-count">224</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ASP-NET-Core-MVC/" rel="tag">ASP.NET Core MVC</a><span class="tag-list-count">19</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ASP-NET-MVC/" rel="tag">ASP.NET MVC</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AZ-CLI/" rel="tag">AZ CLI</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Angular/" rel="tag">Angular</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/App-Service/" rel="tag">App Service</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Application-Insights/" rel="tag">Application Insights</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Authentication/" rel="tag">Authentication</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Authorization/" rel="tag">Authorization</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Azure/" rel="tag">Azure</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Azure-Functions/" rel="tag">Azure Functions</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Blazor/" rel="tag">Blazor</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C#</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Configuration/" rel="tag">Configuration</a><span class="tag-list-count">12</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DNX/" rel="tag">DNX</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dapper/" rel="tag">Dapper</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dependency-Injection/" rel="tag">Dependency Injection</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Docker/" rel="tag">Docker</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Entity-Framework/" rel="tag">Entity Framework</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Entity-Framework-Core/" rel="tag">Entity Framework Core</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/F/" rel="tag">F#</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GenFu/" rel="tag">GenFu</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GitHub/" rel="tag">GitHub</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Gulp/" rel="tag">Gulp</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javascript/" rel="tag">Javascript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Knockout-js/" rel="tag">Knockout.js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Logging/" rel="tag">Logging</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MVC/" rel="tag">MVC</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Micro-ORM/" rel="tag">Micro ORM</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Noda-Time/" rel="tag">Noda Time</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Powershell/" rel="tag">Powershell</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Pugzor/" rel="tag">Pugzor</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RabbitMQ/" rel="tag">RabbitMQ</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Razor/" rel="tag">Razor</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tag-Helpers/" rel="tag">Tag Helpers</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Testing/" rel="tag">Testing</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tooling/" rel="tag">Tooling</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/View-Components/" rel="tag">View Components</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Visual-Studio/" rel="tag">Visual Studio</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Visual-Studio-2015/" rel="tag">Visual Studio 2015</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Visual-Studio-2019/" rel="tag">Visual Studio 2019</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue-js/" rel="tag">Vue.js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web-API/" rel="tag">Web API</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web-App/" rel="tag">Web App</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web-Dev/" rel="tag">Web Dev</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/azure/" rel="tag">azure</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/c/" rel="tag">c#</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/deployment/" rel="tag">deployment</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/" rel="tag">docker</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/json-net/" rel="tag">json.net</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/k8s/" rel="tag">k8s</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kestrel/" rel="tag">kestrel</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/masstransit/" rel="tag">masstransit</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx/" rel="tag">nginx</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/rabbitmq/" rel="tag">rabbitmq</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/reCaptcha/" rel="tag">reCaptcha</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/NET/" style="font-size: 17px;">.NET</a> <a href="/tags/NET-Core/" style="font-size: 18px;">.NET Core</a> <a href="/tags/net/" style="font-size: 11px;">.net</a> <a href="/tags/ASP-NET/" style="font-size: 10px;">ASP.NET</a> <a href="/tags/ASP-NET-Core/" style="font-size: 20px;">ASP.NET Core</a> <a href="/tags/ASP-NET-Core-MVC/" style="font-size: 19px;">ASP.NET Core MVC</a> <a href="/tags/ASP-NET-MVC/" style="font-size: 10px;">ASP.NET MVC</a> <a href="/tags/AZ-CLI/" style="font-size: 11px;">AZ CLI</a> <a href="/tags/Angular/" style="font-size: 10px;">Angular</a> <a href="/tags/App-Service/" style="font-size: 10px;">App Service</a> <a href="/tags/Application-Insights/" style="font-size: 13px;">Application Insights</a> <a href="/tags/Authentication/" style="font-size: 10px;">Authentication</a> <a href="/tags/Authorization/" style="font-size: 11px;">Authorization</a> <a href="/tags/Azure/" style="font-size: 14px;">Azure</a> <a href="/tags/Azure-Functions/" style="font-size: 10px;">Azure Functions</a> <a href="/tags/Blazor/" style="font-size: 10px;">Blazor</a> <a href="/tags/C/" style="font-size: 10px;">C#</a> <a href="/tags/Configuration/" style="font-size: 17px;">Configuration</a> <a href="/tags/DNX/" style="font-size: 12px;">DNX</a> <a href="/tags/Dapper/" style="font-size: 16px;">Dapper</a> <a href="/tags/Dependency-Injection/" style="font-size: 10px;">Dependency Injection</a> <a href="/tags/Docker/" style="font-size: 11px;">Docker</a> <a href="/tags/Entity-Framework/" style="font-size: 10px;">Entity Framework</a> <a href="/tags/Entity-Framework-Core/" style="font-size: 10px;">Entity Framework Core</a> <a href="/tags/F/" style="font-size: 10px;">F#</a> <a href="/tags/GenFu/" style="font-size: 10px;">GenFu</a> <a href="/tags/GitHub/" style="font-size: 11px;">GitHub</a> <a href="/tags/Gulp/" style="font-size: 10px;">Gulp</a> <a href="/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/tags/Javascript/" style="font-size: 10px;">Javascript</a> <a href="/tags/Knockout-js/" style="font-size: 10px;">Knockout.js</a> <a href="/tags/Logging/" style="font-size: 11px;">Logging</a> <a href="/tags/MVC/" style="font-size: 14px;">MVC</a> <a href="/tags/Micro-ORM/" style="font-size: 16px;">Micro ORM</a> <a href="/tags/Noda-Time/" style="font-size: 11px;">Noda Time</a> <a href="/tags/Powershell/" style="font-size: 10px;">Powershell</a> <a href="/tags/Pugzor/" style="font-size: 10px;">Pugzor</a> <a href="/tags/RabbitMQ/" style="font-size: 10px;">RabbitMQ</a> <a href="/tags/Razor/" style="font-size: 12px;">Razor</a> <a href="/tags/Tag-Helpers/" style="font-size: 15px;">Tag Helpers</a> <a href="/tags/Testing/" style="font-size: 12px;">Testing</a> <a href="/tags/Tooling/" style="font-size: 10px;">Tooling</a> <a href="/tags/View-Components/" style="font-size: 12px;">View Components</a> <a href="/tags/Visual-Studio/" style="font-size: 10px;">Visual Studio</a> <a href="/tags/Visual-Studio-2015/" style="font-size: 15px;">Visual Studio 2015</a> <a href="/tags/Visual-Studio-2019/" style="font-size: 10px;">Visual Studio 2019</a> <a href="/tags/Vue-js/" style="font-size: 10px;">Vue.js</a> <a href="/tags/Web-API/" style="font-size: 12px;">Web API</a> <a href="/tags/Web-App/" style="font-size: 10px;">Web App</a> <a href="/tags/Web-Dev/" style="font-size: 11px;">Web Dev</a> <a href="/tags/azure/" style="font-size: 11px;">azure</a> <a href="/tags/c/" style="font-size: 10px;">c#</a> <a href="/tags/deployment/" style="font-size: 11px;">deployment</a> <a href="/tags/docker/" style="font-size: 12px;">docker</a> <a href="/tags/json-net/" style="font-size: 10px;">json.net</a> <a href="/tags/k8s/" style="font-size: 10px;">k8s</a> <a href="/tags/kestrel/" style="font-size: 11px;">kestrel</a> <a href="/tags/masstransit/" style="font-size: 11px;">masstransit</a> <a href="/tags/nginx/" style="font-size: 11px;">nginx</a> <a href="/tags/rabbitmq/" style="font-size: 11px;">rabbitmq</a> <a href="/tags/reCaptcha/" style="font-size: 10px;">reCaptcha</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">January 2021</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">October 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">May 2020</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">October 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">February 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">January 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">March 2016</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/02/">February 2016</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">August 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">June 2015</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/01/monsters-weekly%5Cep200d/">Monsters Weekly 200d -  Conversations with Nik Molar</a>
+          </li>
+        
+          <li>
+            <a href="/2021/01/monsters-weekly%5Cep200c/">Monsters Weekly 200c -  Conversations with Andrew Stanton-Nurse</a>
+          </li>
+        
+          <li>
+            <a href="/2020/12/monsters-weekly%5Cep195/">Monsters Weekly 195 -  Playwright with Arjun Attam</a>
+          </li>
+        
+          <li>
+            <a href="/2020/12/monsters-weekly%5Cep200b/">Monsters Weekly 200b -  Conversations with Julie Lerman</a>
+          </li>
+        
+          <li>
+            <a href="/2020/12/monsters-weekly%5Cep200a/">Monsters Weekly 200a -  Conversations with Jon Galloway</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+                    </div>
+                
+            </div>       
+       </div>
+       <div class="clearfix"></div>
+    </div>
+        <footer id="footer">
+        <div class="container">
+            <div class="copyrights">Copyright 2015-2016 | Crafted By The Monsters | <a href="http://simontimms.com" target="_blank">Simon Timms</a> | <a href="http://davepaquette.com" target="_blank">Dave Paquette</a> | <a href="http://jameschambers.com" target="_blank">James Chambers</a></div> 
+            <div class="social-ul">
+                <ul>
+                    <li class="social-twitter"><a href="https://twitter.com/AspNetMonsters" target="_blank" rel="noopener"><i class="fa fa-twitter"></i></a></li>
+                    <li class="social-google"><a href="https://plus.google.com/100446024681292990445" target="_blank" rel="noopener"><i class="fa fa-google-plus"></i></a></li>
+                    <li class="social-youtube"><a href="https://www.youtube.com/channel/UCBkoKZ_tgy_yPnN0sD3KeRg" target="_blank" rel="noopener"><i class="fa fa-youtube-play"></i></a></li>
+                    <li class="social-rss"><a href="/atom.xml"><i class="fa fa-rss"></i></a></li>
+                </ul>
+            </div>
+            <!-- End social-ul -->
+        </div>
+        <!-- End container -->
+    </footer>
+    <!-- End footer -->    
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/2016/01/welcome" class="mobile-nav-link">About</a>
+  
+    <a href="/2016/01/guests" class="mobile-nav-link">Special Guests</a>
+  
+    <a href="/2016/12/aspnetcorebook" class="mobile-nav-link">Our Book</a>
+  
+</nav>
+    
+<script>
+  var disqus_shortname = 'aspnetmonsters';
+   
+  
+  var disqus_url = 'http://aspnetmonsters.com/2020/05/2020-05-10-deploying-a-static-site-to-azure-using-the-az-cli/';  
+  
+  
+  disqus_url = 'https://www.davepaquette.com/archive/2020/05/10/deploying-a-static-site-to-azure-using-the-az-cli.aspx';  
+  
+
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+    <!-- js -->
+       <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+        <script src="/js/html5.js"></script>
+        <script src="/js/modernizr.js"></script>
+        <script src="/js/tabs.js"></script>
+        <script src="/js/jquery.prettyPhoto.js"></script>
+        <script src="/js/jquery.bxslider.min.js"></script>
+        <script src="/js/custom.js"></script>
+       <script src="/js/bootstrap.min.js"></script>
+    <!-- End js --> 
+  
+    <script type="text/javascript">
+        function ready(fn) {
+        if (document.readyState != 'loading'){
+            fn();
+        } else {
+            document.addEventListener('DOMContentLoaded', fn);
+        }
+        }
+
+        ready(function() {
+            // min inclusive, max exclusive
+            function getRandomInt(min, max) {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min)) + min;
+            }
+
+            var referalLinks = 
+            [
+            "https://www.amazon.ca/ASP-NET-Core-Application-Development-application-ebook/dp/B01N9E92QY" 
+            ];
+
+            var buynowlink = document.getElementById('monstermessagelink');
+            buynowlink.href = referalLinks[getRandomInt(0,referalLinks.length)];
+        });
+    </script>
+</body>
+</html>
