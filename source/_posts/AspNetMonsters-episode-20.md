@@ -1,20 +1,16 @@
+
 ---
-title: The Monsters Weekly - Episode 20 - 'Docs and GitHub Repos'
+title: Monsters Weekly 20 -  dotnet new gitignore
 layout: post
-featureImage: /src/github-aspnet.png
 tags: 
   - ASP.NET Core
-  - GitHub
 authorId: monsters
-date: 2016-03-31 10:00:00
+date: 2021-04-19 08:00:00
 categories:
   - Monsters Weekly
 permalink: monsters-weekly\ep20
 ---
 
-Join us for a quick tour of the Documentation and GitHub repos for ASP.NET Core.
+A .gitnore file allows you to exclude specific files and folders from source control. Use the dotnet new gitignore command to quickly add a .gitignore to your .NET projects. Think of all the time you will save now that you don't have to Google for a .gitignore template and copy it into your project!!
 
-
-<iframe src="https://channel9.msdn.com/Series/aspnetmonsters/Episode-20-Docs-and-GitHub-Repos/player" width="640" height="360" allowFullScreen frameBorder="0"></iframe>
-
-In this episode, Dave shows us how to browse the code base, where to log issues and how to engage with the ASP.NET development team on GitHub [github.com/aspnet](https://github.com/aspnet). We take a quick spin through the fancy new Read the Docs site 90 [docs.asp.net](http://docs.asp.net).
+<iframe width="702" height="395" src="https://www.youtube.com/embed/W72-qTvBg7Q" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
