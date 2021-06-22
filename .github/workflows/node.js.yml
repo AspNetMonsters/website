@@ -29,7 +29,7 @@ jobs:
     - name: Azure Blob Storage Upload
       # You may pin to the exact commit or the version.
       # uses: bacongobbler/azure-blob-storage-upload@779a18b594a1a7cf5412645e06c856324a8b01e5
-      uses: bacongobbler/azure-blob-storage-upload@v1.1.1
+      uses: bacongobbler/azure-blob-storage-upload@v1.2.0
       with:
         connection_string: ${{ secrets.BLOB_CONNECTION_STRING }}
         container_name: $web
