@@ -41,7 +41,9 @@ jobs:
     - name: Azure CLI Action
       uses: Azure/cli@1.0.4
       with:
-        inlineScript: az cdn endpoint purge -n aspnetmonsters -g aspnetmonsters --profile-name  aspnetmonsters --no-wait --content-paths '/' '/index.html'
+        inlineScript: |
+            az account show
+            az login && az cdn endpoint purge -n aspnetmonsters -g aspnetmonsters --profile-name  aspnetmonsters --no-wait --content-paths '/' '/index.html'
         
         
         
