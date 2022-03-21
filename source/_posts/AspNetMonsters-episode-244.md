@@ -11,7 +11,7 @@ categories:
 permalink: monsters-weekly\ep244
 ---
 
-Writing a new GitHub Actions workflow and want to save the embarrassment of a dozen failed builds prominently on GitHub? Well ACT is here to save you. Run your GitHub actions locally using the Act CLI. Get that workflow in a working state _before_ pushing your code to GitHub.
+Writing a new GitHub Actions workflow and want to save the embarrassment of a dozen failed builds displayed prominently on GitHub? Well ACT is here to save you. Run your GitHub actions locally using the Act CLI. Get that workflow in a working state _before_ pushing your code to GitHub.
 
 That's right folks! Locally sourced, artisanal workflows!
 
