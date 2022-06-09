@@ -19,4 +19,4 @@ Templates and Slots - https://developer.mozilla.org/en-US/docs/Web/Web_Component
 
 Previous Episode: https://www.youtube.com/watch?v=jeBjW-TCCx4&t=2s
 
-<iframe width="702" height="395" src="https://youtu.be/zD5kr0Rggtg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="702" height="395" src="https://www.youtube.com/embed/zD5kr0Rggtg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
