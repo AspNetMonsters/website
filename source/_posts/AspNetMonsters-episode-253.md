@@ -16,4 +16,4 @@ Virtual scrollers allow for faster interaction with the DOM by reducing the numb
 https://vuetifyjs.com/en/components/virtual-scroller/
 https://github.com/Akryum/vue-virtual-scroller
 
-<iframe width="702" height="395" src="https://youtu.be/TxIe-MZbFeE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="702" height="395" src="https://www.youtube.com/embed/TxIe-MZbFeE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
