@@ -20,6 +20,12 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - run: sudo apt-get install jq
+    - name: Get NodeJS Version from package.json
+      run: |
+        NodeVersion = echo "$(cat ./package.json)" | jq .version | xargs
+        echo "NodeVersion=${NodeVersion}" >> $GITHUB_ENV
+    - run: echo "${{ env.NodeVersion }}"
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
