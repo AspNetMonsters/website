@@ -20,7 +20,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - run: sudo apt-get install jq
     - name: Get NodeJS Version from package.json
       run: |
         echo "$(cat ./package.json)" | jq .version | xargs -I {} echo "NodeVersion="{} >> $GITHUB_ENV
