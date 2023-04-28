@@ -35,7 +35,7 @@ jobs:
       with:
         inlineScript: |
             az account show
-            az storage blob upload-batch --account-name aspnetmonsters -s ./public -d '$web'
+            az storage blob upload-batch --account-name aspnetmonsters -s ./public -d '$web' --overwrite
             az cdn endpoint purge -n aspnetmonsters -g aspnetmonsters --profile-name  aspnetmonsters --no-wait --content-paths '/' '/index.html'
         
         
