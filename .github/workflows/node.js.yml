@@ -43,7 +43,7 @@ jobs:
       with:
         inlineScript: |
             az account show
-            az login && az cdn endpoint purge -n aspnetmonsters -g aspnetmonsters --profile-name  aspnetmonsters --no-wait --content-paths '/' '/index.html'
+            az cdn endpoint purge -n aspnetmonsters -g aspnetmonsters --profile-name  aspnetmonsters --no-wait --content-paths '/' '/index.html'
         
         
         
