@@ -11,6 +11,6 @@ categories:
 permalink: monsters-weekly\ep271
 ---
 
-In this video we learn about how to use the new Hierarchy Id in entity framework 8
+In this video we learn about how to use the new Hierarchy Id in Entity Framework 8
 
 <iframe width="702" height="395" src="https://youtu.be/embed/kwXwsSUtVHk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
