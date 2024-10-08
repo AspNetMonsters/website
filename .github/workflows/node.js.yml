@@ -23,6 +23,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - name: Get NodeJS Version from package.json
+      run: |
+        echo "$(cat ./package.json)" | jq .version | xargs -I {} echo "NodeVersion="{} >> $GITHUB_ENV
+    - run: echo "${{ env.NodeVersion }}"
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
